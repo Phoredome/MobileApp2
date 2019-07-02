@@ -1,9 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.Border;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.example.myapplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
