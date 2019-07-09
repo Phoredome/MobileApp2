@@ -1,4 +1,4 @@
-package com.example.mainlayout;
+package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.myapplication.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -20,14 +22,15 @@ public class LoginActivity extends AppCompatActivity {
         final Button signUpBtn = (Button) findViewById(R.id.signUpBtn);
         final Button loginBtn = findViewById(R.id.loginBtn);
 
-
-        LoginPage();
-
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
     }
-}
+
+
+
+    }
+
