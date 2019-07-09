@@ -38,6 +38,13 @@ public class TableEntry implements BaseColumns {
     public static final String TRIP_COLUMN_NAME_CAR_ID = "carId";
     public static final String TRIP_COLUMN_NAME_USER_ID = "userId";
     public static final String TRIP_COLUMN_NAME_KMS_RUN_FOR_TRIP = "kmsRunForTrip";
-    public static final String TRIP_COLUMN_NAME_DATE_TIME_OF_TRIP = "dateTimeOfTrip";
+    public static final String TRIP_COLUMN_NAME_DATE_OF_TRIP = "dateOfTrip";
+    public static final String TRIP_COLUMN_NAME_TIME_OF_TRIP = "timeOfTrip";
     public static final String TRIP_COLUMN_NAME_AMOUNT = "amount";
+    public static final String TRIP_COLUMN_NAME_STARTINGY = "startingY";
+    public static final String TRIP_COLUMN_NAME_STARTINGX = "startingX";
+    public static final String TRIP_COLUMN_NAME_ENDINGY = "endingY";
+    public static final String TRIP_COLUMN_NAME_ENDINGX = "endingX";
+
+
 }

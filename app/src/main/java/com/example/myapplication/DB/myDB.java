@@ -15,6 +15,13 @@ public class myDB extends SQLiteOpenHelper {
         Log.d("MyDB","Constructor");
     }
 
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if(!db.isReadOnly()) {
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
+    }
+
     private static final String SQL_CREATE_ENTRIES_USER =
             "CREATE TABLE " + TableEntry.USER_TABLE_NAME + " (" +
                     TableEntry.USER_COLUMN_NAME_USER_ID + " INTEGER PRIMARY KEY," +
@@ -53,7 +60,14 @@ public class myDB extends SQLiteOpenHelper {
                     TableEntry.TRIP_COLUMN_NAME_USER_ID + " INTEGER," +
                     TableEntry.TRIP_COLUMN_NAME_AMOUNT + " NUMERIC NOT NULL," +
                     TableEntry.TRIP_COLUMN_NAME_KMS_RUN_FOR_TRIP + " NUMERIC NOT NULL," +
-                    TableEntry.TRIP_COLUMN_NAME_DATE_TIME_OF_TRIP + " NUMERIC NOT NULL)";
+                    TableEntry.TRIP_COLUMN_NAME_TIME_OF_TRIP + " NUMERIC NOT NULL," +
+                    TableEntry.TRIP_COLUMN_NAME_DATE_OF_TRIP + " NUMERIC NOT NULL," +
+                    TableEntry.TRIP_COLUMN_NAME_STARTINGX + " NUMERIC NOT NULL," +
+                    TableEntry.TRIP_COLUMN_NAME_STARTINGY + " NUMERIC NOT NULL," +
+                    TableEntry.TRIP_COLUMN_NAME_ENDINGX + " NUMERIC NOT NULL," +
+                    TableEntry.TRIP_COLUMN_NAME_ENDINGY + " NUMERIC NOT NULL," +
+                    "FOREIGN KEY(carId) REFERENCES Car(carId)," +
+                    "FOREIGN KEY(userId) REFERENCES User(userId))";
 
     private static final String SQL_DELETE_ENTRIES_USER =
             "DROP TABLE IF EXISTS " + TableEntry.USER_TABLE_NAME;
