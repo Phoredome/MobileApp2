@@ -28,11 +28,11 @@ public class myDB extends SQLiteOpenHelper {
                     TableEntry.USER_COLUMN_NAME_FN + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_LN + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_ADDRESS + "TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_CITY + " TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_COUNTRY + " TEXT NOT NULL," +
+                    TableEntry.USER_COLUMN_NAME_ADDRESS + "TEXT," +
+                    TableEntry.USER_COLUMN_NAME_CITY + " TEXT," +
+                    TableEntry.USER_COLUMN_NAME_COUNTRY + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_PHONE_NUMBER + " NUMERIC," +
-                    TableEntry.USER_COLUMN_NAME_DATE_OF_BIRTH + " NUMERIC NOT NULL," +
+                    TableEntry.USER_COLUMN_NAME_DATE_OF_BIRTH + " NUMERIC," +
                     TableEntry.USER_COLUMN_NAME_PAYMENT_OPTIONS + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_USERNAME + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_PASSWORD + " TEXT NOT NULL," +
