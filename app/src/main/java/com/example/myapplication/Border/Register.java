@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.R;
 import com.example.myapplication.ui.login.LoginActivity;
 
 public class Register extends AppCompatActivity {

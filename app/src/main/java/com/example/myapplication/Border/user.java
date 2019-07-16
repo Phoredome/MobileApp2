@@ -1,8 +1,10 @@
-package com.example.mainlayout;
+package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myapplication.R;
 
 public class user extends AppCompatActivity {
 
