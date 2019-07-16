@@ -2,7 +2,9 @@ package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,11 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Controller.DBController;
+import com.example.myapplication.Entities.User;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.login.LoginActivity;
 
+
 public class Register extends AppCompatActivity {
 
+    SQLiteDatabase wdb;
 
     final EditText regUser = (EditText) findViewById(R.id.reg_userN);
     final EditText regPass = (EditText) findViewById(R.id.reg_pass);
@@ -31,7 +37,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-
+    wdb = DBController.getWritable(this);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,17 +67,25 @@ public class Register extends AppCompatActivity {
 
         register.setEnabled(false);
 
-        String name = regFName.getText().toString();
-        String lastName = regLName.getText().toString();
-        String email = regEmail.getText().toString();
-        String username = regUser.getText().toString();
-        String password = regPass.getText().toString();
+        final String name = regFName.getText().toString();
+        final String lastName = regLName.getText().toString();
+        final String email = regEmail.getText().toString();
+        final String username = regUser.getText().toString();
+        final String password = regPass.getText().toString();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
 
                         signUpSuccess();
+                        ContentValues values = new ContentValues();
+                        values.put("firstName", name);
+                        values.put("lastName", lastName);
+                        values.put("email", email);
+                        values.put("userName", username);
+                        values.put("password", password);
+
+                        wdb.insert("User", null, values);
 
                     }
                 }, 0);
@@ -147,6 +161,8 @@ public class Register extends AppCompatActivity {
         String pass = regPass.getText().toString();
         return pass;
     }
+
+
 
 
 

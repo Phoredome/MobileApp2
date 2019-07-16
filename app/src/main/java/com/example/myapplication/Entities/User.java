@@ -31,6 +31,14 @@ public class User {
         this.status = status;
     }
 
+    public User(String name, String lastName, String email, String username, String password) {
+        this.firstName = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.userName = username;
+        this.password = password;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
