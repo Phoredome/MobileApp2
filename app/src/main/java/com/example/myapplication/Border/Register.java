@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,7 @@ public class Register extends AppCompatActivity {
     final EditText regLName = (EditText) findViewById(R.id.reg_last);
     final EditText regEmail = (EditText) findViewById(R.id.reg_email);
 
-
+    final TextView login = (TextView) findViewById(R.id.loginLink);
     final Button register = (Button) findViewById(R.id.regBtn);
 
     @Override
@@ -61,29 +62,41 @@ public class Register extends AppCompatActivity {
         register.setEnabled(false);
 
         String name = regFName.getText().toString();
-        String lastname = regLName.getText().toString();
+        String lastName = regLName.getText().toString();
         String email = regEmail.getText().toString();
         String username = regUser.getText().toString();
         String password = regPass.getText().toString();
 
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+
+                        signUpSuccess();
+
+                    }
+                }, 0);
     }
+
+
+
+    public void signUpSuccess() {
+        register.setEnabled(true);
+        setResult(RESULT_OK,null);
+        finish();
+    }
+
 
     public void failedSignUp() {
-        Toast.makeText(getBaseContext(), "Login failed. Please try again", Toast.LENGTH_SHORT).show();
-        register.setEnabled(true);
-    }
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
-    public void successfulSignUp () {
         register.setEnabled(true);
-        setResult(RESULT_OK, null);
-        finish();
     }
 
     public boolean validateUser() {
         boolean valid = true;
 
         String name = regFName.getText().toString();
-        String lastname = regLName.getText().toString();
+        String lastName = regLName.getText().toString();
         String email = regEmail.getText().toString();
         String username = regUser.getText().toString();
         String password = regPass.getText().toString();
@@ -96,19 +109,38 @@ public class Register extends AppCompatActivity {
             regFName.setError(null);
         }
 
-        if(lastname.isEmpty() || lastname.length() < 2){
+        if(lastName.isEmpty() || lastName.length() < 2){
             regLName.setError("Your last name needs at least 2 characters. Please try again.");
             valid = false;
         } else {
             regLName.setError(null);
         }
 
-        return false;
-    }
+        if (username.isEmpty() || username.length() < 3) {
 
-    public String getUserName() {
-        String user = regUser.getText().toString();
-        return  user;
+            regUser.setError("Your first name needs at least 2 characters. Please try again.");
+            valid = false;
+
+        } else {
+            regUser.setError(null);
+        }
+
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            regEmail.setError("Enter a valid email address.");
+            valid = false;
+        } else {
+            regEmail.setError(null);
+        }
+
+        if (password.isEmpty() || password.length() < 4) {
+            regPass.setError("Your password needs to be at least 4 characters long");
+            valid = false;
+
+        } else {
+            regPass.setError(null);
+        }
+
+        return valid;
     }
 
     public String getPassword() {
