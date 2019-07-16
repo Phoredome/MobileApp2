@@ -2,6 +2,7 @@ package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -68,9 +69,12 @@ public class Register extends AppCompatActivity {
 
     }
 
+    public void showToast(Context mContext, String message){
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void failedSignUp() {
-        Toast.makeText(getBaseContext(), "Login failed. Please try again", Toast.LENGTH_SHORT).show();
-        register.setEnabled(true);
+        showToast(getBaseContext(), "Login failed. Please try again");
     }
 
     public void successfulSignUp () {
@@ -115,7 +119,6 @@ public class Register extends AppCompatActivity {
         String pass = regPass.getText().toString();
         return pass;
     }
-
 
 
 }
