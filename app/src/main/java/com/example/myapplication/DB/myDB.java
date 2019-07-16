@@ -51,7 +51,9 @@ public class myDB extends SQLiteOpenHelper {
                     TableEntry.CAR_COLUMN_NAME_KMS_RUN + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_KMS_SINCE_LAST_SERVICE + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_IN_USE + " NUMERIC," +
-                    TableEntry.CAR_COLUMN_NAME_IN_SERVICE + " NUMERIC)";
+                    TableEntry.CAR_COLUMN_NAME_IN_SERVICE + " NUMERIC," +
+                    TableEntry.CAR_COLUMN_NAME_COORDX + " NUMERIC, " +
+                    TableEntry.CAR_COLUMN_NAME_COORDY + " NUMERIC)";
 
     private static final String SQL_CREATE_ENTRIES_TRIP =
             "CREATE TABLE " + TableEntry.TRIP_TABLE_NAME + " (" +
