@@ -2,7 +2,11 @@ package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.ContentValues;
+
+import android.content.Context;
+
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,9 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Controller.DBController;
-import com.example.myapplication.Entities.User;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.login.LoginActivity;
 
 
 public class Register extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-    wdb = DBController.getWritable(this);
+        wdb = DBController.getWritable(this);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +54,7 @@ public class Register extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
-             //   overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                //   overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
             }
         });
@@ -60,7 +62,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void signup() {
-        if(!validateUser()) {
+        if (!validateUser()) {
             failedSignUp();
             return;
         }
@@ -92,16 +94,19 @@ public class Register extends AppCompatActivity {
     }
 
 
+    public void showToast(Context mContext, String message) {
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+    }
 
     public void signUpSuccess() {
         register.setEnabled(true);
-        setResult(RESULT_OK,null);
+        setResult(RESULT_OK, null);
         finish();
     }
 
 
     public void failedSignUp() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        showToast(getBaseContext(), "Login failed. Please try again");
 
         register.setEnabled(true);
     }
@@ -123,7 +128,7 @@ public class Register extends AppCompatActivity {
             regFName.setError(null);
         }
 
-        if(lastName.isEmpty() || lastName.length() < 2){
+        if (lastName.isEmpty() || lastName.length() < 2) {
             regLName.setError("Your last name needs at least 2 characters. Please try again.");
             valid = false;
         } else {
@@ -163,7 +168,5 @@ public class Register extends AppCompatActivity {
     }
 
 
-
-
-
 }
+

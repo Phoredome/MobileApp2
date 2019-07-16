@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.myapplication.R;
+
 public class admin_car_info extends AppCompatActivity {
 
     @Override

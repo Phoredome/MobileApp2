@@ -1,13 +1,17 @@
 package com.example.myapplication.Controller;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.example.myapplication.Border.LoginActivity;
+import com.example.myapplication.Border.Register;
 import com.example.myapplication.Border.UserDAO;
 import com.example.myapplication.Entities.User;
 
 public class LoginManager
 {
 
-    public static void main(String[] args)
+    public Boolean check(String[] args)
     {
         String uname = LoginActivity.getUsername();
         String pword = LoginActivity.getPassword();
@@ -17,18 +21,13 @@ public class LoginManager
             // didn't match any account
             user = UserDAO.getUser(uname);
             if (user != null && user.getPassword().equals(pword))
-                if (user.isAdmin())
-                    loginStatus = LoginStatus.ADMIN_USER;
-                else
-                    loginStatus = LoginStatus.BASIC_USER;
+                if (user.isAdmin()) {
+                    return true;
+                }
             else // User is null or password is wrong
-                JOptionPane.showMessageDialog(null,
-                        "Username or password is incorrect", "Login",
-                        JOptionPane.WARNING_MESSAGE);
-        } catch (HibernateException hx) {
-            JOptionPane.showMessageDialog(null,
-                    "There was a problem connecting to the server", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                    return false;
+        } catch(Exception e) {
+            Log.e("Server Connection Error", e.getMessage(), e);
         }
         // If they didn't cancel logging in by this point, they must *be*
         // logged in. Show the main window, including admin tab if appropriate
