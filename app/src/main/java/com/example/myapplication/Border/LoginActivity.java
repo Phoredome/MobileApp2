@@ -76,25 +76,35 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-public boolean validateUser() {
-    boolean valid = true;
+    public boolean validateUser() {
+        boolean valid = true;
 
-    String user = usernameInput.getText().toString();
-    String pass = passInput.getText().toString();
+        String user = usernameInput.getText().toString();
+        String pass = passInput.getText().toString();
 
-    if (user.isEmpty() || user.length() < 2) {
-        usernameInput.setError("Enter a valid username longer than 2 characters");
-        valid = false;
-    } else {
-        usernameInput.setError(null);
+        if (user.isEmpty() || user.length() < 2) {
+            usernameInput.setError("Enter a valid username longer than 2 characters");
+            valid = false;
+        } else {
+            usernameInput.setError(null);
+        }
+
+        if(pass.isEmpty() || pass.length() < 4) {
+            passInput.setError("Please enter a password longer than 4 characters.");
+            valid = false;
+        } else {
+            passInput.setError(null);
+        }
+        return valid;
     }
 
-    if(pass.isEmpty() || pass.length() < 4) {
-        passInput.setError("Please enter a password longer than 4 characters.");
-        valid = false;
-    } else {
-        passInput.setError(null);
+    public String getPassword() {
+        String pass = passInput.getText().toString();
+        return pass;
     }
-    return valid;
-}
+
+    public String getUsername() {
+        String name = usernameInput.getText().toString();
+        return name;
+    }
 }
