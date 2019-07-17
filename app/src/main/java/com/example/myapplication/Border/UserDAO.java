@@ -3,23 +3,26 @@ package com.example.myapplication.Border;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TableLayout;
-
-import com.example.myapplication.R;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 
 public class UserDAO {
 
-    TableLayout theView;
     SQLiteDatabase wdb;
+    Register reg = new Register();
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+    public Integer registerUser() {
 
-        //wdb = DBoperationSupport.getWritable(this);
-        //theView = (TableLayout) findViewById(R.id.theTable);
+        ContentValues values = new ContentValues();
+        values.put("firstName", reg.getFName());
+        values.put("lastName", reg.getLName());
+        values.put("email", reg.getEmail());
+        values.put("userName", reg.getUsername());
+        values.put("password", reg.getPassword());
 
-        //Select All Query
-        final String selectQuery = " ";
+        wdb.insert("User", null, values);
+
+
+        return 0;
     }
 }
