@@ -16,6 +16,11 @@ import com.example.myapplication.R;
 public class LoginActivity extends AppCompatActivity
 {
 
+    public static void main(String[] args)
+    {
+        
+    }
+
     LoginManager lm = new LoginManager();
 
     final EditText usernameInput = (EditText) findViewById(R.id.usernameText);
