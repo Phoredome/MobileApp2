@@ -28,7 +28,9 @@ public class Register extends AppCompatActivity {
     final EditText regLName = (EditText) findViewById(R.id.reg_last);
     final EditText regEmail = (EditText) findViewById(R.id.reg_email);
 
-    final TextView login = (TextView) findViewById(R.id.loginLink);
+
+
+   final TextView login = (TextView) findViewById(R.id.loginLink);
     final Button register = (Button) findViewById(R.id.regBtn);
 
     @Override
