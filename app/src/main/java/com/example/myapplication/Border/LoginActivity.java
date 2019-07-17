@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.Controller.LoginManager;
 import com.example.myapplication.R;
 
 public class LoginActivity extends AppCompatActivity
 {
+
+    LoginManager lm = new LoginManager();
 
     final EditText usernameInput = (EditText) findViewById(R.id.usernameText);
     final EditText passInput = (EditText) findViewById(R.id.passwordText);
@@ -29,7 +32,15 @@ public class LoginActivity extends AppCompatActivity
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(validateUser() == true)
+                {
+                    if(lm.check(usernameInput.getText().toString(),passInput.getText().toString()) == true)
+                    {
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }
 
             }
         });
