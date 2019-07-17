@@ -6,6 +6,8 @@ import android.widget.TableLayout;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.myapplication.Entities.User;
+
 public class UserDAO {
 
     SQLiteDatabase wdb;
@@ -22,7 +24,11 @@ public class UserDAO {
 
         wdb.insert("User", null, values);
 
-
         return 0;
+    }
+
+    public User getUser(String uname)
+    {
+        return null;
     }
 }

@@ -18,35 +18,30 @@ public class LoginActivity extends AppCompatActivity
     final EditText usernameInput = (EditText) findViewById(R.id.usernameText);
     final EditText passInput = (EditText) findViewById(R.id.passwordText);
 
-    final Button signUpBtn = (Button) findViewById(R.id.signUpBtn);
+    final Button signUpBtn = findViewById(R.id.signUpBtn);
     final Button loginBtn = findViewById(R.id.loginBtn);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginBtn.setOnClickListener(new View.OnClickListener()
-        {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
 
 
             }
         });
-    }
 
-    sighUpButton.setOnClickListener(new View.OnClickListener)
-    {
-        @Override
-                public void onClick(View v)
-        {
-            Intent i = new Intent(getApplicationContext(),Register.class);
-            startActivity(i);
-            finish();
-        }
+        signUpBtn.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), Register.class);
+                startActivity(i);
+                finish();
+            }
+        }));
     }
 
     public void login() {
@@ -100,6 +95,12 @@ public class LoginActivity extends AppCompatActivity
             passInput.setError(null);
         }
         return valid;
+    }
+
+    public String getUsername()
+    {
+        String user = usernameInput.getText().toString();
+        return user;
     }
 
     public String getPassword() {

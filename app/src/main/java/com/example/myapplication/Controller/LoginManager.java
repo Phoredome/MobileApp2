@@ -10,18 +10,20 @@ import com.example.myapplication.Entities.User;
 
 public class LoginManager
 {
+    LoginActivity la = new LoginActivity();
+    UserDAO ud = new UserDAO();
 
     public Boolean check(String[] args)
     {
-        String uname = LoginActivity.getUsername();
-        String pword = LoginActivity.getPassword();
+        String uname = la.getUsername();
+        String pword = la.getPassword();
         User user = null;
         try {
             // Get the User from the database, will be null if User/pass
             // didn't match any account
-            user = UserDAO.getUser(uname);
+            user = ud.getUser(uname);
             if (user != null && user.getPassword().equals(pword))
-                if (user.isAdmin()) {
+                if (user.getStatus()) {
                     return true;
                 }
             else // User is null or password is wrong
