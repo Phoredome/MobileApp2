@@ -69,7 +69,7 @@ public class Register extends AppCompatActivity {
 
         register.setEnabled(false);
 
-        final String name = regFName.getText().toString();
+        /*final String name = regFName.getText().toString();
         final String lastName = regLName.getText().toString();
         final String email = regEmail.getText().toString();
         final String username = regUser.getText().toString();
@@ -90,7 +90,7 @@ public class Register extends AppCompatActivity {
                         wdb.insert("User", null, values);
 
                     }
-                }, 0);
+                }, 0);*/
     }
 
 
@@ -98,12 +98,13 @@ public class Register extends AppCompatActivity {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void signUpSuccess() {
+   /* public void signUpSuccess() {
         register.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
 
+*/
 
     public void failedSignUp() {
         showToast(getBaseContext(), "Login failed. Please try again");
@@ -162,11 +163,26 @@ public class Register extends AppCompatActivity {
         return valid;
     }
 
+    public String getFName() {
+        String first = regFName.getText().toString();
+        return first;
+    }
+    public String getLName() {
+        String last = regLName.getText().toString();
+        return last;
+    }
+    public String getUsername() {
+        String user = regUser.getText().toString();
+        return user;
+    }
     public String getPassword() {
         String pass = regPass.getText().toString();
         return pass;
     }
-
+    public String getEmail() {
+        String email = regEmail.getText().toString();
+        return email;
+    }
 
 }
 

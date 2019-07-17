@@ -102,9 +102,4 @@ public class LoginActivity extends AppCompatActivity {
         String pass = passInput.getText().toString();
         return pass;
     }
-
-    public String getUsername() {
-        String name = usernameInput.getText().toString();
-        return name;
-    }
 }
