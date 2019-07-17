@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity
 
         loginBtn.setEnabled(false);
 
-//        String user = usernameInput.getText().toString();
-  //      String pass = passInput.getText().toString();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

@@ -22,8 +22,6 @@ public class Register extends AppCompatActivity {
 
     SQLiteDatabase wdb;
 
-    final EditText regUser = (EditText) findViewById(R.id.reg_userN);
-    final EditText regPass = (EditText) findViewById(R.id.reg_pass);
     final EditText regFName = (EditText) findViewById(R.id.reg_first);
     final EditText regLName = (EditText) findViewById(R.id.reg_last);
     final EditText regEmail = (EditText) findViewById(R.id.reg_email);
@@ -67,43 +65,12 @@ public class Register extends AppCompatActivity {
         }
 
         register.setEnabled(false);
-
-        /*final String name = regFName.getText().toString();
-        final String lastName = regLName.getText().toString();
-        final String email = regEmail.getText().toString();
-        final String username = regUser.getText().toString();
-        final String password = regPass.getText().toString();
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-
-                        signUpSuccess();
-                        ContentValues values = new ContentValues();
-                        values.put("firstName", name);
-                        values.put("lastName", lastName);
-                        values.put("email", email);
-                        values.put("userName", username);
-                        values.put("password", password);
-
-                        wdb.insert("User", null, values);
-
-                    }
-                }, 0);*/
     }
 
 
     public void showToast(Context mContext, String message) {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
-
-   /* public void signUpSuccess() {
-        register.setEnabled(true);
-        setResult(RESULT_OK, null);
-        finish();
-    }
-
-*/
 
     public void failedSignUp() {
         showToast(getBaseContext(), "Login failed. Please try again");
@@ -117,8 +84,7 @@ public class Register extends AppCompatActivity {
         String name = regFName.getText().toString();
         String lastName = regLName.getText().toString();
         String email = regEmail.getText().toString();
-        String username = regUser.getText().toString();
-        String password = regPass.getText().toString();
+
 
 
         if (name.isEmpty() || name.length() < 2) {
@@ -135,14 +101,6 @@ public class Register extends AppCompatActivity {
             regLName.setError(null);
         }
 
-        if (username.isEmpty() || username.length() < 3) {
-
-            regUser.setError("Your first name needs at least 2 characters. Please try again.");
-            valid = false;
-
-        } else {
-            regUser.setError(null);
-        }
 
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             regEmail.setError("Enter a valid email address.");
@@ -151,13 +109,7 @@ public class Register extends AppCompatActivity {
             regEmail.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4) {
-            regPass.setError("Your password needs to be at least 4 characters long");
-            valid = false;
 
-        } else {
-            regPass.setError(null);
-        }
 
         return valid;
     }
@@ -170,14 +122,7 @@ public class Register extends AppCompatActivity {
         String last = regLName.getText().toString();
         return last;
     }
-    public String getUsername() {
-        String user = regUser.getText().toString();
-        return user;
-    }
-    public String getPassword() {
-        String pass = regPass.getText().toString();
-        return pass;
-    }
+
     public String getEmail() {
         String email = regEmail.getText().toString();
         return email;

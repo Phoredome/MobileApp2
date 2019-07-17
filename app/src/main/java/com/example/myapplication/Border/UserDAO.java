@@ -19,8 +19,6 @@ public class UserDAO {
         values.put("firstName", reg.getFName());
         values.put("lastName", reg.getLName());
         values.put("email", reg.getEmail());
-        values.put("userName", reg.getUsername());
-        values.put("password", reg.getPassword());
 
         wdb.insert("User", null, values);
 
