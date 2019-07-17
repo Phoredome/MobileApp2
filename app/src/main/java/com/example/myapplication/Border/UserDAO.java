@@ -13,7 +13,7 @@ public class UserDAO {
     SQLiteDatabase wdb;
     Register reg = new Register();
 
-    public Integer registerUser() {
+    public Integer createAccount(String user, String pass) {
 
         ContentValues values = new ContentValues();
         values.put("firstName", reg.getFName());
@@ -29,4 +29,6 @@ public class UserDAO {
     {
         return null;
     }
+
+
 }

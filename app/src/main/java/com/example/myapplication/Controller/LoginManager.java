@@ -13,10 +13,8 @@ public class LoginManager
     LoginActivity la = new LoginActivity();
     UserDAO ud = new UserDAO();
 
-    public Boolean check(String[] args)
+    public Boolean check(String uname, String pword)
     {
-        String uname = la.getUsername();
-        String pword = la.getPassword();
         User user = null;
         try {
             // Get the User from the database, will be null if User/pass
@@ -33,7 +31,7 @@ public class LoginManager
         }
         // If they didn't cancel logging in by this point, they must *be*
         // logged in. Show the main window, including admin tab if appropriate
-
+        return false;
     }
 
 /**
@@ -47,16 +45,16 @@ public class LoginManager
     public static Boolean createAccount(String username, String password)
     {
         try {
-            IUserDatabase db = new SportsDAO();
+            UserDAO ud = new UserDAO();
             // First check if the User exists already
-            if (db.getUser(username) != null)
+            if (ud.getUser(username) != null)
                 return false;
-            String inserted = db.createAccount(username, password);
-            if (inserted == null)
+            Integer key = ud.createAccount(username, password);
+            if (key == null)
                 return false;
             else
                 return true;
-        } catch (HibernateException hx) {
+        } catch (Exception e) {
             return null;
         }
     }
