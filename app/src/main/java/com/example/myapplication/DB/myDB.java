@@ -28,11 +28,11 @@ public class myDB extends SQLiteOpenHelper {
                     TableEntry.USER_COLUMN_NAME_FN + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_LN + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_ADDRESS + "TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_CITY + " TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_COUNTRY + " TEXT NOT NULL," +
+                    TableEntry.USER_COLUMN_NAME_ADDRESS + "TEXT," +
+                    TableEntry.USER_COLUMN_NAME_CITY + " TEXT," +
+                    TableEntry.USER_COLUMN_NAME_COUNTRY + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_PHONE_NUMBER + " NUMERIC," +
-                    TableEntry.USER_COLUMN_NAME_DATE_OF_BIRTH + " NUMERIC NOT NULL," +
+                    TableEntry.USER_COLUMN_NAME_DATE_OF_BIRTH + " NUMERIC," +
                     TableEntry.USER_COLUMN_NAME_PAYMENT_OPTIONS + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_USERNAME + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_PASSWORD + " TEXT NOT NULL," +
@@ -51,7 +51,9 @@ public class myDB extends SQLiteOpenHelper {
                     TableEntry.CAR_COLUMN_NAME_KMS_RUN + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_KMS_SINCE_LAST_SERVICE + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_IN_USE + " NUMERIC," +
-                    TableEntry.CAR_COLUMN_NAME_IN_SERVICE + " NUMERIC)";
+                    TableEntry.CAR_COLUMN_NAME_IN_SERVICE + " NUMERIC," +
+                    TableEntry.CAR_COLUMN_NAME_COORDX + " NUMERIC, " +
+                    TableEntry.CAR_COLUMN_NAME_COORDY + " NUMERIC)";
 
     private static final String SQL_CREATE_ENTRIES_TRIP =
             "CREATE TABLE " + TableEntry.TRIP_TABLE_NAME + " (" +

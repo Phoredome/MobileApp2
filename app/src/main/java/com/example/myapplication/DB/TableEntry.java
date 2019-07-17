@@ -32,8 +32,8 @@ public class TableEntry implements BaseColumns {
     public static final String CAR_COLUMN_NAME_LICENSE_PLATE = "licensePlate";
     public static final String CAR_COLUMN_NAME_IN_USE = "inUse";
     public static final String CAR_COLUMN_NAME_IN_SERVICE = "inService";
-    public static final String CAR_COLUMN_NAME_X_COORD = "xCoord";
-    public static final String CAR_COLUMN_NAME_Y_COORD = "yCoord";
+    public static final String CAR_COLUMN_NAME_COORDX = "coordX";
+    public static final String CAR_COLUMN_NAME_COORDY = "coordY";
 
     public static final String TRIP_TABLE_NAME = "Trip";
     public static final String TRIP_COLUMN_NAME_TRIP_ID = "tripId";
