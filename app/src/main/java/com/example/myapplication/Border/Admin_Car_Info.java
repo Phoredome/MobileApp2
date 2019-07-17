@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class admin_car_info extends AppCompatActivity {
+public class Admin_Car_Info extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

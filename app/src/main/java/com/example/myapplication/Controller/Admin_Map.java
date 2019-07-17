@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.myapplication.R;
 
-public class admin_map extends AppCompatActivity {
+public class Admin_Map extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
