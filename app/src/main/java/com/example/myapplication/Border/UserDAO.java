@@ -32,8 +32,9 @@ public class UserDAO {
 
     public User getUser(String uname)
     {
+        Log.d("inside user", "inside user");
         ArrayList<User> users = getUsers();
-        User user = new User();
+        User user = null;
         for (int i= 0; i < users.size(); i++) {
             if (uname == users.get(i).getUserName()) {
                 user = users.get(i);

@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, LoginPage.class);
-        startActivity(intent);
+
 
     }
 }
