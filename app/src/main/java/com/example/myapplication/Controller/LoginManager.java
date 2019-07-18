@@ -57,7 +57,8 @@ public class LoginManager
             Log.d("account created", "account created");
              return true;
         } catch (Exception e) {
-            return null;
+            //TODO
+            return false;
         }
     }
 }
