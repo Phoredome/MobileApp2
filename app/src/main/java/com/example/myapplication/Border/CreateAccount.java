@@ -27,7 +27,6 @@ public class CreateAccount extends AppCompatActivity {
     public MyDB db;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -49,6 +49,8 @@ public class LoginPage extends AppCompatActivity
                             startActivity(i);
                             finish();
                         }
+                        else
+                            Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         usernameInput.setError("Enter a valid username longer than 2 characters");
@@ -99,13 +101,6 @@ public class LoginPage extends AppCompatActivity
         Button loginBtn = findViewById(R.id.loginBtn);
         loginBtn.setEnabled(true);
         finish();
-    }
-
-    public void loginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-        Button loginBtn = findViewById(R.id.loginBtn);
-
-        loginBtn.setEnabled(true);
     }
 
     /*public String getUsername()
