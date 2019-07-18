@@ -42,18 +42,23 @@ public class LoginManager
  */
     public static Boolean createAccount(String username, String password)
     {
+        Log.d("Picky", "Picky");
         try {
+
             UserDAO ud = new UserDAO();
+            Log.d("new userDAO", "new userDAO");
             // First check if the User exists already
-            if (ud.getUser(username) != null)
+            User userId = ud.getUser(username);
+            if ( userId!= null) {
+                Log.d("user null", userId.getUserName());
                 return false;
-            Integer key = ud.createAccount(username, password);
-            if (key == null)
-                return false;
-            else
-                return true;
+            }
+             ud.createAccount(username, password);
+            Log.d("account created", "account created");
+             return true;
         } catch (Exception e) {
-            return null;
+            //TODO
+            return false;
         }
     }
 }
