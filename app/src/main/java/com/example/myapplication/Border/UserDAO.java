@@ -24,7 +24,7 @@ public class UserDAO {
 
         wdb.insert("User", null, values);
 
-        return 0;
+        return 1;
     }
 
     public User getUser(String uname)
