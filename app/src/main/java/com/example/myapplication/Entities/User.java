@@ -15,6 +15,10 @@ public class User {
     private String password;
     private boolean status;
 
+    public User() {
+
+    }
+
     public User(int userId, String firstName, String lastName, String email, String address, String city, String country, int phoneNumber, String dateOfBirth, String paymentOptions, String userName, String password, boolean status) {
         this.userId = userId;
         this.firstName = firstName;
