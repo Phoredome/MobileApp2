@@ -16,12 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Controller.DBController;
+import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.R;
 
 
 public class CreateAccount extends AppCompatActivity {
 
-    SQLiteDatabase wdb;
+    private SQLiteDatabase wdb;
+    private MyDB db;
 
     final EditText regUser = (EditText) findViewById(R.id.reg_userN);
     final EditText regPass = (EditText) findViewById(R.id.reg_pass);
@@ -39,6 +41,8 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_register);
+
+        db = new MyDB(this);
 
         wdb = DBController.getWritable(this);
 
