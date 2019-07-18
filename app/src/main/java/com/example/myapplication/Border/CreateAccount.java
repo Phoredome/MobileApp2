@@ -2,6 +2,7 @@ package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import android.content.Intent;
@@ -71,28 +72,33 @@ public class CreateAccount extends AppCompatActivity {
         Button register = findViewById(R.id.regBtn);
         register.setEnabled(false);
 
-        /*final String name = regFName.getText().toString();
+        EditText regUser = findViewById(R.id.txtUName);
+        EditText regPass = findViewById(R.id.txtPName);
+        EditText regFName = findViewById(R.id.txtFName);
+        EditText regLName = findViewById(R.id.txtLName);
+        EditText regEmail = findViewById(R.id.txtEmail);
+
+        final String name = regFName.getText().toString();
         final String lastName = regLName.getText().toString();
         final String email = regEmail.getText().toString();
         final String username = regUser.getText().toString();
         final String password = regPass.getText().toString();
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
+        new Runnable() {
+            public void run() {
 
-                        signUpSuccess();
-                        ContentValues values = new ContentValues();
-                        values.put("firstName", name);
-                        values.put("lastName", lastName);
-                        values.put("email", email);
-                        values.put("userName", username);
-                        values.put("password", password);
+                signUpSuccess();
+                ContentValues values = new ContentValues();
+                values.put("firstName", name);
+                values.put("lastName", lastName);
+                values.put("email", email);
+                values.put("userName", username);
+                values.put("password", password);
 
-                        wdb.insert("User", null, values);
+                wdb.insert("User", null, values);
 
                     }
-                }, 0);*/
+                };
     }
 
 
@@ -100,13 +106,12 @@ public class CreateAccount extends AppCompatActivity {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
-   /* public void signUpSuccess() {
+   public void signUpSuccess() {
+        Button register = findViewById(R.id.regBtn);
         register.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
-
-*/
 
     public void failedSignUp() {
         showToast(getBaseContext(), "Login failed. Please try again");
@@ -118,11 +123,11 @@ public class CreateAccount extends AppCompatActivity {
 
     public boolean validateUser() {
         boolean valid = true;
-        EditText regUser = findViewById(R.id.reg_userN);
-        EditText regPass = findViewById(R.id.reg_pass);
-        EditText regFName = findViewById(R.id.reg_first);
-        EditText regLName = findViewById(R.id.reg_last);
-        EditText regEmail = findViewById(R.id.reg_email);
+        EditText regUser = findViewById(R.id.txtUName);
+        EditText regPass = findViewById(R.id.txtPName);
+        EditText regFName = findViewById(R.id.txtFName);
+        EditText regLName = findViewById(R.id.txtLName);
+        EditText regEmail = findViewById(R.id.txtEmail);
 
         String name = regFName.getText().toString();
         String lastName = regLName.getText().toString();
@@ -173,27 +178,27 @@ public class CreateAccount extends AppCompatActivity {
     }
 
     public String getFName() {
-        EditText regFName = findViewById(R.id.reg_first);
+        EditText regFName = findViewById(R.id.txtFName);
         String first = regFName.getText().toString();
         return first;
     }
     public String getLName() {
-        EditText regLName = findViewById(R.id.reg_last);
+        EditText regLName = findViewById(R.id.txtLName);
         String last = regLName.getText().toString();
         return last;
     }
     public String getUsername() {
-        EditText regUser = findViewById(R.id.reg_userN);
+        EditText regUser = findViewById(R.id.txtUName);
         String user = regUser.getText().toString();
         return user;
     }
     public String getPassword() {
-        EditText regPass = findViewById(R.id.reg_pass);
+        EditText regPass = findViewById(R.id.txtPName);
         String pass = regPass.getText().toString();
         return pass;
     }
     public String getEmail() {
-        EditText regEmail = findViewById(R.id.reg_email);
+        EditText regEmail = findViewById(R.id.txtEmail);
         String email = regEmail.getText().toString();
         return email;
     }
