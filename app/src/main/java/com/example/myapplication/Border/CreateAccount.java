@@ -25,7 +25,7 @@ public class CreateAccount extends AppCompatActivity {
     private SQLiteDatabase wdb;
     private MyDB db;
 
-    final EditText regUser = (EditText) findViewById(R.id.reg_userN);
+    final EditText regUser = findViewById(R.id.reg_userN);
     final EditText regPass = (EditText) findViewById(R.id.reg_pass);
     final EditText regFName = (EditText) findViewById(R.id.reg_first);
     final EditText regLName = (EditText) findViewById(R.id.reg_last);
