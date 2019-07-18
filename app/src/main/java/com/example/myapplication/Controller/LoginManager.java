@@ -47,11 +47,8 @@ public class LoginManager
             // First check if the User exists already
             if (ud.getUser(username) != null)
                 return false;
-            Integer key = ud.createAccount(username, password);
-            if (key == null)
-                return false;
-            else
-                return true;
+             ud.createAccount(username, password);
+             return true;
         } catch (Exception e) {
             return null;
         }

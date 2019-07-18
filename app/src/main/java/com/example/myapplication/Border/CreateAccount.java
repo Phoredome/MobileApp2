@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication.Controller.DBController;
+import com.example.myapplication.Controller.LoginManager;
 import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.R;
 
@@ -24,6 +25,7 @@ public class CreateAccount extends AppCompatActivity {
 
     public SQLiteDatabase wdb;
     public MyDB db;
+    public LoginManager lm;
 
 
     @Override
@@ -36,9 +38,10 @@ public class CreateAccount extends AppCompatActivity {
 
         Log.d("Before db", "onCreate1");
         db = new MyDB(this);
+        Log.d("After db", "After db");
 
         wdb = DBController.getWritable(this);
-
+        Log.d("after wdb", "after wdb");
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,40 +52,25 @@ public class CreateAccount extends AppCompatActivity {
     }
 
     public void signup() {
+        Log.d("Before validate user", "Before validate user");
         if (!validateUser()) {
             failedSignUp();
             return;
         }
+
+        Log.d("User tested", "User tested");
         Button register = findViewById(R.id.regBtn);
         register.setEnabled(false);
 
         EditText regUser = findViewById(R.id.txtUName);
         EditText regPass = findViewById(R.id.txtPName);
-        EditText regFName = findViewById(R.id.txtFName);
-        EditText regLName = findViewById(R.id.txtLName);
-        EditText regEmail = findViewById(R.id.txtEmail);
 
-        final String name = regFName.getText().toString();
-        final String lastName = regLName.getText().toString();
-        final String email = regEmail.getText().toString();
         final String username = regUser.getText().toString();
         final String password = regPass.getText().toString();
 
-        new Runnable() {
-            public void run() {
-
-                signUpSuccess();
-                ContentValues values = new ContentValues();
-                values.put("firstName", name);
-                values.put("lastName", lastName);
-                values.put("email", email);
-                values.put("userName", username);
-                values.put("password", password);
-
-                wdb.insert("User", null, values);
-
-                    }
-                };
+        if(!(lm.createAccount(username,password))) {
+            Log.d("id", "user created");
+        }
     }
 
 
@@ -106,6 +94,8 @@ public class CreateAccount extends AppCompatActivity {
     }
 
     public boolean validateUser() {
+
+        Log.d("Startingvalidation", "Starting user validation");
         boolean valid = true;
         EditText regUser = findViewById(R.id.txtUName);
         EditText regPass = findViewById(R.id.txtPName);

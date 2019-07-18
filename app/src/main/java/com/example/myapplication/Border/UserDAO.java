@@ -3,6 +3,7 @@ package com.example.myapplication.Border;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
+import android.util.Log;
 
 import com.example.myapplication.Entities.User;
 
@@ -13,7 +14,9 @@ public class UserDAO {
     SQLiteDatabase wdb;
     CreateAccount reg = new CreateAccount();
 
-    public Integer createAccount(String user, String pass) {
+    public Boolean createAccount(String user, String pass) {
+
+        Log.d("Inside userdao", "Inside createaccount");
 
         ContentValues values = new ContentValues();
         values.put("firstName", reg.getFName());
@@ -24,7 +27,7 @@ public class UserDAO {
 
         wdb.insert("User", null, values);
 
-        return 0;
+        return true;
     }
 
     public User getUser(String uname)
