@@ -63,9 +63,11 @@ public class LoginPage extends AppCompatActivity
             }
         });
 
+
         signUpBtn.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Signup button", "signup button");
                 Intent i = new Intent(getApplicationContext(), CreateAccount.class);
                 startActivity(i);
                 finish();
