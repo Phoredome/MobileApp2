@@ -134,12 +134,6 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/loginLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Link lol" />
-
             <Button
                 android:id="@+id/regBtn"
                 android:layout_width="match_parent"
