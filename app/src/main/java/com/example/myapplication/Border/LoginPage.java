@@ -54,11 +54,9 @@ public class LoginPage extends AppCompatActivity
                         break;
                     case 1:
                         usernameInput.setError("Enter a valid username longer than 2 characters");
-                        usernameInput.setError(null);
                         break;
                     case 2:
                         passInput.setError("Please enter a password longer than 4 characters.");
-                        passInput.setError(null);
                         break;
                 }
 
