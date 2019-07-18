@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Controller.DBController;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 
 

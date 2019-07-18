@@ -1,50 +1,63 @@
 
-package com.example.myapplication.Border;
+package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.Border.MainActivity;
+import com.example.myapplication.Border.Register;
 import com.example.myapplication.Controller.LoginManager;
 import com.example.myapplication.R;
 
 public class LoginActivity extends AppCompatActivity
 {
 
-    public static void main(String[] args)
-    {
-        System.out.println("Hello World");
-    }
 
-    LoginManager lm = new LoginManager();
-
-    final EditText usernameInput = (EditText) findViewById(R.id.usernameText);
-    final EditText passInput = (EditText) findViewById(R.id.passwordText);
-
-    final Button signUpBtn = findViewById(R.id.signUpBtn);
-    final Button loginBtn = findViewById(R.id.loginBtn);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        final EditText usernameInput = (EditText) findViewById(R.id.usernameText);
+        final EditText passInput = (EditText) findViewById(R.id.passwordText);
+
+        Log.d("test", "hello World: ");
+        Button signUpBtn = findViewById(R.id.signUpBtn);
+        Button loginBtn = findViewById(R.id.loginBtn);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validateUser() == true)
+
+                LoginManager lm = new LoginManager();
+
+
+                switch(validateUser(usernameInput.getText().toString(),passInput.getText().toString()))
                 {
-                    if(lm.check(usernameInput.getText().toString(),passInput.getText().toString()) == true)
-                    {
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
+                    case 0:
+                        if(lm.check(usernameInput.getText().toString(),passInput.getText().toString()))
+                        {
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                        break;
+                    case 1:
+                        usernameInput.setError("Enter a valid username longer than 2 characters");
+                        usernameInput.setError(null);
+                        break;
+                    case 2:
+                        passInput.setError("Please enter a password longer than 4 characters.");
+                        passInput.setError(null);
+                        break;
                 }
 
             }
@@ -61,7 +74,7 @@ public class LoginActivity extends AppCompatActivity
     }
 
     public void login() {
-        if (!validateUser()) {
+       /* if (!validateUser()) {
             loginFailed();
             return;
         }
@@ -76,44 +89,24 @@ public class LoginActivity extends AppCompatActivity
                     public void run() {
                         loginSuccess();
                     }
-                }, 0);
+                }, 0);*/
     }
 
     public void loginSuccess() {
+
+        Button loginBtn = findViewById(R.id.loginBtn);
         loginBtn.setEnabled(true);
         finish();
     }
 
     public void loginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Button loginBtn = findViewById(R.id.loginBtn);
 
         loginBtn.setEnabled(true);
     }
 
-
-    public boolean validateUser() {
-        boolean valid = true;
-
-        String user = usernameInput.getText().toString();
-        String pass = passInput.getText().toString();
-
-        if (user.isEmpty() || user.length() < 2) {
-            usernameInput.setError("Enter a valid username longer than 2 characters");
-            valid = false;
-        } else {
-            usernameInput.setError(null);
-        }
-
-        if(pass.isEmpty() || pass.length() < 4) {
-            passInput.setError("Please enter a password longer than 4 characters.");
-            valid = false;
-        } else {
-            passInput.setError(null);
-        }
-        return valid;
-    }
-
-    public String getUsername()
+    /*public String getUsername()
     {
         String user = usernameInput.getText().toString();
         return user;
@@ -122,6 +115,19 @@ public class LoginActivity extends AppCompatActivity
     public String getPassword() {
         String pass = passInput.getText().toString();
         return pass;
+    }*/
+
+    private int validateUser(String user, String pass) {
+        int valid = 0;
+
+
+        if (user.isEmpty() || user.length() < 2)
+            valid = 1;
+
+        else if(pass.isEmpty() || pass.length() < 4)
+            valid = 2;
+
+        return valid;
     }
 
 }

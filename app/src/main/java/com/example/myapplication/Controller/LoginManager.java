@@ -1,10 +1,8 @@
 package com.example.myapplication.Controller;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.myapplication.Border.LoginActivity;
-import com.example.myapplication.Border.Register;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.Border.UserDAO;
 import com.example.myapplication.Entities.User;
 
