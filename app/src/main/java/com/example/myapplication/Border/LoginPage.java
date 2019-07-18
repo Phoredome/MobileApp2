@@ -1,5 +1,5 @@
 
-package com.example.myapplication;
+package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,12 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.Border.MainActivity;
-import com.example.myapplication.Border.Register;
 import com.example.myapplication.Controller.LoginManager;
 import com.example.myapplication.R;
 
-public class LoginActivity extends AppCompatActivity
+public class LoginPage extends AppCompatActivity
 {
 
 
@@ -68,7 +66,7 @@ public class LoginActivity extends AppCompatActivity
         signUpBtn.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Register.class);
+                Intent i = new Intent(getApplicationContext(), CreateAccount.class);
                 startActivity(i);
                 finish();
             }

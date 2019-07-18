@@ -16,12 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Border.tripHistory"
+            android:name=".Border.TripHistory"
             android:label="@string/title_activity_trip_history"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--activity android:name=".Border.Register" /-->
+        <!--activity android:name=".Border.CreateAccount" /-->
         <activity
-            android:name=".Border.Register"
+            android:name=".Border.CreateAccount"
             android:label="@string/title_activity_register" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -36,7 +36,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Border.LoginPage"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,14 +9,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.myapplication.DB.myDB;
+import com.example.myapplication.DB.MyDB;
 
 public class DBController {
     private static SQLiteDatabase wdb = null;
-    private static myDB db = null;
+    private static MyDB db = null;
     public static SQLiteDatabase getWritable(Context context) {
         if (db == null) {
-            db = new myDB(context);
+            db = new MyDB(context);
         }
         if (wdb == null) {
             wdb = db.getWritableDatabase();

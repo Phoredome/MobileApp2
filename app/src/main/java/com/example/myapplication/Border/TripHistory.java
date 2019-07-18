@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.example.myapplication.R;
 
-public class tripHistory
+public class TripHistory
 {
     
 }

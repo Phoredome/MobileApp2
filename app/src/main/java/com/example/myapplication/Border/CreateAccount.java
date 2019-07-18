@@ -16,11 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Controller.DBController;
-import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 
 
-public class Register extends AppCompatActivity {
+public class CreateAccount extends AppCompatActivity {
 
     SQLiteDatabase wdb;
 
@@ -53,7 +52,7 @@ public class Register extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
                 startActivity(intent);
                 finish();
                 //   overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);

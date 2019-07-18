@@ -2,13 +2,13 @@ package com.example.myapplication.Controller;
 
 import android.util.Log;
 
-import com.example.myapplication.LoginActivity;
+import com.example.myapplication.Border.LoginPage;
 import com.example.myapplication.Border.UserDAO;
 import com.example.myapplication.Entities.User;
 
 public class LoginManager
 {
-    LoginActivity la = new LoginActivity();
+    LoginPage la = new LoginPage();
     UserDAO ud = new UserDAO();
 
     public Boolean check(String uname, String pword)

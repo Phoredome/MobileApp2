@@ -1,17 +1,14 @@
 package com.example.myapplication.Border;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.widget.TableLayout;
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.Entities.User;
 
 public class UserDAO {
 
     SQLiteDatabase wdb;
-    Register reg = new Register();
+    CreateAccount reg = new CreateAccount();
 
     public Integer createAccount(String user, String pass) {
 
