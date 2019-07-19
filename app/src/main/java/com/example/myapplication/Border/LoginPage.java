@@ -37,7 +37,7 @@ public class LoginPage extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                LoginManager lm = new LoginManager();
+                LoginManager lm = new LoginManager(getApplicationContext());
 
                 switch(lm.validateUser(usernameInput.getText().toString(),passInput.getText().toString()))
                 {

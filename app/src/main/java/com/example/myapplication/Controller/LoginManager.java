@@ -9,8 +9,11 @@ import com.example.myapplication.Entities.User;
 
 public class LoginManager
 {
-    LoginPage la = new LoginPage();
-    UserDAO ud = new UserDAO(la.getBaseContext());
+    UserDAO ud;
+
+    public LoginManager(Context context) {
+        ud = new UserDAO(context);
+    }
 
     public Boolean check(String uname, String pword)
     {
@@ -57,8 +60,6 @@ public class LoginManager
     {
         Log.d("Picky", "Picky");
         try {
-
-            UserDAO ud = new UserDAO(la.getBaseContext());
             Log.d("new userDAO", "new userDAO");
             // First check if the User exists already
             User userId = ud.getUser(username);

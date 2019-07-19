@@ -2,11 +2,11 @@ package com.example.myapplication.Border;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.util.Log;
 
-import com.example.myapplication.Controller.DBController;
 import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.Entities.User;
 
@@ -44,11 +44,10 @@ public class UserDAO
         Log.d("inside user", "inside user");
 
         ArrayList<User> users = getUsers();
-        //Log.d("UserNames", users.get(0).getUserName());
         User user = null;
         for (int i= 0; i < users.size(); i++) {
             String userName = users.get(i).getUserName();
-            if (uname == userName) {
+            if (uname.equals(userName)) {
                 user = users.get(i);
                 Log.d("UserName", userName);
             }
@@ -59,10 +58,10 @@ public class UserDAO
     private ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
+
             String selectQuery = "SELECT * FROM User;";
             Cursor cursor = rdb.rawQuery(selectQuery,null);
             Integer size = cursor.getCount();
-            Log.d("size", size.toString());
             while(cursor.moveToNext()) {
                 int index;
                 index = cursor.getColumnIndexOrThrow("userId");
@@ -103,13 +102,15 @@ public class UserDAO
 
                 index = cursor.getColumnIndexOrThrow("status");
                 Boolean status = Boolean.parseBoolean(cursor.getString(index));
+                User user = new User(userId,firstName,lastName,email,address,city,country,phoneNumber,dateOfBirth,paymentOptions,userName,password,status);
+                users.add(user);
 
-                users.add(new User(userId,firstName,lastName,email,address,city,country,phoneNumber,dateOfBirth,paymentOptions,userName,password,status));
             }
             cursor.close();
-        } catch (Exception ex) {
-
+        } catch (SQLException ex) {
+            return null;
         }
+
         return users;
     }
 

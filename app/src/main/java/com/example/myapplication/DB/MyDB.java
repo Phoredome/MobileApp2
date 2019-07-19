@@ -81,7 +81,7 @@ public class MyDB extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + TableEntry.TRIP_TABLE_NAME;
 
     private static final String SQL_INSERT_USER =
-            "insert into User (userName, password, firstName, lastName, email, phoneNumber, Address, city, country, dateOfBirth, paymentOptions, status) values ('klboo', 'klboo', 'Kristy', 'Le', 'Pikachuuu@Cars.com', '425-916-4490', ' 5321 Park Drive', 'Haoguantun', 'China', '04/07/1997', 'visa', 'true')";
+            "insert into User (userName, password, firstName, lastName, email, phoneNumber, address, city, country, dateOfBirth, paymentOptions, status) values ('klboo', 'klboo', 'Kristy', 'Le', 'Pikachuuu@Cars.com', '425-916-4490', ' 5321 Park Drive', 'Haoguantun', 'China', '04/07/1997', 'visa', 'true')";
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES_USER);
