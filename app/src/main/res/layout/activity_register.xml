@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:scrollbarSize="5dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,13 +79,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
+                    android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="Password:" />
 
@@ -97,38 +98,38 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
+                    android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="Email:" />
 
                 <EditText
                     android:id="@+id/txtEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="Address:" />
 
                 <EditText
                     android:id="@+id/txtAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName" />
