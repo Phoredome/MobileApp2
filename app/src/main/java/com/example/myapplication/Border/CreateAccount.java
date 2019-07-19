@@ -24,7 +24,7 @@ import com.example.myapplication.R;
 
 public class CreateAccount extends AppCompatActivity {
 
-    public SQLiteDatabase wdb;
+    public SQLiteDatabase wdb, rdb;
     public MyDB db;
     public LoginManager lm;
 
@@ -42,6 +42,7 @@ public class CreateAccount extends AppCompatActivity {
         Log.d("After db", "After db");
 
         wdb = DBController.getWritable(this);
+        rdb = DBController.getReadable(this);
         Log.d("after wdb", "after wdb");
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,11 +66,18 @@ public class CreateAccount extends AppCompatActivity {
 
         EditText regUser = findViewById(R.id.txtUName);
         EditText regPass = findViewById(R.id.txtPName);
+        EditText regFName = findViewById(R.id.txtFName);
+        EditText regLName = findViewById(R.id.txtLName);
+        EditText regEmail = findViewById(R.id.txtEmail);
 
-        final String username = regUser.getText().toString();
-        final String password = regPass.getText().toString();
+        String first = regFName.getText().toString();
+        String last = regLName.getText().toString();
+        String user = regUser.getText().toString();
+        String pass = regPass.getText().toString();
+        String email = regEmail.getText().toString();
 
-        if(!(lm.createAccount(username,password))) {
+
+        if(!(lm.createAccount(user,pass,first,last,email))) {
             Log.d("id", "user created");
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
@@ -155,31 +163,6 @@ public class CreateAccount extends AppCompatActivity {
         return valid;
     }
 
-    public String getFName() {
-        EditText regFName = findViewById(R.id.txtFName);
-        String first = regFName.getText().toString();
-        return first;
-    }
-    public String getLName() {
-        EditText regLName = findViewById(R.id.txtLName);
-        String last = regLName.getText().toString();
-        return last;
-    }
-    public String getUsername() {
-        EditText regUser = findViewById(R.id.txtUName);
-        String user = regUser.getText().toString();
-        return user;
-    }
-    public String getPassword() {
-        EditText regPass = findViewById(R.id.txtPName);
-        String pass = regPass.getText().toString();
-        return pass;
-    }
-    public String getEmail() {
-        EditText regEmail = findViewById(R.id.txtEmail);
-        String email = regEmail.getText().toString();
-        return email;
-    }
 
 }
 

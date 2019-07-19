@@ -1,5 +1,6 @@
 package com.example.myapplication.Controller;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.Border.LoginPage;
@@ -9,7 +10,7 @@ import com.example.myapplication.Entities.User;
 public class LoginManager
 {
     LoginPage la = new LoginPage();
-    UserDAO ud = new UserDAO();
+    UserDAO ud = new UserDAO(la.getBaseContext());
 
     public Boolean check(String uname, String pword)
     {
@@ -32,6 +33,18 @@ public class LoginManager
         return false;
     }
 
+    public int validateUser(String user, String pass) {
+        int valid = 0;
+
+        if (user.isEmpty() || user.length() < 2)
+            valid = 1;
+
+        else if(pass.isEmpty() || pass.length() < 4)
+            valid = 2;
+
+        return valid;
+    }
+
 /**
  * Attempt to create an account in the database. A bool will be returned
  * relating to whether the account was created or not.
@@ -40,12 +53,12 @@ public class LoginManager
  * @return True or false depending on if insertion was completed<br>
  * Returns null if a hibernate exception was encountered
  */
-    public static Boolean createAccount(String username, String password)
+    public Boolean createAccount(String username, String password, String fName, String lName, String email)
     {
         Log.d("Picky", "Picky");
         try {
 
-            UserDAO ud = new UserDAO();
+            UserDAO ud = new UserDAO(la.getBaseContext());
             Log.d("new userDAO", "new userDAO");
             // First check if the User exists already
             User userId = ud.getUser(username);
@@ -53,12 +66,12 @@ public class LoginManager
                 Log.d("user null", userId.getUserName());
                 return false;
             }
-             ud.createAccount(username, password);
+             ud.createAccount(username, password, fName, lName, email);
             Log.d("account created", "account created");
              return true;
         } catch (Exception e) {
             //TODO
-            return false;
+            return null;
         }
     }
 }

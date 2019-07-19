@@ -7,7 +7,7 @@ import android.util.Log;
 
 
 public class MyDB extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "CarApp.db";
 
     public MyDB(Context context) {
@@ -24,11 +24,11 @@ public class MyDB extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTRIES_USER =
             "CREATE TABLE " + TableEntry.USER_TABLE_NAME + " (" +
-                    TableEntry.USER_COLUMN_NAME_USER_ID + " INTEGER PRIMARY KEY," +
+                    TableEntry.USER_COLUMN_NAME_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     TableEntry.USER_COLUMN_NAME_FN + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_LN + " TEXT NOT NULL," +
                     TableEntry.USER_COLUMN_NAME_EMAIL + " TEXT NOT NULL," +
-                    TableEntry.USER_COLUMN_NAME_ADDRESS + "TEXT," +
+                    TableEntry.USER_COLUMN_NAME_ADDRESS + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_CITY + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_COUNTRY + " TEXT," +
                     TableEntry.USER_COLUMN_NAME_PHONE_NUMBER + " NUMERIC," +
@@ -80,10 +80,14 @@ public class MyDB extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES_TRIP =
             "DROP TABLE IF EXISTS " + TableEntry.TRIP_TABLE_NAME;
 
+    private static final String SQL_INSERT_USER =
+            "insert into User (userName, password, firstName, lastName, email, phoneNumber, Address, city, country, dateOfBirth, paymentOptions, status) values ('klboo', 'klboo', 'Kristy', 'Le', 'Pikachuuu@Cars.com', '425-916-4490', ' 5321 Park Drive', 'Haoguantun', 'China', '04/07/1997', 'visa', 'true')";
+
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES_USER);
         db.execSQL(SQL_CREATE_ENTRIES_CAR);
         db.execSQL(SQL_CREATE_ENTRIES_TRIP);
+        db.execSQL(SQL_INSERT_USER);
         Log.d("MyDB","onCreate");
     }
 

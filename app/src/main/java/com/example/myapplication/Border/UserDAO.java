@@ -1,27 +1,36 @@
 package com.example.myapplication.Border;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.util.Log;
 
+import com.example.myapplication.Controller.DBController;
+import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.Entities.User;
 
 import java.util.ArrayList;
 
-public class UserDAO {
-
+public class UserDAO
+{
     SQLiteDatabase wdb;
-    CreateAccount reg = new CreateAccount();
+    SQLiteDatabase rdb;
 
-    public Boolean createAccount(String user, String pass) {
+    public UserDAO(Context context)
+    {
+        MyDB db = new MyDB(context);
+        wdb = db.getWritableDatabase();
+        rdb = db.getReadableDatabase();
+    }
+
+    public Boolean createAccount(String user, String pass, String fName, String lName, String email) {
 
         Log.d("Inside userdao", "Inside createaccount");
-
         ContentValues values = new ContentValues();
-        values.put("firstName", reg.getFName());
-        values.put("lastName", reg.getLName());
-        values.put("email", reg.getEmail());
+        values.put("firstName", fName);
+        values.put("lastName", lName);
+        values.put("email", email);
         values.put("userName", user);
         values.put("password", pass);
 
@@ -33,11 +42,15 @@ public class UserDAO {
     public User getUser(String uname)
     {
         Log.d("inside user", "inside user");
+
         ArrayList<User> users = getUsers();
+        //Log.d("UserNames", users.get(0).getUserName());
         User user = null;
         for (int i= 0; i < users.size(); i++) {
-            if (uname == users.get(i).getUserName()) {
+            String userName = users.get(i).getUserName();
+            if (uname == userName) {
                 user = users.get(i);
+                Log.d("UserName", userName);
             }
         }
         return user;
@@ -46,11 +59,10 @@ public class UserDAO {
     private ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
-            String selectQuery = "SELECT * FROM User ";
-            Cursor cursor = wdb.rawQuery(selectQuery,null);
-            int size = cursor.getCount();
-
-
+            String selectQuery = "SELECT * FROM User;";
+            Cursor cursor = rdb.rawQuery(selectQuery,null);
+            Integer size = cursor.getCount();
+            Log.d("size", size.toString());
             while(cursor.moveToNext()) {
                 int index;
                 index = cursor.getColumnIndexOrThrow("userId");

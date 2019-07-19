@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,14 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.Controller.DBController;
 import com.example.myapplication.Controller.LoginManager;
+import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.R;
 
 public class LoginPage extends AppCompatActivity
 {
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +39,7 @@ public class LoginPage extends AppCompatActivity
 
                 LoginManager lm = new LoginManager();
 
-
-                switch(validateUser(usernameInput.getText().toString(),passInput.getText().toString()))
+                switch(lm.validateUser(usernameInput.getText().toString(),passInput.getText().toString()))
                 {
                     case 0:
                         if(lm.check(usernameInput.getText().toString(),passInput.getText().toString()))
@@ -59,10 +58,8 @@ public class LoginPage extends AppCompatActivity
                         passInput.setError("Please enter a password longer than 4 characters.");
                         break;
                 }
-
             }
         });
-
 
         signUpBtn.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -75,8 +72,8 @@ public class LoginPage extends AppCompatActivity
         }));
     }
 
-    public void login() {
-       /* if (!validateUser()) {
+    /*public void login() {
+        if (!validateUser()) {
             loginFailed();
             return;
         }
@@ -91,8 +88,8 @@ public class LoginPage extends AppCompatActivity
                     public void run() {
                         loginSuccess();
                     }
-                }, 0);*/
-    }
+                }, 0);
+    }*/
 
     public void loginSuccess() {
 
@@ -111,18 +108,4 @@ public class LoginPage extends AppCompatActivity
         String pass = passInput.getText().toString();
         return pass;
     }*/
-
-    private int validateUser(String user, String pass) {
-        int valid = 0;
-
-
-        if (user.isEmpty() || user.length() < 2)
-            valid = 1;
-
-        else if(pass.isEmpty() || pass.length() < 4)
-            valid = 2;
-
-        return valid;
-    }
-
 }

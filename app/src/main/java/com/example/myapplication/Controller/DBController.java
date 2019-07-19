@@ -13,6 +13,7 @@ import com.example.myapplication.DB.MyDB;
 
 public class DBController {
     private static SQLiteDatabase wdb = null;
+    private static SQLiteDatabase rdb = null;
     private static MyDB db = null;
     public static SQLiteDatabase getWritable(Context context) {
         if (db == null) {
@@ -22,6 +23,15 @@ public class DBController {
             wdb = db.getWritableDatabase();
         }
         return wdb;
+    }
+    public static SQLiteDatabase getReadable(Context context) {
+        if (db == null) {
+            db = new MyDB(context);
+        }
+        if (rdb == null) {
+            rdb = db.getReadableDatabase();
+        }
+        return rdb;
     }
 
     final String carSelectQuery = "SELECT * FROM Car;";

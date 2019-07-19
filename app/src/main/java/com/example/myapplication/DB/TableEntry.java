@@ -10,7 +10,7 @@ public class TableEntry implements BaseColumns {
     public static final String USER_COLUMN_NAME_FN = "firstName";
     public static final String USER_COLUMN_NAME_LN = "lastName";
     public static final String USER_COLUMN_NAME_EMAIL = "email";
-    public static final String USER_COLUMN_NAME_ADDRESS = "address";
+    public static final String USER_COLUMN_NAME_ADDRESS = "Address";
     public static final String USER_COLUMN_NAME_CITY = "city";
     public static final String USER_COLUMN_NAME_COUNTRY = "country";
     public static final String USER_COLUMN_NAME_DATE_OF_BIRTH = "dateOfBirth";
