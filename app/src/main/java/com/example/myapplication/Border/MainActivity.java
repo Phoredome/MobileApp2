@@ -14,6 +14,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.myapplication.Controller.CarRemote;
 import com.example.myapplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -103,5 +104,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         gmap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
+
+
     }
+
+
 }
