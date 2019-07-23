@@ -41,9 +41,6 @@ public class CarDAO {
                 index = cursor.getColumnIndexOrThrow("doors");
                 int doors = cursor.getInt(index);
 
-                index = cursor.getColumnIndexOrThrow("capacity");
-                int capacity = cursor.getInt(index);
-
                 index = cursor.getColumnIndexOrThrow("serviceTime");
                 int serviceTime = cursor.getInt(index);
 
@@ -71,7 +68,7 @@ public class CarDAO {
                 index = cursor.getColumnIndexOrThrow("coordY");
                 double coordY = cursor.getDouble(index);
 
-                cars.add(new Car(carId, costOfRunning, seats, doors, capacity, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY));
+                cars.add(new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY));
 
             }
             cursor.close();

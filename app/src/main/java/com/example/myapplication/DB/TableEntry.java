@@ -24,7 +24,6 @@ public class TableEntry implements BaseColumns {
     public static final String CAR_COLUMN_NAME_COST_OF_RUNNING = "costOfRunning";
     public static final String CAR_COLUMN_NAME_SEATS = "seats";
     public static final String CAR_COLUMN_NAME_DOORS = "doors";
-    public static final String CAR_COLUMN_NAME_CAPACITY = "capacity";
     public static final String CAR_COLUMN_NAME_SERVICE_TIME = "serviceTime";
     public static final String CAR_COLUMN_NAME_KMS_RUN = "kmsRun";
     public static final String CAR_COLUMN_NAME_KMS_SINCE_LAST_SERVICE = "kmsSinceLastService";
