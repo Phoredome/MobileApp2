@@ -40,7 +40,7 @@ public class MyDB extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTRIES_CAR =
             "CREATE TABLE " + TableEntry.CAR_TABLE_NAME + " (" +
-                    TableEntry.CAR_COLUMN_NAME_CAR_ID + " INTEGER PRIMARY KEY," +
+                    TableEntry.CAR_COLUMN_NAME_CAR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     TableEntry.CAR_COLUMN_NAME_VEHICLE_TYPE + " TEXT NOT NULL," +
                     TableEntry.CAR_COLUMN_NAME_COST_OF_RUNNING + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_SEATS + " NUMERIC NOT NULL," +
@@ -57,7 +57,7 @@ public class MyDB extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTRIES_TRIP =
             "CREATE TABLE " + TableEntry.TRIP_TABLE_NAME + " (" +
-                    TableEntry.TRIP_COLUMN_NAME_TRIP_ID + " INTEGER PRIMARY KEY," +
+                    TableEntry.TRIP_COLUMN_NAME_TRIP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     TableEntry.TRIP_COLUMN_NAME_CAR_ID + " INTEGER," +
                     TableEntry.TRIP_COLUMN_NAME_USER_ID + " INTEGER," +
                     TableEntry.TRIP_COLUMN_NAME_AMOUNT + " NUMERIC NOT NULL," +

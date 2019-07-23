@@ -2,7 +2,6 @@ package com.example.myapplication.Entities;
 
 public class Car {
     private int carID;
-    private int costOfRunning;
     private int seats;
     private int doors;
     private int capacity;
@@ -10,13 +9,17 @@ public class Car {
     private int kmsRun;
     private int kmsSinceLastService;
 
+    private double costOfRunning;
+    private double coordX;
+    private double coordY;
+
     private String vehicleType;
     private String licensePlate;
 
     private boolean inUse;
     private boolean inService;
 
-    public Car(int carID, int costOfRunning, int seats, int doors, int capacity, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inService) {
+    public Car(int carID, double costOfRunning, int seats, int doors, int capacity, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inService, double coordX, double coordY) {
         this.carID = carID;
         this.costOfRunning = costOfRunning;
         this.seats = seats;
@@ -29,6 +32,8 @@ public class Car {
         this.licensePlate = licensePlate;
         this.inUse = inUse;
         this.inService = inService;
+        this.coordX = coordX;
+        this.coordY = coordY;
     }
 
     public int getCarID() {
@@ -39,12 +44,8 @@ public class Car {
         this.carID = carID;
     }
 
-    public int getCostOfRunning() {
+    public double getCostOfRunning() {
         return costOfRunning;
-    }
-
-    public void setCostOfRunning(int costOfRunning) {
-        this.costOfRunning = costOfRunning;
     }
 
     public int getSeats() {
@@ -93,6 +94,26 @@ public class Car {
 
     public void setKmsSinceLastService(int kmsSinceLastService) {
         this.kmsSinceLastService = kmsSinceLastService;
+    }
+
+    public void setCostOfRunning(double costOfRunning) {
+        this.costOfRunning = costOfRunning;
+    }
+
+    public double getCoordX() {
+        return coordX;
+    }
+
+    public void setCoordX(double coordX) {
+        this.coordX = coordX;
+    }
+
+    public double getCoordY() {
+        return coordY;
+    }
+
+    public void setCoordY(double coordY) {
+        this.coordY = coordY;
     }
 
     public String getVehicleType() {
