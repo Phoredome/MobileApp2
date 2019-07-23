@@ -19,22 +19,32 @@ public class CarController {
 
     /**
      *
-     * @param car id of car intended for move
-     * @param Location cooridnates of location intended for CAR
+     * @param car car id of car intended for move
+     * @param xCoord xCoord of target location
+     * @param yCoord yoord of target location
      */
-    public void moveCar(Car car, String Location)
+    public void moveCar(Car car, double xCoord, double yCoord)
     {
         //Figure out what data type to use for getting location, X and Y or a concatenation?
+        car.setCoordX(xCoord);
+        car.setCoordY(yCoord);
 
+        //TODO Refresh map
     }
 
     /**
-     *
      * @param car Id of car intended to be sent to depot for repairs/servicing
      */
-    public void carToDepot(Car car)
+    public boolean carToDepot(Car car)
     {
+        if(car.isInUse())
+        {
+            car.setInService(false);
+            car.setKmsSinceLastService(0);
 
+            return true;
+        }
+        return false;
     }
 
 
