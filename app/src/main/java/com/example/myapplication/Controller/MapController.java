@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
 
 import com.example.myapplication.Entities.Car;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,7 +23,7 @@ public class MapController
                 .position(new LatLng(xCoord, yCoord))
                 .title(Integer.toString(car.getCarID()))
                 .draggable(false));
-
+        
     }
 
     public void animateMarker(GoogleMap map, final Marker marker, final LatLng toPosition,
