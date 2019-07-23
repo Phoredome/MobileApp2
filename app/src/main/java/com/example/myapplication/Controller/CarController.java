@@ -1,8 +1,29 @@
 package com.example.myapplication.Controller;
 
+import com.example.myapplication.Border.CarDAO;
 import com.example.myapplication.Entities.Car;
 
+import java.sql.SQLException;
+
 public class CarController {
+
+    CarDAO cd;
+    public Boolean addCar(double costOfRunning,
+                                 int seats,
+                                 int doors,
+                                 int serviceTime,
+                                 double kmsRun,
+                                 double kmSinceLastService,
+                                 String vehicleType,
+                                 String licensePlate,
+                                 boolean inUse,
+                                 boolean inService,
+                                 double coordX,
+                                 double coordY)
+    {
+
+        return cd.addCar(costOfRunning, seats, doors, serviceTime, kmsRun, kmSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
+    }
 
     // will use other methods to aid in redistributing unused car locations
     public Boolean equalize()
@@ -14,6 +35,8 @@ public class CarController {
     //will randomly disperse unused cars to random locations across the map
     public void randomizeCarLocations()
     {
+        //TODO Create ASync function to move cars around with RNG decision making at intersections
+
 
     }
 

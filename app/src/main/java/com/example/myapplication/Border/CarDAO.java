@@ -77,4 +77,21 @@ public class CarDAO {
         }
         return cars;
     }
+
+    public boolean addCar(double costOfRunning,
+                          int seats,
+                          int doors,
+                          int serviceTime,
+                          double kmsRun,
+                          double kmSinceLastService,
+                          String vehicleType,
+                          String licensePlate,
+                          boolean inUse,
+                          boolean inService,
+                          double coordX,
+                          double coordY)
+    {
+        //TODO Add intake values to constructor, Add variables to DB (Follow Create Account in UserDAO for format example)
+        return false;
+    }
 }

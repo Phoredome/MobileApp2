@@ -56,7 +56,11 @@ public class LoginManager
  * @return True or false depending on if insertion was completed<br>
  * Returns null if a hibernate exception was encountered
  */
-    public Boolean createAccount(String username, String password, String fName, String lName, String email)
+    public Boolean createAccount(String username,
+                                 String password,
+                                 String fName,
+                                 String lName,
+                                 String email)
     {
         Log.d("Picky", "Picky");
         try {
@@ -72,7 +76,7 @@ public class LoginManager
              return true;
         } catch (Exception e) {
             //TODO
-            return null;
+            return false;
         }
     }
 }
