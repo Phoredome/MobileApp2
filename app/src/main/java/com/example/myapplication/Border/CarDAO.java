@@ -1,5 +1,6 @@
 package com.example.myapplication.Border;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -91,7 +92,22 @@ public class CarDAO {
                           double coordX,
                           double coordY)
     {
-        //TODO Add intake values to constructor, Add variables to DB (Follow Create Account in UserDAO for format example)
-        return false;
+        ContentValues values = new ContentValues();
+        values.put("costOfRunning", costOfRunning);
+        values.put("seats", seats);
+        values.put("doors", doors);
+        values.put("serviceTime", serviceTime);
+        values.put("kmsRun", kmsRun);
+        values.put("kmsSinceLastService",kmSinceLastService);
+        values.put("vehicleType", vehicleType);
+        values.put("licensePlate", licensePlate);
+        values.put("inUse", inUse);
+        values.put("inService", inService);
+        values.put("coordX", coordX);
+        values.put("coordY", coordY);
+
+        wdb.insert("Car", null, values);
+
+        return true;
     }
 }
