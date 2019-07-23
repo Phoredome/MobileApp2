@@ -55,6 +55,21 @@ public class UserDAO
         return user;
     }
 
+    public boolean editUser(String user, String pass, String fName, String lName, String email) {
+
+        Log.d("Inside userdao", "Inside createaccount");
+        ContentValues values = new ContentValues();
+        values.put("firstName", fName);
+        values.put("lastName", lName);
+        values.put("email", email);
+        values.put("userName", user);
+        values.put("password", pass);
+
+        wdb.insert("User", null, values);
+
+        return true;
+    }
+
     private ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {

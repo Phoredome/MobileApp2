@@ -23,9 +23,8 @@ public class LoginManager
             // didn't match any account
             user = ud.getUser(uname);
             if (user != null && user.getPassword().equals(pword))
-                if (user.getStatus()) {
-                    return true;
-                }
+                return true;
+            //TODO Figure out how to populate the navigation field according to userStatus
             else // User is null or password is wrong
                     return false;
         } catch(Exception e) {
