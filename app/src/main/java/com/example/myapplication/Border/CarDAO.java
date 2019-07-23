@@ -22,7 +22,7 @@ public class CarDAO {
     }
 
 
-    private ArrayList<Car> getCars() {
+    public ArrayList<Car> getCars() {
         ArrayList<Car> cars = new ArrayList<>();
         try {
             String selectQuery = "SELECT * FROM Car;";
