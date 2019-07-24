@@ -2,9 +2,14 @@ package com.example.myapplication.Border;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.DB.MyDB;
+import com.example.myapplication.Entities.Trips;
+
+import java.util.ArrayList;
 
 public class TripDAO {
 
@@ -36,5 +41,57 @@ public class TripDAO {
         wdb.insert("Trip", null, values);
 
         return true;
+    }
+
+    public ArrayList<Trips> getAllTrips() {
+        ArrayList<Trips> trips = new ArrayList<>();
+
+        try {
+            String selectQuery = "SELECT * FROM Trip;";
+            Cursor cursor = rdb.rawQuery(selectQuery, null);
+            Integer size = cursor.getCount();
+            while(cursor.moveToNext()) {
+                int index;
+                index = cursor.getColumnIndexOrThrow("tripId");
+                int tripId = cursor.getInt(index);
+
+                index = cursor.getColumnIndexOrThrow("carId");
+                int carId = cursor.getInt(index);
+
+                index = cursor.getColumnIndexOrThrow("userId");
+                int userId = cursor.getInt(index);
+
+                index = cursor.getColumnIndexOrThrow("kmsRunForTrip");
+                int kmsRunForTrip = cursor.getInt(index);
+
+                index = cursor.getColumnIndexOrThrow("dateOfTrip");
+                String dateOfTrip = cursor.getString(index);
+
+                index = cursor.getColumnIndexOrThrow("timeOfTrip");
+                String timeOfTrip = cursor.getString(index);
+
+                index = cursor.getColumnIndexOrThrow("amount");
+                double amount = cursor.getDouble(index);
+
+                index = cursor.getColumnIndexOrThrow("startingX");
+                double startingX = cursor.getDouble(index);
+
+                index = cursor.getColumnIndexOrThrow("startingY");
+                double startingY = cursor.getDouble(index);
+
+                index = cursor.getColumnIndexOrThrow("endingX");
+                double endingX = cursor.getDouble(index);
+
+                index = cursor.getColumnIndexOrThrow("endingY");
+                double endingY = cursor.getDouble(index);
+
+                trips.add(new Trips(tripId, carId, userId, kmsRunForTrip, timeOfTrip,dateOfTrip, amount, startingX, startingY, endingX, endingY));
+
+            }
+            cursor.close();
+        } catch (SQLException ex) {
+            return null;
+        }
+        return trips;
     }
 }
