@@ -14,5 +14,7 @@ public class AdminCarInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_admin_car_info);
+
+
     }
 }
