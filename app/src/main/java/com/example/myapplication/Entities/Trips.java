@@ -7,17 +7,27 @@ public class Trips {
     private int userId;
     private int kmsRunForTrip;
 
-    private String dateTimeOfTrip;
+    private String timeOfTrip;
+    private String dateOfTrip;
 
     private double amount;
+    private double startingX;
+    private double startingY;
+    private double endingX;
+    private double endingY;
 
-    public Trips(int tripId, int carId, int userId, double amount, int kmsRunForTrip, String dateTimeOfTrip) {
+    public Trips(int tripId, int carId, int userId, int kmsRunForTrip, String timeOfTrip, String dateOfTrip, double amount, double startingX, double startingY, double endingX, double endingY) {
         this.tripId = tripId;
         this.carId = carId;
         this.userId = userId;
-        this.amount = amount;
         this.kmsRunForTrip = kmsRunForTrip;
-        this.dateTimeOfTrip = dateTimeOfTrip;
+        this.timeOfTrip = timeOfTrip;
+        this.dateOfTrip = dateOfTrip;
+        this.amount = amount;
+        this.startingX = startingX;
+        this.startingY = startingY;
+        this.endingX = endingX;
+        this.endingY = endingY;
     }
 
     public int getTripId() {
@@ -48,6 +58,54 @@ public class Trips {
         return amount;
     }
 
+    public String getTimeOfTrip() {
+        return timeOfTrip;
+    }
+
+    public void setTimeOfTrip(String timeOfTrip) {
+        this.timeOfTrip = timeOfTrip;
+    }
+
+    public String getDateOfTrip() {
+        return dateOfTrip;
+    }
+
+    public void setDateOfTrip(String dateOfTrip) {
+        this.dateOfTrip = dateOfTrip;
+    }
+
+    public double getStartingX() {
+        return startingX;
+    }
+
+    public void setStartingX(double startingX) {
+        this.startingX = startingX;
+    }
+
+    public double getStartingY() {
+        return startingY;
+    }
+
+    public void setStartingY(double startingY) {
+        this.startingY = startingY;
+    }
+
+    public double getEndingX() {
+        return endingX;
+    }
+
+    public void setEndingX(double endingX) {
+        this.endingX = endingX;
+    }
+
+    public double getEndingY() {
+        return endingY;
+    }
+
+    public void setEndingY(double endingY) {
+        this.endingY = endingY;
+    }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -58,14 +116,6 @@ public class Trips {
 
     public void setKmsRunForTrip(int kmsRunForTrip) {
         this.kmsRunForTrip = kmsRunForTrip;
-    }
-
-    public String getDateTimeOfTrip() {
-        return dateTimeOfTrip;
-    }
-
-    public void setDateTimeOfTrip(String dateTimeOfTrip) {
-        this.dateTimeOfTrip = dateTimeOfTrip;
     }
 
 
