@@ -48,7 +48,7 @@
                     android:text="Name" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/searchBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Button" />

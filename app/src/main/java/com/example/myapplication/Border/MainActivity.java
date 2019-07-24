@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
 
-        Button loginBtn = findViewById(R.id.loginBtn);
+        Button searchBtn = findViewById(R.id.searchBtn);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
