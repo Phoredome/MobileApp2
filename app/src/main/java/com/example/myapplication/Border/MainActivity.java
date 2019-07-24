@@ -12,9 +12,16 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.Controller.CarController;
 import com.example.myapplication.Controller.CarRemote;
+import com.example.myapplication.Controller.LoginManager;
+import com.example.myapplication.Controller.MapController;
+import com.example.myapplication.Entities.Car;
 import com.example.myapplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,11 +32,15 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 
     private MapView mapView;
     private GoogleMap gmap;
+    private MapController mc;
+    private CarController cc;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
@@ -47,6 +58,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
+
+        Button loginBtn = findViewById(R.id.loginBtn);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
+
+                LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
+                ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
+
+            }
+        });
     }
 
     @Override
@@ -104,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         gmap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
+
 
 
     }

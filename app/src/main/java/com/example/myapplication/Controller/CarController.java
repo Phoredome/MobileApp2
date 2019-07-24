@@ -14,6 +14,10 @@ public class CarController {
 
     CarDAO cd;
     MapController mc;
+
+    double depotx = 0.00;
+    double depoty = 0.00;
+
     public Boolean addCar(double costOfRunning,
                                  int seats,
                                  int doors,
@@ -35,7 +39,7 @@ public class CarController {
     public Boolean equalize()
     {
         //TODO
-        ArrayList<Car> carList = cd.getCars();
+        ArrayList<Car> carList = cd.getAllCars();
         // if cars are too close to each other, move the furthest one from base away
         return false;
     }
@@ -54,14 +58,19 @@ public class CarController {
      * @param xCoord xCoord of target location
      * @param yCoord yoord of target location
      */
-    public void moveCar(GoogleMap map, Car car, double xCoord, double yCoord)
+    public boolean moveCar(GoogleMap map, Car car, double xCoord, double yCoord)
     {
         //Figure out what data type to use for getting location, X and Y or a concatenation?
-        car.setCoordX(xCoord);
-        car.setCoordY(yCoord);
+        if(car.isInUse() || !car.isInService())
+            return false;
+        else {
+            car.setCoordX(xCoord);
+            car.setCoordY(yCoord);
+        }
 
         //TODO Refresh map
         mc.updateCarMarker(map, car, xCoord, yCoord);
+        return true;
     }
 
     /**
@@ -69,7 +78,7 @@ public class CarController {
      */
     public boolean carToDepot(Car car)
     {
-        if(car.isInUse())
+        if(!car.isInUse())
         {
             car.setInService(false);
             car.setKmsSinceLastService(0);
@@ -79,5 +88,23 @@ public class CarController {
         return false;
     }
 
+    public ArrayList<Car> getNearByCars (LatLng latLng)
+    {
+        ArrayList<Car> nearByCars;
+
+        nearByCars = cd.getAllCars();
+
+        for (Car c: nearByCars)
+        {
+            double x = c.getCoordX();
+            double y = c.getCoordY();
+
+            LatLng car = new LatLng(x, y);
+
+
+
+        }
+        return nearByCars;
+    }
 
 }
