@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
             }
         });
+
+        cc.initializeCars(gmap);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.example.myapplication.Border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Context;
 
 import android.content.Intent;
@@ -66,7 +65,7 @@ public class CreateAccount extends AppCompatActivity {
 
         EditText regUser = findViewById(R.id.txtUName);
         EditText regPass = findViewById(R.id.txtPName);
-        EditText regFName = findViewById(R.id.txtFName);
+        EditText regFName = findViewById(R.id.txtLicencePlate);
         EditText regLName = findViewById(R.id.txtLName);
         EditText regEmail = findViewById(R.id.txtEmail);
 
@@ -111,7 +110,7 @@ public class CreateAccount extends AppCompatActivity {
         boolean valid = true;
         EditText regUser = findViewById(R.id.txtUName);
         EditText regPass = findViewById(R.id.txtPName);
-        EditText regFName = findViewById(R.id.txtFName);
+        EditText regFName = findViewById(R.id.txtLicencePlate);
         EditText regLName = findViewById(R.id.txtLName);
         EditText regEmail = findViewById(R.id.txtEmail);
 
