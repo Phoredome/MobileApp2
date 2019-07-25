@@ -23,6 +23,7 @@ public class CarController {
 
     public CarController(Context context) {
         cd = new CarDAO(context);
+        mc = new MapController();
     }
 
     public Boolean addCar(double costOfRunning,
