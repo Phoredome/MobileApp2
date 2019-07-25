@@ -1,11 +1,14 @@
 package com.example.myapplication.Border;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,17 +46,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+
+                switch (id){
+                    case R.id.nav_home:
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(MainActivity.this, LoginPage.class));
+                        break;
+                    case R.id.nav_history:
+                        startActivity(new Intent(MainActivity.this, TripHistory.class));
+                        break;
+                    case R.id.nav_car_controller:
+                        startActivity(new Intent(MainActivity.this, AdminMap.class));
+                        break;
+                    case R.id.nav_car_info:
+                        startActivity(new Intent(MainActivity.this, AdminCarInfo.class));
+                        break;
+                }
+                return false;
+            }
+        });
+
+        /*mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_history, R.id.nav_account,
                 R.id.nav_car_controller, R.id.nav_car_info)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);*/
+        NavigationUI.setupWithNavController(navigationView, navController);
+        */
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
