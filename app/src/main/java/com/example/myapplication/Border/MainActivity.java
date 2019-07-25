@@ -3,6 +3,10 @@ package com.example.myapplication.Border;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -26,7 +30,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    //private AppBarConfiguration mAppBarConfiguration;
+    private AppBarConfiguration mAppBarConfiguration;
     private MapView mapView;
     private GoogleMap gmap;
     private MapController mc;
@@ -41,10 +45,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       setSupportActionBar(toolbar);
 
-        /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_history, R.id.nav_account,
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);*/
+        NavigationUI.setupWithNavController(navigationView, navController);
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -77,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        cc.initializeCars(gmap);
+
+
     }
 
     @Override
@@ -137,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
 
 
+  //      cc.initializeCars(gmap);
 
     }
 
