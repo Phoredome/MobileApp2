@@ -1,5 +1,6 @@
 package com.example.myapplication.Controller;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.Border.CarDAO;
@@ -19,6 +20,10 @@ public class CarController {
 
     double depotx = 0.00;
     double depoty = 0.00;
+
+    public CarController(Context context) {
+        cd = new CarDAO(context);
+    }
 
     public Boolean addCar(double costOfRunning,
                                  int seats,
@@ -117,7 +122,7 @@ public class CarController {
 
 
         nearByCars = cd.getAllCars();
-
+        Log.d("inside Initialize", nearByCars.toString());
         for (Car c: nearByCars) {
             check = moveCar(map, c, c.getCoordX(), c.getCoordY());
 
@@ -127,5 +132,6 @@ public class CarController {
             }
         }
     }
+
 
 }

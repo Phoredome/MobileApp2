@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.util.Log;
 
+import com.example.myapplication.Controller.DBController;
 import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.Entities.User;
 
@@ -19,9 +20,8 @@ public class UserDAO
 
     public UserDAO(Context context)
     {
-        MyDB db = new MyDB(context);
-        wdb = db.getWritableDatabase();
-        rdb = db.getReadableDatabase();
+        wdb = DBController.getWritable(context);
+        rdb = DBController.getReadable(context);
     }
 
     public Boolean createAccount(String user, String pass, String fName, String lName, String email) {
@@ -70,7 +70,7 @@ public class UserDAO
         return true;
     }
 
-    private ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
 

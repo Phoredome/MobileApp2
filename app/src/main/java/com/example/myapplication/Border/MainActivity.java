@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -165,8 +166,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
 
+        cc = new CarController(getApplicationContext());
         cc.initializeCars(gmap);
-
     }
 
 
