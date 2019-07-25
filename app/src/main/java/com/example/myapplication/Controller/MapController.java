@@ -1,6 +1,9 @@
 package com.example.myapplication.Controller;
 
+import android.content.Context;
 import android.graphics.Point;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.animation.Interpolator;
@@ -13,6 +16,9 @@ import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MapController
 {
@@ -61,5 +67,29 @@ public class MapController
                 }
             }
         });
+    }
+
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng ll = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            ll = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return ll;
     }
 }
