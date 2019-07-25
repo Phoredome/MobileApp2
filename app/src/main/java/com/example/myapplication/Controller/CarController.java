@@ -1,5 +1,7 @@
 package com.example.myapplication.Controller;
 
+import android.util.Log;
+
 import com.example.myapplication.Border.CarDAO;
 import com.example.myapplication.Entities.Car;
 import com.example.myapplication.R;
@@ -102,8 +104,28 @@ public class CarController {
             LatLng car = new LatLng(x, y);
 
 
+            //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
         }
         return nearByCars;
+    }
+
+    public void initializeCars(GoogleMap map)
+    {
+        ArrayList<Car> nearByCars;
+
+        boolean check;
+
+
+        nearByCars = cd.getAllCars();
+
+        for (Car c: nearByCars) {
+            check = moveCar(map, c, c.getCoordX(), c.getCoordY());
+
+            if(!check)
+            {
+                Log.d("CarController initCar", "Cannot initialize car: " + c.getCarID());
+            }
+        }
     }
 
 }
