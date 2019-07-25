@@ -19,6 +19,7 @@ public class Car {
     private boolean inUse;
     private boolean inService;
 
+    //TODO Create cars field
     public Car(int carID, double costOfRunning, int seats, int doors, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inService, double coordX, double coordY) {
         this.carID = carID;
         this.costOfRunning = costOfRunning;
