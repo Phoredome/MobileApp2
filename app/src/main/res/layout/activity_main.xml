@@ -8,6 +8,14 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    </android.support.v7.widget.Toolbar>
+
     <include
         layout="@layout/app_bar"
         android:layout_width="wrap_content"
@@ -62,10 +70,9 @@
                     android:text="Name" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/searchBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Button" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
