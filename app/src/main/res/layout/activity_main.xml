@@ -62,7 +62,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/addressTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:ems="10"
@@ -72,8 +72,8 @@
                 <Button
                     android:id="@+id/searchBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
+                    android:layout_height="match_parent"
+                    android:text="Search" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
