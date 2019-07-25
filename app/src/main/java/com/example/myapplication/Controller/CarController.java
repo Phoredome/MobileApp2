@@ -102,7 +102,6 @@ public class CarController {
             LatLng car = new LatLng(x, y);
 
 
-
         }
         return nearByCars;
     }

@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
                 ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
-
             }
         });
     }
