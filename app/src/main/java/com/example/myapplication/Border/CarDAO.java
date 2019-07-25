@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
+import com.example.myapplication.Controller.DBController;
 import com.example.myapplication.DB.MyDB;
 import com.example.myapplication.Entities.Car;
 
@@ -16,9 +18,8 @@ public class CarDAO {
     SQLiteDatabase rdb;
 
     public CarDAO(Context context) {
-        MyDB db = new MyDB(context);
-        wdb = db.getWritableDatabase();
-        rdb = db.getReadableDatabase();
+        wdb = DBController.getWritable(context);
+        rdb = DBController.getReadable(context);
     }
 
 
@@ -69,14 +70,17 @@ public class CarDAO {
 
                 index = cursor.getColumnIndexOrThrow("coordY");
                 double coordY = cursor.getDouble(index);
+                Car car = new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
+                cars.add(car);
 
-                cars.add(new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY));
+                Log.d("Inside getting all cars", car.toString());
 
             }
             cursor.close();
         } catch (SQLException ex) {
             return null;
         }
+        Log.d("Inside CarDAO", cars.toString());
         return cars;
     }
 
