@@ -1,4 +1,4 @@
-package com.example.myapplication.Entities;
+package com.example.myapplication.entities;
 
 public class User {
     private int userId;

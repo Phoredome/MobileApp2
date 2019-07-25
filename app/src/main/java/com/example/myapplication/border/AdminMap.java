@@ -1,4 +1,4 @@
-package com.example.myapplication.Border;
+package com.example.myapplication.border;
 
 import androidx.appcompat.app.AppCompatActivity;
 

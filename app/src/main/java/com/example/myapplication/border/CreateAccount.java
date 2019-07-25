@@ -1,4 +1,4 @@
-package com.example.myapplication.Border;
+package com.example.myapplication.border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,9 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.Controller.DBController;
-import com.example.myapplication.Controller.LoginManager;
-import com.example.myapplication.DB.MyDB;
+import com.example.myapplication.controller.DBController;
+import com.example.myapplication.controller.LoginManager;
+import com.example.myapplication.db.MyDB;
 import com.example.myapplication.R;
 
 
