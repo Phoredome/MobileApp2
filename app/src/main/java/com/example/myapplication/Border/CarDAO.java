@@ -25,6 +25,7 @@ public class CarDAO {
     public ArrayList<Car> getAllCars() {
         ArrayList<Car> cars = new ArrayList<>();
         try {
+
             String selectQuery = "SELECT * FROM Car;";
             Cursor cursor = rdb.rawQuery(selectQuery, null);
             Integer size = cursor.getCount();
