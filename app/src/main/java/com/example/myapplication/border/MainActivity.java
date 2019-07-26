@@ -167,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         cc = new CarController(getApplicationContext());
         cc.initializeCars(gmap);
+
+        cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }
 
 
