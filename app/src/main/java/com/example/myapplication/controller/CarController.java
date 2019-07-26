@@ -23,6 +23,10 @@ public class CarController {
         mc = new MapController();
     }
 
+    public Car getCarById(int carId) {
+        return cd.getCar(carId);
+    }
+
     public Boolean addCar(double costOfRunning,
                                  int seats,
                                  int doors,
@@ -71,6 +75,7 @@ public class CarController {
         else {
             car.setCoordX(xCoord);
             car.setCoordY(yCoord);
+            cd.updateCar(car.getCarID(),xCoord,yCoord);
         }
 
         //TODO Update Car DB Location

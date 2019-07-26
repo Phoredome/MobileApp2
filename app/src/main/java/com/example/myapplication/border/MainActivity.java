@@ -2,8 +2,8 @@ package com.example.myapplication.border;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    //private AppBarConfiguration mAppBarConfiguration;
+    private AppBarConfiguration mAppBarConfiguration;
     private MapView mapView;
     private GoogleMap gmap;
     private MapController mc;
@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//       Toolbar toolbar = findViewById(R.id.toolbar);
+//       setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -75,15 +75,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        /*mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_history, R.id.nav_account,
-                R.id.nav_car_controller, R.id.nav_car_info)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-        */
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -167,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         cc = new CarController(getApplicationContext());
         cc.initializeCars(gmap);
+        cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }
 
 

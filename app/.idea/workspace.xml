@@ -7,9 +7,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65a9c197-af13-426c-8bd9-3f739ff1d540" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/recycler_view_item_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/CarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/CarDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/CreateAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/InfoWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/InfoWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/MapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_info_window.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/content_info_window.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/border/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/db/MyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/myapplication/db/MyDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/account/AccountFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/account/AccountViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/car_history/CarHistoryFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/car_history/CarHistoryViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/car_info/CarInfoFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/car_info/CarInfoViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/history/HistoryFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/history/HistoryViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/home/HomeFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/myapplication/ui/home/HomeViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_admin_car_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_admin_car_info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_create_car.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_create_car.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_user_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_user_history.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/app_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/app_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_account.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_car_history.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_car_info.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_history.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_home.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/navigation/app_nav.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,13 +84,9 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/border/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="428">
-              <caret line="179" column="7" selection-start-line="179" selection-start-column="7" selection-end-line="179" selection-end-column="7" />
+              <caret line="171" column="7" selection-start-line="171" selection-start-column="7" selection-end-line="171" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1863#2988#0" expanded="true" />
-                <element signature="e#2987#2988#0" expanded="true" />
-                <element signature="e#3922#4322#0" expanded="true" />
-                <element signature="e#4321#4322#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,14 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/border/InfoWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="108">
+              <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -102,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/CarController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
-              <caret line="75" column="37" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
+              <caret line="80" column="37" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -110,17 +132,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/border/CarDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+            <state relative-caret-position="561">
+              <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/MapController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="110" column="56" lean-forward="true" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
+            <state relative-caret-position="476">
+              <caret line="123" column="33" lean-forward="true" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -736,13 +758,9 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/border/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
-          <caret line="179" column="7" selection-start-line="179" selection-start-column="7" selection-end-line="179" selection-end-column="7" />
+          <caret line="171" column="7" selection-start-line="171" selection-start-column="7" selection-end-line="171" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1863#2988#0" expanded="true" />
-            <element signature="e#2987#2988#0" expanded="true" />
-            <element signature="e#3922#4322#0" expanded="true" />
-            <element signature="e#4321#4322#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -757,17 +775,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/CarController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
-          <caret line="75" column="37" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
+          <caret line="80" column="37" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/border/InfoWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="108">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -781,15 +796,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/border/CarDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        <state relative-caret-position="561">
+          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/myapplication/controller/MapController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="110" column="56" lean-forward="true" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
+        <state relative-caret-position="476">
+          <caret line="123" column="33" lean-forward="true" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
         </state>
       </provider>
     </entry>
