@@ -51,15 +51,9 @@
         <activity
             android:name=".border.MainActivity"
             android:label="@string/title_activity_main"
-<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".border.AdminMap"
-=======
-            android:theme="@style/AppTheme" />
         <activity
             android:name=".border.AdminMap"
->>>>>>> 90b285ebd7af58a4f9587fe2e0c68e09135cedf1
             android:label="AdminMap"
             android:theme="@style/AppTheme"></activity>
         <activity
