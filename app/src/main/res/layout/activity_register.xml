@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Border.CreateAccount">
+    tools:context=".border.CreateAccount">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,13 +24,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/txt1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="First Name:" />
 
                 <EditText
-                    android:id="@+id/txtFName"
+                    android:id="@+id/FName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -43,14 +43,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/txt2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Last Name:" />
 
                 <EditText
-                    android:id="@+id/txtLName"
+                    android:id="@+id/LName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -70,7 +70,7 @@
                     android:text="Username: " />
 
                 <EditText
-                    android:id="@+id/txtUName"
+                    android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -84,13 +84,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/txt"
                     android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="Password:" />
 
                 <EditText
-                    android:id="@+id/txtPName"
+                    android:id="@+id/password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -103,13 +103,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/txt5"
                     android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="Email:" />
 
                 <EditText
-                    android:id="@+id/txtEmail"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -122,13 +122,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/txt6"
                     android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="Address:" />
 
                 <EditText
-                    android:id="@+id/txtAddress"
+                    android:id="@+id/addressTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"

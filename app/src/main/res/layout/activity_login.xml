@@ -9,7 +9,7 @@
     android:foregroundGravity="center"
     android:gravity="center|center_horizontal"
     app:layout_anchorGravity="center|center_horizontal"
-    tools:context=".Border.LoginPage">
+    tools:context=".border.LoginPage">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="klboo"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -62,6 +63,7 @@
                 android:ems="10"
                 android:inputType="textPassword"
                 android:password="true"
+                android:text="klboo"
                 android:textSize="12sp"
                 android:visibility="visible"
                 tools:visibility="visible" />
