@@ -1,4 +1,4 @@
-package com.example.myapplication.Border;
+package com.example.myapplication.border;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.myapplication.DB.MyDB;
-import com.example.myapplication.Entities.Trips;
+import com.example.myapplication.db.MyDB;
+import com.example.myapplication.entities.Trips;
 
 import java.util.ArrayList;
 

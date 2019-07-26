@@ -1,4 +1,4 @@
-package com.example.myapplication.Border;
+package com.example.myapplication.border;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,9 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.myapplication.Controller.DBController;
-import com.example.myapplication.DB.MyDB;
-import com.example.myapplication.Entities.Car;
+import com.example.myapplication.controller.DBController;
+import com.example.myapplication.entities.Car;
 
 import java.util.ArrayList;
 
@@ -26,6 +25,7 @@ public class CarDAO {
     public ArrayList<Car> getAllCars() {
         ArrayList<Car> cars = new ArrayList<>();
         try {
+
             String selectQuery = "SELECT * FROM Car;";
             Cursor cursor = rdb.rawQuery(selectQuery, null);
             Integer size = cursor.getCount();

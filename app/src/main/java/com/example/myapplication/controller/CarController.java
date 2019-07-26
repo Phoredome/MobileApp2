@@ -1,16 +1,13 @@
-package com.example.myapplication.Controller;
+package com.example.myapplication.controller;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.example.myapplication.Border.CarDAO;
-import com.example.myapplication.Entities.Car;
-import com.example.myapplication.R;
+import com.example.myapplication.border.CarDAO;
+import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CarController {
@@ -76,7 +73,7 @@ public class CarController {
             car.setCoordY(yCoord);
         }
 
-        //TODO Refresh map
+        //TODO Update Car DB Location
         mc.updateCarMarker(map, car, xCoord, yCoord);
         return true;
     }

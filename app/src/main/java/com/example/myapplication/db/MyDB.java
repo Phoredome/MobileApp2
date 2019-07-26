@@ -1,4 +1,4 @@
-package com.example.myapplication.DB;
+package com.example.myapplication.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,7 +7,7 @@ import android.util.Log;
 
 
 public class MyDB extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "CarApp.db";
 
     public MyDB(Context context) {
@@ -185,7 +185,7 @@ public class MyDB extends SQLiteOpenHelper {
 
     private static final String SQL_INSERT_CAR =
             "insert into Car (costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY) " +
-                    "values ('2.51', 2, 2, 20, 199291, 8641, 'Escape', '6d958d', 'true', 'true', 5.5126065, 95.7932008)," +
+                    "values ('2.51', 2, 2, 20, 199291, 8641, 'Escape', '6d958d', 'false', 'true', 40.7143528, -74.0059731)," +
                     "('1.65', 8, 2, 11, 142402, 5387, 'Ram Van 1500', '33908d', 'true', 'true', 34.2506515, 36.0117322)," +
                     "('2.21', 8, 2, 9, 185193, 7957, '5 Series', 'ddac5d', 'true', 'false', 32.417346, 105.238901)," +
                     "('2.20', 8, 2, 5, 129059, 6004, 'Town Car', 'b52988', 'true', 'true', 13.5570718, -88.3494328)," +

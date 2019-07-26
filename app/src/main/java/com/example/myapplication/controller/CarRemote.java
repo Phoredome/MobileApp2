@@ -1,4 +1,4 @@
-package com.example.myapplication.Controller;
+package com.example.myapplication.controller;
 
 public class CarRemote implements Runnable {
 

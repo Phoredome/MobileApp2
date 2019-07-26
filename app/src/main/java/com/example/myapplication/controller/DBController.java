@@ -1,4 +1,4 @@
-package com.example.myapplication.Controller;
+package com.example.myapplication.controller;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.myapplication.DB.MyDB;
+import com.example.myapplication.db.MyDB;
 
 public class DBController {
     private static SQLiteDatabase wdb = null;

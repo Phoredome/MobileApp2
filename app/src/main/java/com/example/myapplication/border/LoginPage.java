@@ -1,11 +1,10 @@
 
-package com.example.myapplication.Border;
+package com.example.myapplication.border;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.Controller.DBController;
-import com.example.myapplication.Controller.LoginManager;
-import com.example.myapplication.DB.MyDB;
+import com.example.myapplication.controller.LoginManager;
 import com.example.myapplication.R;
 
 public class LoginPage extends AppCompatActivity
