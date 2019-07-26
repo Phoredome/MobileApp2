@@ -54,7 +54,7 @@
 <<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".Border.AdminMap"
+        <activity android:name=".border.AdminMap"
 =======
             android:theme="@style/AppTheme" />
         <activity

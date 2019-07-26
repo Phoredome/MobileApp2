@@ -2,22 +2,12 @@ package com.example.myapplication.border;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/Border/MainActivity.java
-import android.util.Log;
-import android.view.Gravity;
-=======
->>>>>>> 90b285ebd7af58a4f9587fe2e0c68e09135cedf1:app/src/main/java/com/example/myapplication/border/MainActivity.java
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
