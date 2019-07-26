@@ -13,6 +13,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.Controller.DBController;
@@ -63,11 +64,11 @@ public class CreateAccount extends AppCompatActivity {
         Button register = findViewById(R.id.regBtn);
         register.setEnabled(false);
 
-        EditText regUser = findViewById(R.id.txtUName);
-        EditText regPass = findViewById(R.id.txtPName);
-        EditText regFName = findViewById(R.id.txtLicencePlate);
-        EditText regLName = findViewById(R.id.txtLName);
-        EditText regEmail = findViewById(R.id.txtEmail);
+        EditText regUser = findViewById(R.id.userName);
+        EditText regPass = findViewById(R.id.password);
+        EditText regFName = findViewById(R.id.FName);
+        EditText regLName = findViewById(R.id.LName);
+        EditText regEmail = findViewById(R.id.email);
 
         String first = regFName.getText().toString();
         String last = regLName.getText().toString();
@@ -108,11 +109,11 @@ public class CreateAccount extends AppCompatActivity {
 
         Log.d("Startingvalidation", "Starting user validation");
         boolean valid = true;
-        EditText regUser = findViewById(R.id.txtUName);
-        EditText regPass = findViewById(R.id.txtPName);
-        EditText regFName = findViewById(R.id.txtLicencePlate);
-        EditText regLName = findViewById(R.id.txtLName);
-        EditText regEmail = findViewById(R.id.txtEmail);
+        EditText regUser = findViewById(R.id.userName);
+        EditText regPass = findViewById(R.id.password);
+        EditText regFName = findViewById(R.id.FName);
+        EditText regLName = findViewById(R.id.LName);
+        EditText regEmail = findViewById(R.id.email);
 
         String name = regFName.getText().toString();
         String lastName = regLName.getText().toString();

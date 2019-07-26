@@ -48,6 +48,15 @@
             android:name=".Border.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".Border.AdminMap"
+            android:label="AdminMap"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".Border.AdminCarInfo"
+            android:label="AdminCarInfo"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

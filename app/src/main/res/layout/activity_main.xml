@@ -8,37 +8,30 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
-    <com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:fitsSystemWindows="true"
-        android:scrollbars="vertical"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="301dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            android:scrollbars="vertical"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_main_drawer">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
-            </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
 
-        </ScrollView>
-    </com.google.android.material.navigation.NavigationView>
-
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,8 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/searchBtn"
@@ -71,7 +63,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="301dp"
-                android:layout_height="362dp" />
+                android:layout_height="362dp"
+                tools:listitem="@layout/recycler_view_item_3" />
 
         </LinearLayout>
 
@@ -88,18 +81,25 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/carSelect"
                     android:layout_width="177dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/select"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Button" />
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:text="select" />
             </LinearLayout>
 
         </LinearLayout>

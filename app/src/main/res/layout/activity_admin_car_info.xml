@@ -119,7 +119,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="535dp"
-            android:layout_height="363dp"
+            android:layout_height="228dp"
             tools:listitem="@layout/recycler_view_item_2">
 
         </androidx.recyclerview.widget.RecyclerView>

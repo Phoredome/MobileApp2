@@ -1,15 +1,21 @@
 package com.example.myapplication.Border;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,22 +50,38 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       Toolbar toolbar = findViewById(R.id.toolbar);
-       setSupportActionBar(toolbar);
-
+//       Toolbar toolbar = findViewById(R.id.toolbar);
+//       setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_history, R.id.nav_account,
-                R.id.nav_car_controller, R.id.nav_car_info)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+                switch (id){
+                    case R.id.nav_home:
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(MainActivity.this, LoginPage.class));
+                        break;
+                    case R.id.nav_history:
+                        startActivity(new Intent(MainActivity.this, TripHistory.class));
+                        break;
+                    case R.id.nav_car_controller:
+                        startActivity(new Intent(MainActivity.this, AdminMap.class));
+                        break;
+                    case R.id.nav_car_info:
+                        startActivity(new Intent(MainActivity.this, AdminCarInfo.class));
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -82,8 +104,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
             }
         });
-
-
 
     }
 
@@ -143,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
 
-
-  //      cc.initializeCars(gmap);
+        cc = new CarController(getApplicationContext());
+        cc.initializeCars(gmap);
 
     }
 
