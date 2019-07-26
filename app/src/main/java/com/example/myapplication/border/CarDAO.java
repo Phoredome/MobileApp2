@@ -21,6 +21,17 @@ public class CarDAO {
         rdb = DBController.getReadable(context);
     }
 
+    public Car getCar(int carId) {
+        ArrayList<Car> cars = getAllCars();
+        Car car = null;
+        for (int i=0; i< cars.size(); i++) {
+            Integer carNum = cars.get(i).getCarID();
+            if(carId == carNum) {
+                car = cars.get(i);
+            }
+        }
+        return car;
+    }
 
     public ArrayList<Car> getAllCars() {
         ArrayList<Car> cars = new ArrayList<>();
@@ -72,14 +83,12 @@ public class CarDAO {
                 Car car = new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
                 cars.add(car);
 
-                Log.d("Inside getting all cars", car.toString());
 
             }
             cursor.close();
         } catch (SQLException ex) {
             return null;
         }
-        Log.d("Inside CarDAO", cars.toString());
         return cars;
     }
 
@@ -116,7 +125,17 @@ public class CarDAO {
     }
 
     
+    public void updateCar(int carNum, double coordX,double coordY) {
+        Car car = getCar(carNum);
 
+//        String updateQuery = "UPDATE CAR SET coordX='" + coordX + ", coordY='" + coordY + "' WHERE carId='" + car.getCarID() + "';";
+
+        ContentValues values = new ContentValues();
+        values.put("coordX", coordX);
+        values.put("coordY", coordY);
+        wdb.update("Car", values,  "carId="+carNum, null);
+        Log.d("Updated car", "Car Updated");
+    }
 
 
 
