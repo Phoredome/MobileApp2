@@ -2,32 +2,38 @@ package com.example.myapplication.border;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.Marker;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
-public class InfoWindow extends AppCompatActivity {
+public class InfoWindow extends AppCompatActivity implements
+        GoogleMap.OnInfoWindowClickListener,
+        OnMapReadyCallback {
+
+    private GoogleMap mMap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_window);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public void onMapReady(GoogleMap map) {
+        mMap = map;
+        // Add markers to the map and do other map setup.
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        // Set a listener for info window events.
+        mMap.setOnInfoWindowClickListener(this);
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Log.d("OnInfoWindowClick", "Hi! " + marker);
+
+        Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();
+    }
 }
