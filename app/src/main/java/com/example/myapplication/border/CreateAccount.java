@@ -24,8 +24,7 @@ import com.example.myapplication.R;
 
 public class CreateAccount extends AppCompatActivity {
 
-    public SQLiteDatabase wdb, rdb;
-    public MyDB db;
+
     public LoginManager lm;
 
 
@@ -37,13 +36,6 @@ public class CreateAccount extends AppCompatActivity {
 
         Button register = findViewById(R.id.regBtn);
 
-        Log.d("Before db", "onCreate1");
-        db = new MyDB(this);
-        Log.d("After db", "After db");
-
-        wdb = DBController.getWritable(this);
-        rdb = DBController.getReadable(this);
-        Log.d("after wdb", "after wdb");
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +112,6 @@ public class CreateAccount extends AppCompatActivity {
         String email = regEmail.getText().toString();
         String username = regUser.getText().toString();
         String password = regPass.getText().toString();
-
 
         if (name.isEmpty() || name.length() < 2) {
             regFName.setError("Your first name needs at least 2 characters. Please try again.");

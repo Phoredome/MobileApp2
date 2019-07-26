@@ -204,6 +204,7 @@
                 android:text="In Use:" />
 
             <RadioGroup
+                android:id="@+id/inUseRad"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:checkedButton="@id/radNo"
@@ -236,6 +237,7 @@
                 android:text="In Service:" />
 
             <RadioGroup
+                android:id="@+id/inServRad"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:checkedButton="@id/radNo2"
