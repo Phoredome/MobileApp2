@@ -143,5 +143,3 @@ public class CreateCar extends AppCompatActivity {
     }
 
 }
-
-
