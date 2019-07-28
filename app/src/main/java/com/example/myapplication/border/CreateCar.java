@@ -93,6 +93,7 @@ public class CreateCar extends AppCompatActivity {
         }
     }
 
+
     public boolean validateCar() {
 
         boolean valid = true;
