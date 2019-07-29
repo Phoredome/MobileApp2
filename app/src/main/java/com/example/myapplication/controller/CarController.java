@@ -87,7 +87,6 @@ public class CarController {
             cd.updateCar(car.getCarID(),xCoord,yCoord);
         }
 
-        //TODO Update Car DB Location
         mc.updateCarMarker(map, car, xCoord, yCoord);
         return true;
     }
