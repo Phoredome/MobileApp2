@@ -34,6 +34,18 @@ public class CarDAO {
         return car;
     }
 
+    public Car getCarByLicense(String carId) {
+        ArrayList<Car> cars = getAllCars();
+        Car car = null;
+        for (int i=0; i< cars.size(); i++) {
+            String carLicense = cars.get(i).getLicensePlate();
+            if(carId == carLicense) {
+                car = cars.get(i);
+            }
+        }
+        return car;
+    }
+
     public ArrayList<String> getCarTypes() {
         ArrayList<Car> cars = getAllCars();
         ArrayList<String> carTypes = new ArrayList<>();

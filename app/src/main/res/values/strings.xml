@@ -31,5 +31,26 @@
     <string name="menu_send">Send</string>
     <string name="title_activity_info_window">InfoWindow</string>
 
+    <string-array name="door_spin">
+        <item>Doors</item>
+        <item>2 doors</item>
+        <item>4 doors</item>
+    </string-array>
+
+    <string-array name="seat_spin">
+        <item>Seats</item>
+        <item>2 seats</item>
+        <item>5 seats</item>
+        <item>8 seats</item>
+    </string-array>
+
+    <string-array name="vehicle_type">
+        <item>Vehicle Type</item>
+        <item>Small car</item>
+        <item>CRV car</item>
+        <item>Van</item>
+
+    </string-array>
+
 
 </resources>
