@@ -78,7 +78,8 @@
             <Spinner
                 android:id="@+id/doors"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:entries="@array/door_spin" />
 
         </LinearLayout>
 
@@ -96,7 +97,8 @@
             <Spinner
                 android:id="@+id/seatSpin"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:entries="@array/seat_spin" />
 
         </LinearLayout>
 
@@ -116,7 +118,8 @@
                 android:id="@+id/vehicleSpin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:entries="@array/vehicle_type" />
         </LinearLayout>
 
         <LinearLayout
