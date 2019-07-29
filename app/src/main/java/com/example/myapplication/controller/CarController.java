@@ -44,6 +44,11 @@ public class CarController {
         return cd.addCar(costOfRunning, seats, doors, serviceTime, kmsRun, kmSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
     }
 
+    public boolean validateCars()
+    {
+        //TODO This
+        return false;
+    }
     // will use other methods to aid in redistributing unused car locations
     public Boolean equalize()
     {

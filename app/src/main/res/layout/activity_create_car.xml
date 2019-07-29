@@ -134,8 +134,10 @@
                 android:id="@+id/kmRun"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="number"
+                android:text="0"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -154,8 +156,10 @@
                 android:id="@+id/kiloServ"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="number"
+                android:text="0"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -174,8 +178,10 @@
                 android:id="@+id/servTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="time"
+                android:text="0"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -273,8 +279,10 @@
                 android:id="@+id/coordX"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="number"
+                android:text="999"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -293,8 +301,10 @@
                 android:id="@+id/coordY"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="number"
+                android:text="999"
                 android:textSize="10sp" />
         </LinearLayout>
 
