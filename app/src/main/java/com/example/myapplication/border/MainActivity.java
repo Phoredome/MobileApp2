@@ -10,8 +10,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        cc = new CarController(getApplicationContext());
 
 //       Toolbar toolbar = findViewById(R.id.toolbar);
 //       setSupportActionBar(toolbar);
@@ -84,6 +89,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
+        Spinner carSelect = findViewById(R.id.carSelect);
+        ArrayList<String> carTypes = cc.getCarTypes();
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carSelect.setAdapter(arrayAdapter);
+
+        carSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         Button searchBtn = findViewById(R.id.searchBtn);
 
@@ -156,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
 
-        cc = new CarController(getApplicationContext());
         cc.initializeCars(gmap);
         cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }

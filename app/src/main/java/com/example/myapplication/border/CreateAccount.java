@@ -34,6 +34,7 @@ public class CreateAccount extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_register);
 
+        lm = new LoginManager(getApplicationContext());
         Button register = findViewById(R.id.regBtn);
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class CreateAccount extends AppCompatActivity {
         String email = regEmail.getText().toString();
 
 
-        if(!(lm.createAccount(user,pass,first,last,email))) {
+        if((lm.createAccount(user,pass,first,last,email))) {
             Log.d("id", "user created");
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
