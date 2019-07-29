@@ -32,6 +32,7 @@ public class UserDAO
         values.put("email", email);
         values.put("userName", user);
         values.put("password", pass);
+        values.put("status", "false");
 
         wdb.insert("User", null, values);
 

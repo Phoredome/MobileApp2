@@ -67,7 +67,7 @@ public class LoginManager
             User userId = ud.getUser(username);
             if ( userId!= null) {
                 Log.d("user null", userId.getUserName());
-                return false;
+                //return false;
             }
              ud.createAccount(username, password, fName, lName, email);
             Log.d("account created", "account created");

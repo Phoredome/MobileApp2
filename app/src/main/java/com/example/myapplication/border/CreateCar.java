@@ -88,13 +88,15 @@ public class CreateCar extends AppCompatActivity {
         if (!(cc.addCar(costR, seats, door, servTime, kmRun, kmSinceLastService,
                 vehicleType, licP, inUse, inServ, coordX, coordY))) {
             Intent intent = new Intent(getApplicationContext(), AdminCarInfo.class);
+            //TODO Just exit back to previous page? (which IS AdminCarInfo, but use .exit() instead?)
             startActivity(intent);
             finish();
         }
     }
 
     public boolean validateCar() {
-
+        //TODO Move Validation into Car Controller, return boolean if true call CreateCar, If false return failure cause
+        //Refer To Login Page
         boolean valid = true;
 
         /*
@@ -141,5 +143,3 @@ public class CreateCar extends AppCompatActivity {
     }
 
 }
-
-
