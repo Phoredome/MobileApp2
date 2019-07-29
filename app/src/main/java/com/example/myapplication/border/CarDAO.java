@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.myapplication.controller.DBController;
 import com.example.myapplication.entities.Car;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CarDAO {
@@ -31,6 +32,16 @@ public class CarDAO {
             }
         }
         return car;
+    }
+
+    public ArrayList<String> getCarTypes() {
+        ArrayList<Car> cars = getAllCars();
+        ArrayList<String> carTypes = new ArrayList<>();
+
+        for (int i=0; i < cars.size(); i++) {
+            carTypes.add(cars.get(i).getVehicleType());
+        }
+        return carTypes;
     }
 
     public ArrayList<Car> getAllCars() {
@@ -126,7 +137,7 @@ public class CarDAO {
 
     
     public void updateCar(int carNum, double coordX,double coordY) {
-        Car car = getCar(carNum);
+        //Car car = getCar(carNum);
 
 //        String updateQuery = "UPDATE CAR SET coordX='" + coordX + ", coordY='" + coordY + "' WHERE carId='" + car.getCarID() + "';";
 
