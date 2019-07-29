@@ -49,6 +49,8 @@ public class UserDAO
             if (uname.equals(userName)) {
                 user = users.get(i);
                 Log.d("UserName", userName);
+
+
             }
         }
         return user;
