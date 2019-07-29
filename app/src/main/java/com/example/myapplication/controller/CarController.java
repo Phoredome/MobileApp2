@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.myapplication.border.CarDAO;
 import com.example.myapplication.border.CreateCar;
+import com.example.myapplication.border.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -132,7 +133,7 @@ public class CarController {
         return false;
     }
 
-    public ArrayList<Car> getNearByCars (LatLng latLng)
+    public ArrayList<Car> getNearByCars (GetDistanceProbe.DistanceListener context, LatLng latLng)
     {
         ArrayList<Car> nearByCars;
 
@@ -143,8 +144,8 @@ public class CarController {
             double x = c.getCoordX();
             double y = c.getCoordY();
 
-            LatLng car = new LatLng(x, y);
-
+            DistanceCalculatorManager dcm = new DistanceCalculatorManager();
+            dcm.startSearch(context, latLng.latitude, latLng.longitude, x, y);
 
             //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
         }
