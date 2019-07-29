@@ -1,25 +1,21 @@
 package com.example.myapplication.border;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
-import com.example.myapplication.controller.DBController;
-import com.example.myapplication.controller.LoginManager;
-import com.example.myapplication.db.MyDB;
+import com.google.android.material.navigation.NavigationView;
 
 public class CreateCar extends AppCompatActivity {
 
@@ -30,6 +26,34 @@ public class CreateCar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_create_car);
+
+        final NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+
+                switch (id){
+                    case R.id.nav_home:
+                        startActivity(new Intent(CreateCar.this, MainActivity.class));
+                        break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(CreateCar.this, CreateAccount.class));
+                        break;
+                    case R.id.nav_history:
+                        startActivity(new Intent(CreateCar.this, TripHistory.class));
+                        break;
+                    case R.id.nav_car_controller:
+                        startActivity(new Intent(CreateCar.this, AdminMap.class));
+                        break;
+                    case R.id.nav_car_info:
+                        startActivity(new Intent(CreateCar.this, AdminCarInfo.class));
+                        break;
+                }
+                return false;
+            }
+        });
 
         Button addCar = findViewById(R.id.addCarBtn);
 
@@ -100,8 +124,6 @@ public class CreateCar extends AppCompatActivity {
             if (!(cc.addCar(costR, seats, door, servTime, kmRun, kmSinceLastService,
                     vehicleType, licP, inUse, inServ, coordX, coordY))) {
                 this.finish();
-                //TODO Just exit back to previous page? (which IS AdminCarInfo, but use .exit() instead?)
-
 
             }
         }

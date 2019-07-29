@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".border.TripHistory">
 
@@ -14,16 +13,11 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer">
-
-        </com.google.android.material.navigation.NavigationView>
+            android:layout_height="wrap_content"
+            tools:itemCount="5"
+            tools:listitem="@layout/recycler_view_item_4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
+                android:layout_weight="0"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
 
@@ -55,6 +50,15 @@
             </LinearLayout>
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
     </LinearLayout>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>

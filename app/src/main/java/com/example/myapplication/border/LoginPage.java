@@ -69,24 +69,6 @@ public class LoginPage extends AppCompatActivity
         }));
     }
 
-    /*public void login() {
-        if (!validateUser()) {
-            loginFailed();
-            return;
-        }
-
-        loginBtn.setEnabled(false);
-
-//        String user = usernameInput.getText().toString();
-  //      String pass = passInput.getText().toString();
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        loginSuccess();
-                    }
-                }, 0);
-    }*/
 
     public void loginSuccess() {
 
