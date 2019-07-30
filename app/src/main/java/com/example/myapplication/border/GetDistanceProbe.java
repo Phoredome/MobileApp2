@@ -69,6 +69,6 @@ public class GetDistanceProbe extends AsyncTask<String, Void, String> {
     }
 
     public interface DistanceListener {
-        void getDistance(String result);
+        double getDistance(String result);
     }
 }
