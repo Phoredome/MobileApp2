@@ -15,15 +15,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".border.InfoWindow"
             android:label="@string/title_activity_info_window"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".border.CreateCar" />
+
+        <activity
+            android:name=".border.CreateCar"
+            android:label="Create Car"
+            android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".border.TripHistory"
             android:label="@string/title_activity_trip_history"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- activity android:name=".Border.CreateAccount" / -->
+
         <activity
             android:name=".border.CreateAccount"
             android:label="@string/title_activity_register" />
@@ -48,18 +55,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".border.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".border.AdminMap"
             android:label="AdminMap"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity
             android:name=".border.AdminCarInfo"
             android:label="AdminCarInfo"
             android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".border.myAccount"
+            android:label="myAccount"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
