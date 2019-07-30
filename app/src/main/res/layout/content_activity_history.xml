@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".border.TripHistory">
 
@@ -18,10 +18,9 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                tools:itemCount="5"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/recycler_view_item_5" />
 
         </LinearLayout>
@@ -29,6 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0"
             android:orientation="vertical">
 
             <LinearLayout
@@ -40,8 +40,7 @@
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/mapView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
             <LinearLayout
