@@ -7,16 +7,22 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
 
+import com.example.myapplication.controller.RecyclerViewAdapter;
+import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class TripHistory extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -33,6 +39,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_history);
+        cc = new CarController(getApplicationContext());
 
 
         Bundle mapViewBundle = null;
@@ -74,6 +81,11 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         });
 
 
+        RecyclerView rv2 = findViewById(R.id.recyclerView2);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
+        rv2.setLayoutManager(new LinearLayoutManager(this));
+        rv2.setAdapter(adapter);
 
 
 
