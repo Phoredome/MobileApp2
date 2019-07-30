@@ -1,25 +1,24 @@
 package com.example.myapplication.border;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.myapplication.controller.DBController;
 import com.example.myapplication.controller.LoginManager;
-import com.example.myapplication.db.MyDB;
 import com.example.myapplication.R;
+import com.google.android.material.navigation.NavigationView;
 
 
 public class CreateAccount extends AppCompatActivity {
@@ -33,6 +32,34 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_register);
+
+        final NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+
+                switch (id){
+                    case R.id.nav_home:
+                        startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                        break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(CreateAccount.this, CreateAccount.class));
+                        break;
+                    case R.id.nav_history:
+                        startActivity(new Intent(CreateAccount.this, TripHistory.class));
+                        break;
+                    case R.id.nav_car_controller:
+                        startActivity(new Intent(CreateAccount.this, AdminMap.class));
+                        break;
+                    case R.id.nav_car_info:
+                        startActivity(new Intent(CreateAccount.this, AdminCarInfo.class));
+                        break;
+                }
+                return false;
+            }
+        });
 
         lm = new LoginManager(getApplicationContext());
         Button register = findViewById(R.id.regBtn);

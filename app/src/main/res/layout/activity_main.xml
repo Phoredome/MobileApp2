@@ -23,13 +23,12 @@
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer">
 
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-        </com.google.android.material.navigation.NavigationView>
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </com.google.android.material.navigation.NavigationView>
 
 
 

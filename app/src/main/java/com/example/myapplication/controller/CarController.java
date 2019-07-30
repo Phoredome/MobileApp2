@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.border.CarDAO;
+import com.example.myapplication.border.CreateCar;
+import com.example.myapplication.border.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -14,6 +16,7 @@ public class CarController {
 
     CarDAO cd;
     MapController mc;
+    CreateCar cc;
 
     double depotx = 0.00;
     double depoty = 0.00;
@@ -27,12 +30,28 @@ public class CarController {
         return cd.getCar(carId);
     }
 
+
     public ArrayList<String> getCarTypes() {
         return cd.getCarTypes();
     }
 
+
     public ArrayList<Car> getAllCars() {
-        return cd.getAllCars();
+        return cd.getAllCars();}
+
+    public Boolean check(String license, String costOfRun)
+    {
+        Car car = null;
+        try {
+            car = cd.getCarByLicense(license);
+            if (car != null && costOfRun != null)
+                return true;
+            else
+                return false;
+        } catch(Exception e) {
+            Log.e("Add car error", e.getMessage(), e);
+        }
+        return false;
     }
 
     public Boolean addCar(double costOfRunning,
@@ -52,10 +71,18 @@ public class CarController {
         return cd.addCar(costOfRunning, seats, doors, serviceTime, kmsRun, kmSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
     }
 
-    public boolean validateCars()
+    public int validateCars(String license, Double costOfRun)
     {
-        //TODO This
-        return false;
+        int valid = 0;
+
+        if (license.isEmpty() || license.length() < 6)
+            valid = 1;
+
+        else if(costOfRun.equals(0))
+            valid = 2;
+
+        return valid;
+
     }
     // will use other methods to aid in redistributing unused car locations
     public Boolean equalize()
@@ -91,7 +118,6 @@ public class CarController {
             cd.updateCar(car.getCarID(),xCoord,yCoord);
         }
 
-        //TODO Update Car DB Location
         mc.updateCarMarker(map, car, xCoord, yCoord);
         return true;
     }
@@ -111,7 +137,7 @@ public class CarController {
         return false;
     }
 
-    public ArrayList<Car> getNearByCars (LatLng latLng)
+    public ArrayList<Car> getNearByCars (GetDistanceProbe.DistanceListener context, LatLng latLng)
     {
         ArrayList<Car> nearByCars;
 
@@ -122,8 +148,8 @@ public class CarController {
             double x = c.getCoordX();
             double y = c.getCoordY();
 
-            LatLng car = new LatLng(x, y);
-
+            DistanceCalculatorManager dcm = new DistanceCalculatorManager();
+            dcm.startSearch(context, latLng.latitude, latLng.longitude, x, y);
 
             //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
         }
