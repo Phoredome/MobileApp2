@@ -85,6 +85,24 @@ public class CarController {
     {
         //TODO
         ArrayList<Car> carList = cd.getAllCars();
+        for (int i = 0; i < carList.size(); i++)
+        {
+            Car c = carList.get(i);
+
+            double x1 = c.getCoordX();
+            double y1 = c.getCoordY();
+
+            for(int j = i+1; j < carList.size(); j++)
+            {
+                Car d = carList.get(j);
+
+                double x2 = d.getCoordX();
+                double y2 = d.getCoordY();
+
+
+            }
+
+        }
         // if cars are too close to each other, move the furthest one from base away
         return false;
     }
@@ -133,22 +151,90 @@ public class CarController {
         return false;
     }
 
-    public ArrayList<Car> getNearByCars (GetDistanceProbe.DistanceListener context, LatLng latLng)
+    //TODO
+    public ArrayList<Car> getNearByLocation (GetDistanceProbe.DistanceListener context, LatLng latLng)
     {
-        ArrayList<Car> nearByCars;
+        ArrayList<Car> carList = cd.getAllCars();
+        ArrayList<Car> nearByCars = cd.getAllCars();
+        double[][] list = new double[10][2];
 
-        nearByCars = cd.getAllCars();
-
-        for (Car c: nearByCars)
+        for (Car c : carList)
         {
             double x = c.getCoordX();
             double y = c.getCoordY();
 
             DistanceCalculatorManager dcm = new DistanceCalculatorManager();
             dcm.startSearch(context, latLng.latitude, latLng.longitude, x, y);
+            //TODO
+
+            double distance = 0.0;
+            for(int i = 0; i < 10; i++)
+            {
+                double dist = list[i][2];
+
+                if (distance < dist && i < 10)
+                {
+                    while (i < 10)
+                    {
+                        updateList(i,list,c,distance);
+                        i++;
+                    }
+
+                    list[i][1] = c.getCarID();
+                    list[i][2] = distance;
+                }
+            }
+        }
+
 
             //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
+        return nearByCars;
+    }
+
+    public double[][] updateList(int i, double[][] list, Car c, double distance)
+    {
+        if(i == 9)
+        {
+            return list;
         }
+        list[i + 1] = list[i];
+        i++;
+
+        updateList(i,list,c,distance);
+        return list;
+    }
+    
+    //TODO
+    public ArrayList<Car> getNearByCars (GetDistanceProbe.DistanceListener context, LatLng latLng)
+    {
+        ArrayList<Car> carList = cd.getAllCars();
+        ArrayList<Car> nearByCars = cd.getAllCars();
+
+        double x = 0;
+        double y = 0;
+
+        for (int i = 0; i < carList.size(); i++)
+        {
+            Car c = carList.get(i);
+
+            double x1 = c.getCoordX();
+            double y1 = c.getCoordY();
+
+            for(int j = i+1; j < carList.size(); j++)
+            {
+                Car d = carList.get(j);
+
+                double x2 = d.getCoordX();
+                double y2 = d.getCoordY();
+
+
+            }
+
+        }
+        DistanceCalculatorManager dcm = new DistanceCalculatorManager();
+        dcm.startSearch(context, latLng.latitude, latLng.longitude, x, y);
+
+        //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
         return nearByCars;
     }
 
