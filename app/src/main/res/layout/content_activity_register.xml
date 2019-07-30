@@ -30,7 +30,7 @@
                     android:text="First Name:" />
 
                 <EditText
-                    android:id="@+id/FName"
+                    android:id="@+id/fName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"

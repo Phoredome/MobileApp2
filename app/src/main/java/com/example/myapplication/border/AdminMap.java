@@ -20,7 +20,7 @@ public class AdminMap extends AppCompatActivity {
         setContentView(R.layout.activity_admin_map);
 
 
-        final NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_admin_map);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -32,7 +32,7 @@ public class AdminMap extends AppCompatActivity {
                         startActivity(new Intent(AdminMap.this, MainActivity.class));
                         break;
                     case R.id.nav_account:
-                        startActivity(new Intent(AdminMap.this, CreateAccount.class));
+                        startActivity(new Intent(AdminMap.this, myAccount.class));
                         break;
                     case R.id.nav_history:
                         startActivity(new Intent(AdminMap.this, TripHistory.class));

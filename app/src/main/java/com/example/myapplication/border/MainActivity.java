@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         startActivity(new Intent(MainActivity.this, MainActivity.class));
                         break;
                     case R.id.nav_account:
-                        startActivity(new Intent(MainActivity.this, CreateAccount.class));
+                        startActivity(new Intent(MainActivity.this, myAccount.class));
                         break;
                     case R.id.nav_history:
                         startActivity(new Intent(MainActivity.this, TripHistory.class));
@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
+
+
         Spinner carSelect = findViewById(R.id.carSelect);
         ArrayList<String> carTypes = cc.getCarTypes();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
 
                 LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
-                ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
+               // ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
             }
         });
 

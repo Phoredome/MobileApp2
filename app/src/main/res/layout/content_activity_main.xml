@@ -25,7 +25,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/addressTxt"
+                    android:id="@+id/addressTxt_up"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
