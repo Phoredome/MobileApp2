@@ -3,7 +3,7 @@ package com.example.myapplication.controller;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.myapplication.border.UserDAO;
+import com.example.myapplication.border.dao.UserDAO;
 import com.example.myapplication.entities.User;
 
 public class LoginManager

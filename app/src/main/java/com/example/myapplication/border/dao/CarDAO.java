@@ -1,4 +1,4 @@
-package com.example.myapplication.border;
+package com.example.myapplication.border.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.util.Log;
 import com.example.myapplication.controller.DBController;
 import com.example.myapplication.entities.Car;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CarDAO {

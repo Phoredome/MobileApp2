@@ -37,7 +37,7 @@ public class myAccount  extends AppCompatActivity {
                     case R.id.nav_home:
                         startActivity(new Intent(myAccount.this, MainActivity.class));
                         break;
-                    case R.id.nav_account:
+                    case R.id.nav_myaccount:
                         startActivity(new Intent(myAccount.this, myAccount.class));
                         break;
                     case R.id.nav_history:

@@ -34,6 +34,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_history);
 
+
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
@@ -55,7 +56,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                     case R.id.nav_home:
                         startActivity(new Intent(TripHistory.this, MainActivity.class));
                         break;
-                    case R.id.nav_account:
+                    case R.id.nav_myaccount:
                         startActivity(new Intent(TripHistory.this, myAccount.class));
                         break;
                     case R.id.nav_history:

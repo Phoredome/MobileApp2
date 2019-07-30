@@ -3,7 +3,7 @@ package com.example.myapplication.controller;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.myapplication.border.CarDAO;
+import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.border.CreateCar;
 import com.example.myapplication.border.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
