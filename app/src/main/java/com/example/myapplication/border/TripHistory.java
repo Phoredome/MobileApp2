@@ -56,7 +56,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                     case R.id.nav_home:
                         startActivity(new Intent(TripHistory.this, MainActivity.class));
                         break;
-                    case R.id.nav_myaccount:
+                    case R.id.nav_account:
                         startActivity(new Intent(TripHistory.this, myAccount.class));
                         break;
                     case R.id.nav_history:

@@ -34,7 +34,7 @@ public class AdminCarInfo extends AppCompatActivity {
                     case R.id.nav_home:
                         startActivity(new Intent(AdminCarInfo.this, MainActivity.class));
                         break;
-                    case R.id.nav_myaccount:
+                    case R.id.nav_account:
                         startActivity(new Intent(AdminCarInfo.this, myAccount.class));
                         break;
                     case R.id.nav_history:

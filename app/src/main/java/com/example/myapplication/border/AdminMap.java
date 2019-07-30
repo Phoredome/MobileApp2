@@ -31,7 +31,7 @@ public class AdminMap extends AppCompatActivity {
                     case R.id.nav_home:
                         startActivity(new Intent(AdminMap.this, MainActivity.class));
                         break;
-                    case R.id.nav_myaccount:
+                    case R.id.nav_account:
                         startActivity(new Intent(AdminMap.this, myAccount.class));
                         break;
                     case R.id.nav_history:
