@@ -31,6 +31,10 @@ public class CarController {
         return cd.getCarTypes();
     }
 
+    public ArrayList<Car> getAllCars() {
+        return cd.getAllCars();
+    }
+
     public Boolean addCar(double costOfRunning,
                                  int seats,
                                  int doors,
