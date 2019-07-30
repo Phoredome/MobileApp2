@@ -23,7 +23,7 @@ public class AdminCarInfo extends AppCompatActivity {
         setContentView(R.layout.activity_admin_info);
 
 
-        final NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_admin_info);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -35,7 +35,7 @@ public class AdminCarInfo extends AppCompatActivity {
                         startActivity(new Intent(AdminCarInfo.this, MainActivity.class));
                         break;
                     case R.id.nav_account:
-                        startActivity(new Intent(AdminCarInfo.this, CreateAccount.class));
+                        startActivity(new Intent(AdminCarInfo.this, myAccount.class));
                         break;
                     case R.id.nav_history:
                         startActivity(new Intent(AdminCarInfo.this, TripHistory.class));

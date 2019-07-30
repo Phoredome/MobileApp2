@@ -25,7 +25,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/addressTxt"
+                    android:id="@+id/addressTxt_up"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
@@ -42,6 +42,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
@@ -57,7 +58,7 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="334dp"
+                android:layout_height="298dp"
                 android:layout_weight="0" />
 
             <LinearLayout

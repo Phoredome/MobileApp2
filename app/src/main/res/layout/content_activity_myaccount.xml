@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".border.CreateAccount">
+    tools:context=".border.myAccount">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                     android:text="First Name:" />
 
                 <EditText
-                    android:id="@+id/fName"
+                    android:id="@+id/fName_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -50,7 +50,7 @@
                     android:text="Last Name:" />
 
                 <EditText
-                    android:id="@+id/LName"
+                    android:id="@+id/LName_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -70,7 +70,7 @@
                     android:text="Username: " />
 
                 <EditText
-                    android:id="@+id/userName"
+                    android:id="@+id/userName_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -90,7 +90,7 @@
                     android:text="Password:" />
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/password_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -109,7 +109,7 @@
                     android:text="Email:" />
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/email_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -128,7 +128,7 @@
                     android:text="Address:" />
 
                 <EditText
-                    android:id="@+id/addressTxt"
+                    android:id="@+id/addressTxt_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -136,10 +136,10 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/regBtn"
+                android:id="@+id/updateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="register" />
+                android:text="update account" />
         </LinearLayout>
     </ScrollView>
 

@@ -6,12 +6,12 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
   <ImageView
-      android:id="@+id/recyclerImageView2"
+      android:id="@+id/imageView1"
       android:layout_width="50dp"
       android:layout_height="50dp"
       tools:src="@tools:sample/avatars"/>
   <TextView
-      android:id="@+id/recyclerTextView2"
+      android:id="@+id/textView1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"

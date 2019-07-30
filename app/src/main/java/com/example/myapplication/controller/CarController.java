@@ -35,6 +35,10 @@ public class CarController {
         return cd.getCarTypes();
     }
 
+
+    public ArrayList<Car> getAllCars() {
+        return cd.getAllCars();}
+
     public Boolean check(String license, String costOfRun)
     {
         Car car = null;

@@ -3,11 +3,13 @@ package com.example.myapplication.border;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.ui.AppBarConfiguration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
+import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
@@ -29,14 +32,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private AppBarConfiguration mAppBarConfiguration;
     private MapView mapView;
     private GoogleMap gmap;
     private MapController mc;
     private CarController cc;
+    private RecyclerView.Adapter mAdapter;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         startActivity(new Intent(MainActivity.this, MainActivity.class));
                         break;
                     case R.id.nav_account:
-                        startActivity(new Intent(MainActivity.this, CreateAccount.class));
+                        startActivity(new Intent(MainActivity.this, myAccount.class));
                         break;
                     case R.id.nav_history:
                         startActivity(new Intent(MainActivity.this, TripHistory.class));
@@ -89,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
+
+
         Spinner carSelect = findViewById(R.id.carSelect);
         ArrayList<String> carTypes = cc.getCarTypes();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
@@ -107,6 +113,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        RecyclerView rv = findViewById(R.id.recyclerView);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+
+
         Button searchBtn = findViewById(R.id.searchBtn);
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
 
                 LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
-                ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
+               // ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
             }
         });
 

@@ -27,33 +27,6 @@ public class CreateCar extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_create_car);
 
-        final NavigationView navigationView = findViewById(R.id.nav_view);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-
-                switch (id){
-                    case R.id.nav_home:
-                        startActivity(new Intent(CreateCar.this, MainActivity.class));
-                        break;
-                    case R.id.nav_account:
-                        startActivity(new Intent(CreateCar.this, CreateAccount.class));
-                        break;
-                    case R.id.nav_history:
-                        startActivity(new Intent(CreateCar.this, TripHistory.class));
-                        break;
-                    case R.id.nav_car_controller:
-                        startActivity(new Intent(CreateCar.this, AdminMap.class));
-                        break;
-                    case R.id.nav_car_info:
-                        startActivity(new Intent(CreateCar.this, AdminCarInfo.class));
-                        break;
-                }
-                return false;
-            }
-        });
 
         Button addCar = findViewById(R.id.addCarBtn);
 

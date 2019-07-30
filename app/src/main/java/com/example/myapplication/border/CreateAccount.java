@@ -33,34 +33,6 @@ public class CreateAccount extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_register);
 
-        final NavigationView navigationView = findViewById(R.id.nav_view);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-
-                switch (id){
-                    case R.id.nav_home:
-                        startActivity(new Intent(CreateAccount.this, MainActivity.class));
-                        break;
-                    case R.id.nav_account:
-                        startActivity(new Intent(CreateAccount.this, CreateAccount.class));
-                        break;
-                    case R.id.nav_history:
-                        startActivity(new Intent(CreateAccount.this, TripHistory.class));
-                        break;
-                    case R.id.nav_car_controller:
-                        startActivity(new Intent(CreateAccount.this, AdminMap.class));
-                        break;
-                    case R.id.nav_car_info:
-                        startActivity(new Intent(CreateAccount.this, AdminCarInfo.class));
-                        break;
-                }
-                return false;
-            }
-        });
-
         lm = new LoginManager(getApplicationContext());
         Button register = findViewById(R.id.regBtn);
 
@@ -86,7 +58,7 @@ public class CreateAccount extends AppCompatActivity {
 
         EditText regUser = findViewById(R.id.userName);
         EditText regPass = findViewById(R.id.password);
-        EditText regFName = findViewById(R.id.FName);
+        EditText regFName = findViewById(R.id.fName);
         EditText regLName = findViewById(R.id.LName);
         EditText regEmail = findViewById(R.id.email);
 
@@ -131,7 +103,7 @@ public class CreateAccount extends AppCompatActivity {
         boolean valid = true;
         EditText regUser = findViewById(R.id.userName);
         EditText regPass = findViewById(R.id.password);
-        EditText regFName = findViewById(R.id.FName);
+        EditText regFName = findViewById(R.id.fName);
         EditText regLName = findViewById(R.id.LName);
         EditText regEmail = findViewById(R.id.email);
 
