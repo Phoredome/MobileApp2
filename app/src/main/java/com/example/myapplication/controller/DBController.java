@@ -39,7 +39,7 @@ public class DBController {
     final String carTypeSelectQuery = "SELECT * FROM Car WHERE vehicleType = ";
     final String userSelectQuery = "SELECT * FROM User WHERE userId = ";
 
-    public static void DisplayAll(TableLayout theView, SQLiteDatabase wdb, Context context, String selectQuery) {
+    /*public static void DisplayAll(TableLayout theView, SQLiteDatabase wdb, Context context, String selectQuery) {
         theView.removeAllViews();
         try {
             Cursor cursor = wdb.rawQuery(selectQuery, null);
@@ -81,7 +81,7 @@ public class DBController {
             }
         } catch (Exception ex) { }
     }
-
+*/
     public static void close() {
         if (db != null) {
             db.close();
