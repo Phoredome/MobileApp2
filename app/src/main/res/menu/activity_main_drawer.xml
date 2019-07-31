@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_drawer_user"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -20,18 +21,5 @@
 
 
     </group>
-
-    <item android:title="Admin">
-        <menu>
-            <item
-                android:id="@+id/nav_car_controller"
-                android:icon="@drawable/ic_menu_controller"
-                android:title="Car Controller" />
-            <item
-                android:id="@+id/nav_car_info"
-                android:icon="@drawable/ic_car_info"
-                android:title="Car info" />
-        </menu>
-    </item>
 
 </menu>

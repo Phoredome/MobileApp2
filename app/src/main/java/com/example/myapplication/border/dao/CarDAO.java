@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.myapplication.controller.DBController;
+import com.example.myapplication.controller.controller.DBController;
 import com.example.myapplication.entities.Car;
 
 import java.util.ArrayList;

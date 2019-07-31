@@ -1,5 +1,5 @@
 
-package com.example.myapplication.border;
+package com.example.myapplication.border.pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,11 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.controller.LoginManager;
+import com.example.myapplication.controller.manager.LoginManager;
 import com.example.myapplication.R;
+import com.example.myapplication.entities.User;
 
 public class LoginPage extends AppCompatActivity
 {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +38,19 @@ public class LoginPage extends AppCompatActivity
 
                 LoginManager lm = new LoginManager(getApplicationContext());
 
-                switch(lm.validateUser(usernameInput.getText().toString(),passInput.getText().toString()))
+                String userName = usernameInput.getText().toString();
+
+                switch(lm.validateUser(userName,passInput.getText().toString()))
                 {
                     case 0:
-                        if(lm.check(usernameInput.getText().toString(),passInput.getText().toString()))
+                        if(lm.check(userName,passInput.getText().toString()))
                         {
+                            User user = lm.getUserByName(userName);
+
+                            Bundle b = new Bundle();
+                            b.putBoolean("status", user.getStatus());
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            i.putExtras(b);
                             startActivity(i);
                             finish();
                         }
@@ -55,6 +64,7 @@ public class LoginPage extends AppCompatActivity
                         passInput.setError("Please enter a password longer than 4 characters.");
                         break;
                 }
+
             }
         });
 
@@ -68,10 +78,7 @@ public class LoginPage extends AppCompatActivity
             }
         }));
 
-
     }
-
-
     public void loginSuccess() {
 
         Button loginBtn = findViewById(R.id.loginBtn);

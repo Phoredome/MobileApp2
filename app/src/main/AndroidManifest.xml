@@ -17,22 +17,22 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".border.InfoWindow"
+            android:name=".border.info.InfoWindow"
             android:label="@string/title_activity_info_window"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".border.CreateCar"
+            android:name=".border.pages.CreateCar"
             android:label="Create Car"
             android:theme="@style/AppTheme"/>
 
         <activity
-            android:name=".border.TripHistory"
+            android:name=".border.pages.TripHistory"
             android:label="@string/title_activity_trip_history"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- activity android:name=".Border.CreateAccount" / -->
 
         <activity
-            android:name=".border.CreateAccount"
+            android:name=".border.pages.CreateAccount"
             android:label="@string/title_activity_register" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -47,7 +47,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".border.LoginPage"
+            android:name=".border.pages.LoginPage"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,22 +57,22 @@
         </activity>
 
         <activity
-            android:name=".border.MainActivity"
+            android:name=".border.pages.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".border.AdminMap"
+            android:name=".border.pages.AdminMap"
             android:label="AdminMap"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".border.AdminCarInfo"
+            android:name=".border.pages.AdminCarInfo"
             android:label="AdminCarInfo"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".border.myAccount"
+            android:name=".border.pages.myAccount"
             android:label="myAccount"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

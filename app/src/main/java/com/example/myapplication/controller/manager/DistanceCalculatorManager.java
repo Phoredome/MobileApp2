@@ -1,10 +1,8 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.manager;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.example.myapplication.border.GetDistanceProbe;
-import com.example.myapplication.border.MainActivity;
+import com.example.myapplication.border.info.GetDistanceProbe;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.example.myapplication.border;
+package com.example.myapplication.border.info;
 
 import android.os.Bundle;
 

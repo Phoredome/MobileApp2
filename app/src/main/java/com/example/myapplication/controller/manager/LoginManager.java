@@ -1,4 +1,4 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.manager;
 
 import android.content.Context;
 import android.util.Log;
@@ -77,4 +77,10 @@ public class LoginManager
             return false;
         }
     }
+
+    public User getUserByName(String userName) {
+        User user = ud.getUser(userName);
+        return user;
+    }
+
 }

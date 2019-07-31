@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".border.myAccount">
+    tools:context=".border.pages.myAccount">
 
     <ScrollView
         android:layout_width="match_parent"

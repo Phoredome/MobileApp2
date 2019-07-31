@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.util.Log;
 
-import com.example.myapplication.controller.DBController;
+import com.example.myapplication.controller.controller.DBController;
 import com.example.myapplication.entities.User;
 
 import java.util.ArrayList;
@@ -50,7 +50,6 @@ public class UserDAO
             if (uname.equals(userName)) {
                 user = users.get(i);
                 Log.d("UserName", userName);
-
 
             }
         }

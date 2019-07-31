@@ -1,11 +1,12 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.controller;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
-import com.example.myapplication.border.CreateCar;
-import com.example.myapplication.border.GetDistanceProbe;
+import com.example.myapplication.border.pages.CreateCar;
+import com.example.myapplication.border.info.GetDistanceProbe;
+import com.example.myapplication.controller.manager.DistanceCalculatorManager;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;

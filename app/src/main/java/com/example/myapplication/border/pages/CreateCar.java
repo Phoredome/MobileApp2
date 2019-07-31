@@ -1,4 +1,4 @@
-package com.example.myapplication.border;
+package com.example.myapplication.border.pages;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -14,12 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.controller.CarController;
 import com.google.android.material.navigation.NavigationView;
 
 public class CreateCar extends AppCompatActivity {
 
     public CarController cc;
+    Bundle b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,59 @@ public class CreateCar extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_create_car);
 
+        Intent i = getIntent();
+        b = i.getExtras();
+
+        Boolean status = b.getBoolean("status");
+
+
+        final NavigationView navigationView = findViewById(R.id.nav_view);
+
+        if(status){
+            navigationView.inflateMenu(R.menu.activity_admin_drawer);
+
+        } else {
+            navigationView.inflateMenu(R.menu.activity_main_drawer);
+        }
+
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                int id = menuItem.getItemId();
+
+                switch (id){
+                    case R.id.nav_home:
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        i.putExtras(b);
+                        startActivity(new Intent(CreateCar.this, MainActivity.class));
+                        break;
+                    case R.id.nav_account:
+                        Intent j = new Intent(getApplicationContext(), myAccount.class);
+                        j.putExtras(b);
+                        startActivity(new Intent(CreateCar.this, myAccount.class));
+                        break;
+                    case R.id.nav_history:
+                        Intent k = new Intent(getApplicationContext(), TripHistory.class);
+                        k.putExtras(b);
+                        startActivity(new Intent(CreateCar.this, TripHistory.class));
+                        break;
+                    case R.id.nav_car_controller:
+                        Intent a = new Intent(getApplicationContext(), AdminMap.class);
+                        a.putExtras(b);
+                        startActivity(new Intent(CreateCar.this, AdminMap.class));
+                        break;
+                    case R.id.nav_car_info:
+                        Intent n = new Intent(getApplicationContext(), AdminCarInfo.class);
+                        n.putExtras(b);
+                        startActivity(new Intent(CreateCar.this, AdminCarInfo.class));
+                        break;
+                }
+                return false;
+
+            }
+        });
 
         Button addCar = findViewById(R.id.addCarBtn);
 
