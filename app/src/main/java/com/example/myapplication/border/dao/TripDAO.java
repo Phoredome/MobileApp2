@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.myapplication.controller.DBController;
 import com.example.myapplication.db.MyDB;
 import com.example.myapplication.entities.Trips;
 
@@ -17,9 +18,8 @@ public class TripDAO {
     SQLiteDatabase wdb;
 
     public TripDAO (Context context) {
-        MyDB db = new MyDB(context);
-        rdb = db.getReadableDatabase();
-        wdb = db.getWritableDatabase();
+        rdb = DBController.getReadable(context);
+        wdb = DBController.getWritable(context);
     }
 
     public boolean addTrip(int carId, int userId, double amount,

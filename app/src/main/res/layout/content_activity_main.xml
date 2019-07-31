@@ -58,7 +58,7 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="298dp"
+                android:layout_height="335dp"
                 android:layout_weight="0" />
 
             <LinearLayout
