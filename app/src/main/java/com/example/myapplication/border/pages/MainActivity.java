@@ -16,8 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.myapplication.controller.controller.CarController;
-import com.example.myapplication.controller.controller.MapController;
+import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
 
