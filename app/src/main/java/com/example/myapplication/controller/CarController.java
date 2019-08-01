@@ -243,7 +243,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
 
     public void getTripDistance(Car c, LatLng ll)
     {
-        
+        startSearch( c.getCoordX(), c.getCoordY(), ll.latitude, ll.longitude);
     }
 
     public void initializeCars(GoogleMap map)

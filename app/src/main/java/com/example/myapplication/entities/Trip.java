@@ -1,6 +1,6 @@
 package com.example.myapplication.entities;
 
-public class Trips {
+public class Trip {
 
     private int tripId;
     private int carId;
@@ -16,7 +16,7 @@ public class Trips {
     private double endingX;
     private double endingY;
 
-    public Trips(int tripId, int carId, int userId, int kmsRunForTrip, String timeOfTrip, String dateOfTrip, double amount, double startingX, double startingY, double endingX, double endingY) {
+    public Trip(int tripId, int carId, int userId, int kmsRunForTrip, String timeOfTrip, String dateOfTrip, double amount, double startingX, double startingY, double endingX, double endingY) {
         this.tripId = tripId;
         this.carId = carId;
         this.userId = userId;

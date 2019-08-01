@@ -7,8 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.controller.DBController;
-import com.example.myapplication.db.MyDB;
-import com.example.myapplication.entities.Trips;
+import com.example.myapplication.entities.Trip;
 
 import java.util.ArrayList;
 
@@ -43,8 +42,8 @@ public class TripDAO {
         return true;
     }
 
-    public ArrayList<Trips> getAllTrips() {
-        ArrayList<Trips> trips = new ArrayList<>();
+    public ArrayList<Trip> getAllTrips() {
+        ArrayList<Trip> trips = new ArrayList<>();
 
         try {
             String selectQuery = "SELECT * FROM Trip;";
@@ -85,7 +84,7 @@ public class TripDAO {
                 index = cursor.getColumnIndexOrThrow("endingY");
                 double endingY = cursor.getDouble(index);
 
-                trips.add(new Trips(tripId, carId, userId, kmsRunForTrip, timeOfTrip,dateOfTrip, amount, startingX, startingY, endingX, endingY));
+                trips.add(new Trip(tripId, carId, userId, kmsRunForTrip, timeOfTrip,dateOfTrip, amount, startingX, startingY, endingX, endingY));
 
             }
             cursor.close();
@@ -93,6 +92,16 @@ public class TripDAO {
             return null;
         }
         return trips;
+    }
+
+    public int getTripCount()
+    {
+        String selectQuery = "SELECT * FROM Trips;";
+        Cursor cursor = rdb.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+
     }
 
 

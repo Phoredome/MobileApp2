@@ -6,8 +6,8 @@ public class Car {
     private int doors;
     private int capacity;
     private int serviceTime;
-    private int kmsRun;
-    private int kmsSinceLastService;
+    private double kmsRun;
+    private double kmsSinceLastService;
 
     private double distance;
 
@@ -82,19 +82,19 @@ public class Car {
         this.serviceTime = serviceTime;
     }
 
-    public int getKmsRun() {
+    public double getKmsRun() {
         return kmsRun;
     }
 
-    public void setKmsRun(int kmsRun) {
+    public void setKmsRun(double kmsRun) {
         this.kmsRun = kmsRun;
     }
 
-    public int getKmsSinceLastService() {
+    public double getKmsSinceLastService() {
         return kmsSinceLastService;
     }
 
-    public void setKmsSinceLastService(int kmsSinceLastService) {
+    public void setKmsSinceLastService(double kmsSinceLastService) {
         this.kmsSinceLastService = kmsSinceLastService;
     }
     public double getDistance() {

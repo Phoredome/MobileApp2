@@ -6,6 +6,8 @@ import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+
 public class TripController
 {
     CarController cc;
@@ -23,7 +25,9 @@ public class TripController
     {
         LatLng ll = mc.getLocationFromAddress(context, address);
 
+
         cc.getTripDistance(c,ll);
+        c.setKmsRun(c.getKmsRun()+c.getDistance());
         c.getCostOfRunning();
 
 
