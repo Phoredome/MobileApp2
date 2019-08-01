@@ -1,13 +1,15 @@
 package com.example.myapplication.entities;
 
+import androidx.annotation.Nullable;
+
 public class Car {
     private int carID;
     private int seats;
     private int doors;
     private int capacity;
     private int serviceTime;
-    private int kmsRun;
-    private int kmsSinceLastService;
+    private double kmsRun;
+    private double kmsSinceLastService;
 
     private double distance;
 
@@ -82,19 +84,19 @@ public class Car {
         this.serviceTime = serviceTime;
     }
 
-    public int getKmsRun() {
+    public double getKmsRun() {
         return kmsRun;
     }
 
-    public void setKmsRun(int kmsRun) {
+    public void setKmsRun(double kmsRun) {
         this.kmsRun = kmsRun;
     }
 
-    public int getKmsSinceLastService() {
+    public double getKmsSinceLastService() {
         return kmsSinceLastService;
     }
 
-    public void setKmsSinceLastService(int kmsSinceLastService) {
+    public void setKmsSinceLastService(double kmsSinceLastService) {
         this.kmsSinceLastService = kmsSinceLastService;
     }
     public double getDistance() {
@@ -155,5 +157,13 @@ public class Car {
 
     public void setInActiveService(boolean inActiveService) {
         this.inActiveService = inActiveService;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof Car)
+            return carID == ((Car) obj).carID;
+        else
+            return super.equals(obj);
     }
 }

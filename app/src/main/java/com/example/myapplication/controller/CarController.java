@@ -8,6 +8,7 @@ import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,11 +51,11 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     public ArrayList<Car> getAllCars() {
         return cd.getAllCars();}
 
-    public Boolean check(String license, String costOfRun)
+    public Boolean check(String costOfRun)
     {
-        Car car = null;
+        //Car car = null;
         try {
-            car = cd.getCarByLicense(license);
+            //car = cd.getCarByLicense(license);
             if (car != null && costOfRun != null)
                 return true;
             else
@@ -179,17 +180,24 @@ public class CarController implements GetDistanceProbe.DistanceListener{
             compareDist(distanceList, carList);
         }
     }
+
     //TODO
-    public ArrayList<Car> getNearByCar (Car c)
-    { getNearByLocation(c,c.getCoordX(),c.getCoordY());
-    return null;}
+    public double[][] getNearCars (Double x, Double y)
+    {
+        Car c = null;
+        getNearByLocation(c, x, y);
+        compareDist(distanceList, cd.getAllCars());
+        return distanceList;
+    }
+
+
 
     public void getNearByLocation (Car c, double x, double y)
     {
         ArrayList<Car> carList = cd.getAllCars();
 
         for (Car d : carList) {
-            if(c.getCarID() != d.getCarID()) {
+            if(!d.equals(c)) {
                 double x2 = d.getCoordX();
                 double y2 = d.getCoordY();
 
@@ -239,6 +247,10 @@ public class CarController implements GetDistanceProbe.DistanceListener{
         return i;
     }
 
+    public void getTripDistance(Car c, LatLng ll)
+    {
+        startSearch( c.getCoordX(), c.getCoordY(), ll.latitude, ll.longitude);
+    }
 
     public void initializeCars(GoogleMap map)
     {

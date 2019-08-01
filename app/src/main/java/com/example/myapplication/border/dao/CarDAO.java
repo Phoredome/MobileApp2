@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.myapplication.controller.DBController;
 import com.example.myapplication.entities.Car;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -21,28 +22,27 @@ public class CarDAO {
         rdb = DBController.getReadable(context);
     }
 
-    public Car getCarById(int carId) {
+    public Car getCarById(int carId)
+    {
         ArrayList<Car> cars = getAllCars();
-        Car car = null;
-        for (int i=0; i< cars.size(); i++) {
-            Integer carNum = cars.get(i).getCarID();
-            if(carId == carNum) {
-                car = cars.get(i);
-            }
-        }
-        return car;
+        for(Car c : cars)
+            if(carId == c.getCarID())
+                return c;
+        return null;
     }
 
-    public Car getCarByLicense(String carId) {
+    public Car getCarByLocation(LatLng ll)
+    {
+        Double x = ll.latitude;
+        Double y = ll.longitude;
+
         ArrayList<Car> cars = getAllCars();
-        Car car = null;
-        for (int i=0; i< cars.size(); i++) {
-            String carLicense = cars.get(i).getLicensePlate();
-            if(carId == carLicense) {
-                car = cars.get(i);
-            }
-        }
-        return car;
+
+        for(Car c : cars)
+            if(c.getCoordX() == x && c.getCoordY() == y)
+                return c;
+
+            return null;
     }
 
     public ArrayList<String> getCarTypes() {

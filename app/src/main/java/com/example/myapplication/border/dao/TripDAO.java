@@ -7,10 +7,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.controller.DBController;
-import com.example.myapplication.db.MyDB;
-import com.example.myapplication.entities.Trips;
+import com.example.myapplication.entities.Trip;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TripDAO {
 
@@ -23,7 +23,7 @@ public class TripDAO {
     }
 
     public boolean addTrip(int carId, int userId, double amount,
-                           int kmsRunForTrip, String timeOfTrip,
+                           double kmsRunForTrip, String timeOfTrip,
                            String dateOfTrip, double startingX,
                            double startingY, double endingX, double endingY) {
         ContentValues values = new ContentValues();
@@ -31,6 +31,7 @@ public class TripDAO {
         values.put("userId", userId);
         values.put("amount",amount);
         values.put("kmsRunForTrip", kmsRunForTrip);
+        //TODO CHANGE date and time to date object
         values.put("timeOfTrip", timeOfTrip);
         values.put("dateOfTrip", dateOfTrip);
         values.put("startingX", startingX);
@@ -43,8 +44,8 @@ public class TripDAO {
         return true;
     }
 
-    public ArrayList<Trips> getAllTrips() {
-        ArrayList<Trips> trips = new ArrayList<>();
+    public ArrayList<Trip> getAllTrips() {
+        ArrayList<Trip> trips = new ArrayList<>();
 
         try {
             String selectQuery = "SELECT * FROM Trip;";
@@ -85,7 +86,7 @@ public class TripDAO {
                 index = cursor.getColumnIndexOrThrow("endingY");
                 double endingY = cursor.getDouble(index);
 
-                trips.add(new Trips(tripId, carId, userId, kmsRunForTrip, timeOfTrip,dateOfTrip, amount, startingX, startingY, endingX, endingY));
+                trips.add(new Trip(tripId, carId, userId, kmsRunForTrip, timeOfTrip,dateOfTrip, amount, startingX, startingY, endingX, endingY));
 
             }
             cursor.close();
@@ -93,6 +94,16 @@ public class TripDAO {
             return null;
         }
         return trips;
+    }
+
+    public int getTripCount()
+    {
+        String selectQuery = "SELECT * FROM Trips;";
+        Cursor cursor = rdb.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+
     }
 
 
