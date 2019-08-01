@@ -285,7 +285,7 @@
                 android:editable="false"
                 android:ems="10"
                 android:inputType="number"
-                android:text="999"
+                android:text="49.267279"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -307,7 +307,7 @@
                 android:editable="false"
                 android:ems="10"
                 android:inputType="number"
-                android:text="999"
+                android:text=" -123.218318"
                 android:textSize="10sp" />
         </LinearLayout>
 

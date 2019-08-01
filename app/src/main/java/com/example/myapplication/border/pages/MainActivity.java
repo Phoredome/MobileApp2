@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
@@ -209,15 +210,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
 
         gmap = googleMap;
-
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-
         builder.include(new LatLng(49.267279, -123.218318));
         builder.include(new LatLng(49.248479, -123.024356));
-
         LatLngBounds bounds = builder.build();
-
         gmap.setLatLngBoundsForCameraTarget(bounds);
+
+        //gmap.setInfoWindowAdapter(new InfoWind);
+
+
+
 
 
 
@@ -227,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-        gmap.setMinZoomPreference(12);
+        gmap.setMinZoomPreference(10);
         cc.initializeCars(gmap);
 
     }
