@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
@@ -32,11 +33,12 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private MapView mapView;
     private GoogleMap gmap;
@@ -244,6 +246,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
+        InfoWindow infoAdapter = new InfoWindow(allCars, getApplicationContext());
+        gmap.setInfoWindowAdapter(infoAdapter);
+
     /*
     @Override
     public boolean onSupportNavigateUp() {
@@ -251,5 +256,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }*/
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, marker.getId(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -14,43 +14,44 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 
 
-public class InfoWindow extends AppCompatActivity implements
-        GoogleMap.OnInfoWindowClickListener,
-        OnMapReadyCallback {
+public class InfoWindow implements GoogleMap.InfoWindowAdapter
+{
 
-
-   private GoogleMap mMap;
-
-
-   /* CarController cc;
+    private ArrayList<Car> list;
+    CarController cc;
     Car carObj;
     Context context;
     LayoutInflater inflater;
 
-    public InfoWindow(Context context) {
-        this.context = context;
+    public InfoWindow(ArrayList<Car> list, Context context) {
+        this.list = list;
+        this.context = context.getApplicationContext();
     }
 
 
     @Override
-    public View getInfoContents(Marker marker) {
+    public View getInfoWindow(Marker marker) {
         return null;
     }
 
     @Override
-    public View getInfoWindow(Marker marker) {
+    public View getInfoContents(Marker marker) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.activity_info_window, null);
 
         TextView carId = (TextView) v.findViewById(R.id.carIdTxt);
         TextView licP = (TextView) v.findViewById(R.id.licensePlateTxt);
 
-        carId.setText(marker.getSnippet());
-        licP.setText(marker.getSnippet());
+        Log.d("marker ID", marker.getId());
 
-        return null;
+        String markerID = marker.getId().substring(1);
+        carId.setText(String.valueOf(list.get(Integer.parseInt(markerID)-1).getCarID()));
+        licP.setText(list.get(Integer.parseInt(markerID)-1).getLicensePlate());
+
+        return v;
 
         //get marker location
         //get all cars object
@@ -58,17 +59,8 @@ public class InfoWindow extends AppCompatActivity implements
 
 
     }
-*/
 
-   @Override
-    public void onMapReady(GoogleMap map) {
-        mMap = map;
-        // Add markers to the map and do other map setup.
-
-        // Set a listener for info window events.
-        mMap.setOnInfoWindowClickListener(this);
-    }
-
+/*
     @Override
     public void onInfoWindowClick(Marker marker) {
         Log.d("OnInfoWindowClick", "Hi! " + marker);
@@ -76,6 +68,6 @@ public class InfoWindow extends AppCompatActivity implements
         Toast.makeText(this, "Info window clicked",
                 Toast.LENGTH_SHORT).show();
     }
-
+*/
 
 }
