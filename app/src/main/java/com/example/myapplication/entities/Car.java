@@ -1,5 +1,7 @@
 package com.example.myapplication.entities;
 
+import androidx.annotation.Nullable;
+
 public class Car {
     private int carID;
     private int seats;
@@ -155,5 +157,13 @@ public class Car {
 
     public void setInActiveService(boolean inActiveService) {
         this.inActiveService = inActiveService;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof Car)
+            return carID == ((Car) obj).carID;
+        else
+            return super.equals(obj);
     }
 }

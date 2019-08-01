@@ -182,16 +182,22 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     }
 
     //TODO
-    public ArrayList<Car> getNearByCar (Car c)
-    { getNearByLocation(c,c.getCoordX(),c.getCoordY());
-    return null;}
+    public double[][] getNearCars (Double x, Double y)
+    {
+        Car c = null;
+        getNearByLocation(c, x, y);
+        compareDist(distanceList, cd.getAllCars());
+        return distanceList;
+    }
+
+
 
     public void getNearByLocation (Car c, double x, double y)
     {
         ArrayList<Car> carList = cd.getAllCars();
 
         for (Car d : carList) {
-            if(c.getCarID() != d.getCarID()) {
+            if(!d.equals(c)) {
                 double x2 = d.getCoordX();
                 double y2 = d.getCoordY();
 
