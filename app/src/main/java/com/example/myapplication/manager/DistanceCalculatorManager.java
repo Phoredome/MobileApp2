@@ -1,11 +1,9 @@
-package com.example.myapplication.controller.manager;
+package com.example.myapplication.manager;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplication.entities.Car;
-
-import android.util.Log;
 
 import com.example.myapplication.border.info.GetDistanceProbe;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.example.myapplication.controller.manager;
+package com.example.myapplication.manager;
 
 import android.content.Context;
 import android.util.Log;

@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
-import com.example.myapplication.controller.manager.DistanceCalculatorManager;
+import com.example.myapplication.manager.DistanceCalculatorManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;

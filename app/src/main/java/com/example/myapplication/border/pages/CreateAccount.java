@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.controller.manager.LoginManager;
+import com.example.myapplication.manager.LoginManager;
 import com.example.myapplication.R;
 
 
