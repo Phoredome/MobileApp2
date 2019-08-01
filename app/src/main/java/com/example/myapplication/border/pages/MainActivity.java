@@ -152,9 +152,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        cc.setAllCars();
+        //cc.setAllCars();
         //cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
-        cc.getCarDistance();
+        //cc.getCarDistance();
     }
 
     @Override
@@ -211,10 +211,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         gmap = googleMap;
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        builder.include(new LatLng(49.267279, -123.218318));
-        builder.include(new LatLng(49.248479, -123.024356));
+        builder.include(new LatLng(49.368971, -123.278548));
+        builder.include(new LatLng(49.008310, -122.139316));
         LatLngBounds bounds = builder.build();
         gmap.setLatLngBoundsForCameraTarget(bounds);
+        gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(49.232000, -123.023000)));
 
         //gmap.setInfoWindowAdapter(new InfoWind);
 
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-        gmap.setMinZoomPreference(10);
+        gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
     /*
     @Override
