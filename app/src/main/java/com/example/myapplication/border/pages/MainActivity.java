@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private CarController ccc;
     private RecyclerView.Adapter mAdapter;
     private User user;
+    private RecyclerView rv;
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -122,14 +123,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Spinner carSelect = findViewById(R.id.carSelect);
         ArrayList<String> carTypes = cc.getCarTypes();
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carSelect.setAdapter(arrayAdapter);
+
+        rv = findViewById(R.id.recyclerView);
 
         carSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                rv.setAdapter(null);
+                ArrayList<Car> carList = cc.getAllCars();
+                ArrayList<Car> updatedList = new ArrayList<>();
+                for (Car c: carList) {
+                    if (c.getVehicleType().equals(arrayAdapter.getItem(i))){
+                        updatedList.add(c);
+                    }
+                }
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(updatedList, getApplication(),gmap);
+                rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                rv.setAdapter(adapter);
             }
 
             @Override
@@ -222,11 +235,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
       //  gmap.setInfoWindowAdapter(new InfoWindow(MainActivity.this));
 
 
-        RecyclerView rv = findViewById(R.id.recyclerView);
+        rv = findViewById(R.id.recyclerView);
         ArrayList<Car> allCars = cc.getAllCars();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(), gmap);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+
 
         gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
