@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.manager.LoginManager;
+import com.example.myapplication.manager.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 
 public class myAccount  extends AppCompatActivity {
