@@ -39,6 +39,24 @@ public class UserDAO
         return true;
     }
 
+    public Boolean updateAccount(Integer userId, String user, String pass, String fName, String lName, String email) {
+        Log.d("Inside userdao", "Inside createaccount-updateacct");
+
+        ContentValues values = new ContentValues();
+        values.put("firstName", fName);
+        values.put("lastName", lName);
+        values.put("email", email);
+        values.put("userName", user);
+        values.put("password", pass);
+
+        wdb.update("User", values, "userId="+ userId, null);
+
+        Log.d("update user", "updated");
+        return true;
+
+
+    }
+
     public User getUser(String uname)
     {
         Log.d("inside user", "inside user");

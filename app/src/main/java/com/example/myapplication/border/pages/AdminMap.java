@@ -77,15 +77,16 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                Intent i = null;
-                int id = menuItem.getItemId();
 
-                switch (id){
+                int id = menuItem.getItemId();
+                Intent i = null;
+
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        i = new Intent(getApplicationContext(), myAccount.class);
+                        i = new Intent(getApplicationContext(), MyAccount.class);
                         break;
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
@@ -104,7 +105,6 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
 
                 }
                 return false;
-
             }
         });
 

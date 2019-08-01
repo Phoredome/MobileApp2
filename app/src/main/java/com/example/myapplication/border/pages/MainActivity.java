@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
@@ -26,7 +27,6 @@ import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.User;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-    Bundle b, account;
+    Bundle f, l, b, a, p, e, add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         Intent i = getIntent();
-
         b = i.getExtras();
+
         Boolean status = b.getBoolean("status");
 
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        i = new Intent(getApplicationContext(), myAccount.class);
+                        i = new Intent(getApplicationContext(), MyAccount.class);
                         break;
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         carSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 rv.setAdapter(null);
                 ArrayList<Car> carList = cc.getAllCars();
                 ArrayList<Car> updatedList = new ArrayList<>();
