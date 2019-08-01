@@ -159,6 +159,4 @@ public class CarDAO {
         Log.d("Updated car", "Car Updated");
     }
 
-
-
 }

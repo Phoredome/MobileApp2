@@ -3,6 +3,9 @@ package com.example.myapplication.border.info;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.myapplication.border.dao.ISync;
+import com.example.myapplication.entities.Car;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +18,7 @@ public class GetDistanceProbe extends AsyncTask<String, Void, String> {
 
     private final String TAG = this.getClass().getName();
     public DistanceListener dlistener;
+    public ISync delegate = null;
 
 
     public GetDistanceProbe(DistanceListener dlistener) {
@@ -66,9 +70,10 @@ public class GetDistanceProbe extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         dlistener.getDistance(result);    // this is calling the callback
+        delegate.processFinish(result);
     }
 
     public interface DistanceListener {
-        double getDistance(String result);
+        void getDistance(String result);
     }
 }

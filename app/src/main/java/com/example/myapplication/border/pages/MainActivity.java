@@ -1,3 +1,4 @@
+
 package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
@@ -220,8 +221,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }
 
-
-
     /*
     @Override
     public boolean onSupportNavigateUp() {
@@ -229,6 +228,4 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }*/
-
-
 }
