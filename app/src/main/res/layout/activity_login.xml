@@ -29,7 +29,7 @@
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username:"
+                android:text="USERNAME:"
                 android:textSize="12sp" />
 
             <EditText
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Password:"
+                android:text="PASSWORD:"
                 android:textSize="12sp" />
 
             <EditText

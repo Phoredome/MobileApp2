@@ -48,33 +48,24 @@ public class CreateCar extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+                Intent i = null;
                 int id = menuItem.getItemId();
 
                 switch (id){
                     case R.id.nav_home:
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        i.putExtras(b);
-                        startActivity(new Intent(CreateCar.this, MainActivity.class));
+                        i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        Intent j = new Intent(getApplicationContext(), myAccount.class);
-                        j.putExtras(b);
-                        startActivity(new Intent(CreateCar.this, myAccount.class));
+                        i = new Intent(getApplicationContext(), myAccount.class);
                         break;
                     case R.id.nav_history:
-                        Intent k = new Intent(getApplicationContext(), TripHistory.class);
-                        k.putExtras(b);
-                        startActivity(new Intent(CreateCar.this, TripHistory.class));
+                        i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
                     case R.id.nav_car_controller:
-                        Intent a = new Intent(getApplicationContext(), AdminMap.class);
-                        a.putExtras(b);
-                        startActivity(new Intent(CreateCar.this, AdminMap.class));
+                        i = new Intent(getApplicationContext(), AdminMap.class);
                         break;
                     case R.id.nav_car_info:
-                        Intent n = new Intent(getApplicationContext(), AdminCarInfo.class);
-                        n.putExtras(b);
-                        startActivity(new Intent(CreateCar.this, AdminCarInfo.class));
+                        i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
                 return false;
