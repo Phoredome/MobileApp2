@@ -10,23 +10,55 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.controller.CarController;
+import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class AdminCarInfo extends AppCompatActivity {
 
     Bundle b;
+    CarController cc;
+    double total;
+    int counter, counter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_admin_info);
+        cc = new CarController(getApplicationContext());
 
         Intent i = getIntent();
         b = i.getExtras();
         Boolean status = b.getBoolean("status");
+        TextView totalMade = findViewById(R.id.totalMade);
+        TextView numActive = findViewById(R.id.numActive);
+        TextView numRunning = findViewById(R.id.numRunning);
+
+        ArrayList<Car> cars = cc.getAllCars();
+        for (int y=0; y< cars.size(); y++) {
+            total += cars.get(y).getCostOfRunning();
+            totalMade.setText("Your total made today is " + total + ".");
+        }
+
+        for (int x=0; x< cars.size(); x++) {
+            if (cars.get(x).isInActiveService()) {
+                counter++;
+                numActive.setText("You have " + counter + " cars active.");
+            }
+        }
+
+        for (int x=0; x<cars.size(); x++) {
+            if (cars.get(x).isInUse()) {
+                counter1++;
+                numRunning.setText("You have " + counter1 + " cars running.");
+            }
+        }
 
         final NavigationView navigationView = findViewById(R.id.nav_admin_info);
 
