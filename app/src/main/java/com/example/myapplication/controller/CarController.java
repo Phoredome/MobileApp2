@@ -1,16 +1,13 @@
 package com.example.myapplication.controller;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.info.GetDistanceProbe;
-import com.example.myapplication.manager.DistanceCalculatorManager;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +38,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     }
 
     public Car getCarById(int carId) {
-        return cd.getCar(carId);
+        return cd.getCarById(carId);
     }
 
 

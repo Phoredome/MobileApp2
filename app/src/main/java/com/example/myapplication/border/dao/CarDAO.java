@@ -21,7 +21,7 @@ public class CarDAO {
         rdb = DBController.getReadable(context);
     }
 
-    public Car getCar(int carId) {
+    public Car getCarById(int carId) {
         ArrayList<Car> cars = getAllCars();
         Car car = null;
         for (int i=0; i< cars.size(); i++) {
@@ -148,7 +148,7 @@ public class CarDAO {
 
     
     public void updateCar(int carNum, double coordX,double coordY) {
-        //Car car = getCar(carNum);
+        //Car car = getCarById(carNum);
 
 //        String updateQuery = "UPDATE CAR SET coordX='" + coordX + ", coordY='" + coordY + "' WHERE carId='" + car.getCarID() + "';";
 
