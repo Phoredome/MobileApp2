@@ -23,5 +23,9 @@ public class TripController
     {
         LatLng ll = mc.getLocationFromAddress(context, address);
 
+        cc.getTripDistance(c,ll);
+        c.getCostOfRunning();
+
+
     }
 }

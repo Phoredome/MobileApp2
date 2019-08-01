@@ -8,6 +8,7 @@ import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -179,6 +180,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
             compareDist(distanceList, carList);
         }
     }
+
     //TODO
     public ArrayList<Car> getNearByCar (Car c)
     { getNearByLocation(c,c.getCoordX(),c.getCoordY());
@@ -239,6 +241,10 @@ public class CarController implements GetDistanceProbe.DistanceListener{
         return i;
     }
 
+    public void getTripDistance(Car c, LatLng ll)
+    {
+        
+    }
 
     public void initializeCars(GoogleMap map)
     {
