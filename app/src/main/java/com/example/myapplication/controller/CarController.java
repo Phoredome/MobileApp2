@@ -1,6 +1,7 @@
 package com.example.myapplication.controller;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
@@ -11,13 +12,17 @@ import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class CarController{
+public class CarController implements GetDistanceProbe.DistanceListener{
 
-    CarDAO cd;
-    MapController mc;
-    CreateCar cc;
+    public CarDAO cd;
+    public MapController mc;
+    public CreateCar cc;
+    public Car car;
 
     double depotx = 0.00;
     double depoty = 0.00;
@@ -164,7 +169,7 @@ public class CarController{
         return false;
     }
 
-    public void getCarDistance(GetDistanceProbe.DistanceListener context)
+    public void getCarDistance()
     {
         ArrayList<Car> carList = cd.getAllCars();
         double[][] distanceList = new double[NUMBEROFCARS][2];
@@ -174,16 +179,16 @@ public class CarController{
             double x = c.getCoordX();
             double y = c.getCoordY();
 
-            getNearByLocation(context, c, x, y);
+            getNearByLocation(c, x, y);
             compareDist(distanceList, carList);
         }
     }
     //TODO
-    public ArrayList<Car> getNearByCar (GetDistanceProbe.DistanceListener context, Car c)
-    { getNearByLocation(context,c,c.getCoordX(),c.getCoordY());
+    public ArrayList<Car> getNearByCar (Car c)
+    { getNearByLocation(c,c.getCoordX(),c.getCoordY());
     return null;}
 
-    public void getNearByLocation (GetDistanceProbe.DistanceListener context,Car c, double x, double y)
+    public void getNearByLocation (Car c, double x, double y)
     {
         ArrayList<Car> carList = cd.getAllCars();
 
@@ -192,8 +197,8 @@ public class CarController{
                 double x2 = d.getCoordX();
                 double y2 = d.getCoordY();
 
-                DistanceCalculatorManager dcm = new DistanceCalculatorManager(d);
-                dcm.startSearch(context, x, y, x2, y2);
+                this.car = d;
+                startSearch( x, y, x2, y2);
             }
             //give me distance of car from location
             //TODO*/
@@ -253,6 +258,44 @@ public class CarController{
             {
                 Log.d("CarController initCar", "Cannot initialize car: " + c.getCarID());
             }
+        }
+    }
+
+    //ASync Methods
+//===========================================================================================================================
+    private String site = "https://www.mapquestapi.com/directions/v2/route?";
+    private String myKey = "c8ZKDbXkXeFKJh8ACe0R2zSQxBbVo7OF";
+
+
+    public String assembleURL(String from, String to) {
+        String result ="" ;
+        result = site  + "key=" + myKey + "&from=" + from + "&to=" + to + "&outFormat=json&ambiguities=ignore&routeType=fastest";
+
+        return result;
+    }
+
+    public void startSearch(double fromLat, double fromLng, double toLat, double toLng)
+    {
+
+        String from = fromLat + "," + fromLng;
+        String to = toLat + "," + toLng;
+
+        String mSite = assembleURL(from, to);
+        GetDistanceProbe gdw = new GetDistanceProbe(CarController.this);
+        gdw.execute(mSite); // will call doInBackground
+    }
+
+    // this is for the callback
+
+    public void getDistance(String result) {
+        // time to get the distance
+        try {
+            JSONObject jo = new JSONObject(result);
+            String dist = jo.getJSONObject("route").getString("distance");
+            Log.d("getDistance()", "CarID: " + car.getCarID() + " Distance From x: " + dist);
+            car.setDistance(Integer.parseInt(dist));
+        } catch (JSONException e) {
+            Log.d("error", e.getMessage());
         }
     }
 
