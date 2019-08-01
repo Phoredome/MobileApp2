@@ -154,7 +154,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         cc.setAllCars();
         //cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
-        cc.getCarDistance();
+       // cc.getCarDistance();
+
+        
     }
 
     @Override
