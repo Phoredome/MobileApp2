@@ -22,6 +22,6 @@ public class TripController
     public void addTrip(Context context, Car c, String address)
     {
         LatLng ll = mc.getLocationFromAddress(context, address);
-        
+
     }
 }
