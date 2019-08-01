@@ -300,6 +300,40 @@ public class CarController implements GetDistanceProbe.DistanceListener{
         }
     }
 
+    public void setAllCars()
+    {
+        ArrayList<Car> carList = cd.getAllCars();
+        int max = 999;
+        int min = 0;
+        int range = max - min + 1;
+        
+        for(Car c: carList) {
+
+            double random1 = Math.random() * range + 1;
+            double random2 = Math.random() * range + 1;
+
+            double random3 = Math.random() * 1 + 1;
+            double random4 = Math.random() * 1 + 1;
+
+            double random5 = 00.000 + random1;
+            double random6 = 00.000 + random2;
+
+            double x;
+            if(random3 == 1)
+                x = 49.232000 + random5;
+            else
+                x = 49.232000 - random5;
+
+
+            double y;
+            if(random4 == 1)
+                y = -123.023000 + random6;
+            else
+                y = -123.023000 - random6;
+
+            cd.updateCar(c.getCarID(), x, y);
+        }
+    }
 
     /*@Override
     public void processFinish(String output) {
