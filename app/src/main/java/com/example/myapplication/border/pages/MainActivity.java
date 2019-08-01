@@ -24,6 +24,7 @@ import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.User;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -137,12 +138,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        RecyclerView rv = findViewById(R.id.recyclerView);
-        ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(adapter);
-
 
         Button searchBtn = findViewById(R.id.searchBtn);
 
@@ -210,11 +205,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         gmap = googleMap;
+        RecyclerView rv = findViewById(R.id.recyclerView);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+
         gmap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
-
         cc.initializeCars(gmap);
         cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }

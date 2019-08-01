@@ -106,16 +106,6 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-
-
-        RecyclerView rv2 = findViewById(R.id.recyclerView2);
-        ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
-        rv2.setLayoutManager(new LinearLayoutManager(this));
-        rv2.setAdapter(adapter);
-
-
-
     }
 
     @Override
@@ -171,6 +161,11 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gmap = googleMap;
+        RecyclerView rv2 = findViewById(R.id.recyclerView2);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
+        rv2.setLayoutManager(new LinearLayoutManager(this));
+        rv2.setAdapter(adapter);
         gmap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
