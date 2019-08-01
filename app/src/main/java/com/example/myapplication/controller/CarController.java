@@ -137,7 +137,7 @@ public class CarController{
     public boolean moveCar(GoogleMap map, Car car, double xCoord, double yCoord)
     {
         //Figure out what data type to use for getting location, X and Y or a concatenation?
-        if(car.isInUse() || !car.isInService())
+        if(car.isInUse() || !car.isInActiveService())
             return false;
         else {
             car.setCoordX(xCoord);
@@ -156,7 +156,7 @@ public class CarController{
     {
         if(!car.isInUse())
         {
-            car.setInService(false);
+            car.setInActiveService(false);
             car.setKmsSinceLastService(0);
 
             return true;

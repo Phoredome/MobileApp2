@@ -7,7 +7,7 @@ import android.util.Log;
 
 
 public class MyDB extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "CarApp.db";
 
     public MyDB(Context context) {
@@ -184,7 +184,7 @@ public class MyDB extends SQLiteOpenHelper {
 
 
     private static final String SQL_INSERT_CAR =
-            "insert into Car (costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY) " +
+            "insert into Car (costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inActiveService, coordX, coordY) " +
                     "values ('2.51', 2, 2, 20, 199291, 8641, 'Escape', '6d958d', 'false', 'true', 40.7143528, -74.0059731)," +
                     "('1.65', 8, 2, 11, 142402, 5387, 'Ram Van 1500', '33908d', 'true', 'true', 34.2506515, 36.0117322)," +
                     "('2.21', 8, 2, 9, 185193, 7957, '5 Series', 'ddac5d', 'true', 'false', 32.417346, 105.238901)," +

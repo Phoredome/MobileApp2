@@ -13,12 +13,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:id="@+id/editText5"
             android:layout_width="wrap_content"
             android:layout_height="103dp"
-            android:ems="10"
-            android:inputType="textPersonName"
             android:text="Rates" />
 
         <TableLayout
@@ -52,28 +50,26 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/editText4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
                     android:text="Data" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/totalMade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/numActive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/numRunning"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
