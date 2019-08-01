@@ -1,5 +1,6 @@
 package com.example.myapplication.border.info;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -8,6 +9,7 @@ import com.google.android.gms.maps.model.Marker;
 
 import android.util.Log;
 
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.R;
 
-public class InfoWindow extends AppCompatActivity implements
+public abstract class InfoWindow extends AppCompatActivity implements
         GoogleMap.OnInfoWindowClickListener,
         OnMapReadyCallback {
 
@@ -39,4 +41,7 @@ public class InfoWindow extends AppCompatActivity implements
         Toast.makeText(this, "Info window clicked",
                 Toast.LENGTH_SHORT).show();
     }
+
+
+
 }

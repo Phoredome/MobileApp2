@@ -31,6 +31,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -208,6 +209,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
 
         gmap = googleMap;
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        builder.include(new LatLng(49.267279, -123.218318));
+        builder.include(new LatLng(49.248479, -123.024356));
+
+        LatLngBounds bounds = builder.build();
+
+        gmap.setLatLngBoundsForCameraTarget(bounds);
+
+
+
         RecyclerView rv = findViewById(R.id.recyclerView);
         ArrayList<Car> allCars = cc.getAllCars();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
@@ -215,10 +228,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         rv.setAdapter(adapter);
 
         gmap.setMinZoomPreference(12);
-        LatLng ny = new LatLng(40.7143528, -74.0059731);
-        gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
         cc.initializeCars(gmap);
-        cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
+
     }
 
     /*
