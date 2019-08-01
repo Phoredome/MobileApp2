@@ -9,6 +9,8 @@ public class Car {
     private int kmsRun;
     private int kmsSinceLastService;
 
+    private int distance;
+
     private double costOfRunning;
     private double coordX;
     private double coordY;
@@ -94,6 +96,13 @@ public class Car {
 
     public void setKmsSinceLastService(int kmsSinceLastService) {
         this.kmsSinceLastService = kmsSinceLastService;
+    }
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public void setCostOfRunning(double costOfRunning) {

@@ -1,18 +1,20 @@
 package com.example.myapplication.controller;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.border.CreateCar;
 import com.example.myapplication.border.GetDistanceProbe;
+import com.example.myapplication.border.dao.ISync;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-public class CarController {
+public class CarController{
 
     CarDAO cd;
     MapController mc;
@@ -20,6 +22,9 @@ public class CarController {
 
     double depotx = 0.00;
     double depoty = 0.00;
+
+    /*GetDistanceProbe.DistanceListener context;
+    GetDistanceProbe asyncTask =new GetDistanceProbe(context);*/
 
     public CarController(Context context) {
         cd = new CarDAO(context);
@@ -156,43 +161,35 @@ public class CarController {
     }
 
     //TODO
-    public ArrayList<Car> getNearByLocation (GetDistanceProbe.DistanceListener context, LatLng latLng)
-    {
+    public void getNearByLocation (GetDistanceProbe.DistanceListener context, LatLng latLng) {
+        //ArrayList<AsyncTask<String, Void, String>> dcm = new ArrayList<AsyncTask<String, Void, String>>();
         ArrayList<Car> carList = cd.getAllCars();
-        ArrayList<Car> nearByCars = cd.getAllCars();
-        double[][] list = new double[10][2];
 
-        for (Car c : carList)
-        {
+        for (Car c : carList) {
             double x = c.getCoordX();
             double y = c.getCoordY();
 
-            DistanceCalculatorManager dcm = new DistanceCalculatorManager();
-            dcm.startSearch(context, latLng.latitude, latLng.longitude, x, y);
-            //TODO
+            DistanceCalculatorManager dcm = new DistanceCalculatorManager(c);
+            dcm.startSearch(context,c, latLng.latitude, latLng.longitude, x, y);
+            //give me distance of car from location
+            //TODO*/
 
-            double distance = 0.0;
-            for(int i = 0; i < 10; i++)
-            {
+            double[][] list = new double[10][2];
+
+            for (int i = 0; i < 10; i++) {
                 double dist = list[i][2];
 
-                if (distance < dist && i < 10)
-                {
-                    while (i < 10)
-                    {
-                        updateList(i,list,c,distance);
+                if (c.getDistance() < dist && i < 10) {
+                    while (i < 10) {
+                        updateList(i, list, c, c.getDistance());
                         i++;
                     }
 
                     list[i][1] = c.getCarID();
-                    list[i][2] = distance;
+                    list[i][2] = c.getDistance();
                 }
             }
         }
-
-
-            //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
-        return nearByCars;
     }
 
     public double[][] updateList(int i, double[][] list, Car c, double distance)
@@ -206,6 +203,9 @@ public class CarController {
 
         updateList(i,list,c,distance);
         return list;
+
+            //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
+
     }
     
     //TODO
@@ -213,13 +213,13 @@ public class CarController {
     {
         ArrayList<Car> carList = cd.getAllCars();
         ArrayList<Car> nearByCars = cd.getAllCars();
-
+        Car c = null;
         double x = 0;
         double y = 0;
 
         for (int i = 0; i < carList.size(); i++)
         {
-            Car c = carList.get(i);
+            c = carList.get(i);
 
             double x1 = c.getCoordX();
             double y1 = c.getCoordY();
@@ -235,8 +235,10 @@ public class CarController {
             }
 
         }
-        DistanceCalculatorManager dcm = new DistanceCalculatorManager();
-        dcm.startSearch(context, latLng.latitude, latLng.longitude, x, y);
+        //asyncTask.delegate = this;
+
+        DistanceCalculatorManager dcm = new DistanceCalculatorManager(c);
+        dcm.startSearch(context,c, latLng.latitude, latLng.longitude, x, y);
 
         //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
         return nearByCars;
@@ -262,4 +264,8 @@ public class CarController {
     }
 
 
+    /*@Override
+    public void processFinish(String output) {
+
+    }*/
 }

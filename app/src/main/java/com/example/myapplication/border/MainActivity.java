@@ -31,16 +31,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GetDistanceProbe.DistanceListener {
 
     private MapView mapView;
     private GoogleMap gmap;
     private MapController mc;
     private CarController cc;
     private RecyclerView.Adapter mAdapter;
+    private LatLng userLocation;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
@@ -133,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        cc.getNearByLocation(MainActivity.this, userLocation);
+
     }
 
     @Override
@@ -193,6 +199,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         cc.initializeCars(gmap);
         cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
+    }
+
+    @Override
+    public void getDistance(String result) {
+        // time to get the distance
+        String dist = "0";
+        try {
+            JSONObject jo = new JSONObject(result);
+            dist = jo.getJSONObject("route").getString("distance");
+        } catch (JSONException e) {
+            Log.d("error", e.getMessage());
+        }
+        Log.d("GetDistance()", dist); //in miles
     }
 
 
