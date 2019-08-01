@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
@@ -32,6 +31,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
-        if(status){
+        if (status) {
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
         } else {
-          navigationView.inflateMenu(R.menu.activity_main_drawer);
+            navigationView.inflateMenu(R.menu.activity_main_drawer);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -78,11 +78,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
 
-
                 int id = menuItem.getItemId();
                 Intent i = null;
 
-                switch (id){
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
@@ -100,13 +99,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         break;
                 }
 
-                if(i!=null) {
+                if (i != null) {
 
-                i.putExtras(b);
-                startActivity(i);
+                    i.putExtras(b);
+                    startActivity(i);
 
                 }
-                    return false;
+                return false;
             }
         });
 
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
 
                 LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
-               // ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
+                // ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
             }
         });
 
@@ -211,19 +210,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
 
         gmap = googleMap;
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(new LatLng(49.267279, -123.218318));
+        builder.include(new LatLng(49.248479, -123.024356));
+        LatLngBounds bounds = builder.build();
+        gmap.setLatLngBoundsForCameraTarget(bounds);
+
+        //gmap.setInfoWindowAdapter(new InfoWind);
+
+
         RecyclerView rv = findViewById(R.id.recyclerView);
         ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(), gmap);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-        gmap.setMinZoomPreference(12);
-        LatLng ny = new LatLng(40.7143528, -74.0059731);
-        gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
+        gmap.setMinZoomPreference(10);
         cc.initializeCars(gmap);
-        //cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
-    }
-
     /*
     @Override
     public boolean onSupportNavigateUp() {
@@ -231,4 +234,5 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }*/
+    }
 }

@@ -167,8 +167,8 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         rv2.setLayoutManager(new LinearLayoutManager(this));
         rv2.setAdapter(adapter);
         gmap.setMinZoomPreference(12);
-        LatLng ny = new LatLng(40.7143528, -74.0059731);
-        gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
+        LatLng van = new LatLng(49.267279, -123.218318);
+        gmap.moveCamera(CameraUpdateFactory.newLatLng(van));
 
 //        cc.initializeCars(gmap);
       //  cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);

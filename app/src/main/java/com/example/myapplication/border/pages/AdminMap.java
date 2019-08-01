@@ -160,8 +160,8 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
     public void onMapReady(GoogleMap googleMap) {
         gmap = googleMap;
         gmap.setMinZoomPreference(12);
-        LatLng ny = new LatLng(40.7143528, -74.0059731);
-        gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
+        LatLng van = new LatLng(49.267279, -123.218318);
+        gmap.moveCamera(CameraUpdateFactory.newLatLng(van));
 
     }
 
