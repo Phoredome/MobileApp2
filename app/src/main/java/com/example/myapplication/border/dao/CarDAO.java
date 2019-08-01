@@ -94,7 +94,7 @@ public class CarDAO {
                 index = cursor.getColumnIndexOrThrow("inUse");
                 Boolean inUse = Boolean.parseBoolean(cursor.getString(index));
 
-                index = cursor.getColumnIndexOrThrow("inService");
+                index = cursor.getColumnIndexOrThrow("inActiveService");
                 Boolean inService = Boolean.parseBoolean(cursor.getString(index));
 
                 index = cursor.getColumnIndexOrThrow("coordX");
@@ -137,7 +137,7 @@ public class CarDAO {
         values.put("vehicleType", vehicleType);
         values.put("licensePlate", licensePlate);
         values.put("inUse", inUse);
-        values.put("inService", inService);
+        values.put("inActiveService", inService);
         values.put("coordX", coordX);
         values.put("coordY", coordY);
 

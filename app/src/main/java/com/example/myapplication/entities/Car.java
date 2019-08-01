@@ -19,10 +19,10 @@ public class Car {
     private String licensePlate;
 
     private boolean inUse;
-    private boolean inService;
+    private boolean inActiveService;
 
 
-    public Car(int carID, double costOfRunning, int seats, int doors, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inService, double coordX, double coordY) {
+    public Car(int carID, double costOfRunning, int seats, int doors, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inActiveService, double coordX, double coordY) {
         this.carID = carID;
         this.costOfRunning = costOfRunning;
         this.seats = seats;
@@ -33,7 +33,7 @@ public class Car {
         this.vehicleType = vehicleType;
         this.licensePlate = licensePlate;
         this.inUse = inUse;
-        this.inService = inService;
+        this.inActiveService = inActiveService;
         this.coordX = coordX;
         this.coordY = coordY;
     }
@@ -149,11 +149,11 @@ public class Car {
         this.inUse = inUse;
     }
 
-    public boolean isInService() {
-        return inService;
+    public boolean isInActiveService() {
+        return inActiveService;
     }
 
-    public void setInService(boolean inService) {
-        this.inService = inService;
+    public void setInActiveService(boolean inActiveService) {
+        this.inActiveService = inActiveService;
     }
 }
