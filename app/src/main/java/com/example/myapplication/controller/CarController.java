@@ -28,16 +28,16 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     double depoty = 0.00;
     int NUMBEROFCARS = 10;
 
+    double[][] distanceList;
+
     /*GetDistanceProbe.DistanceListener context;
     GetDistanceProbe asyncTask =new GetDistanceProbe(context);*/
 
     public CarController(Context context) {
         cd = new CarDAO(context);
         mc = new MapController();
-    }
 
-    public CarController(){
-
+        distanceList = new double[NUMBEROFCARS][2];
     }
 
     public Car getCarById(int carId) {
@@ -172,7 +172,6 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     public void getCarDistance()
     {
         ArrayList<Car> carList = cd.getAllCars();
-        double[][] distanceList = new double[NUMBEROFCARS][2];
 
         for (Car c : carList)
         {
@@ -206,7 +205,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
 
     }
     
-    public double[][] compareDist(double[][] distanceList, ArrayList<Car> carList)
+    public void compareDist(double[][] distanceList, ArrayList<Car> carList)
     {
             for(Car c : carList)
             {
@@ -214,16 +213,17 @@ public class CarController implements GetDistanceProbe.DistanceListener{
                 if(checkDist(distanceList, dist));
                 orderedInsert(distanceList, 0, dist);
             }
-            return distanceList;
     }
 
     public boolean checkDist(double[][] distanceList,double dist)
     {
-        for(int j = 0; j < NUMBEROFCARS; j++)
-            if(dist < distanceList[j][2])
+        for(int j = 0; j < NUMBEROFCARS; j++) {
+            if (dist < distanceList[j][1])
                 return true;
 
-            return false;
+
+        }
+        return false;
     }
 
     public int orderedInsert (double[][] distanceList, int first, double target)
@@ -231,13 +231,14 @@ public class CarController implements GetDistanceProbe.DistanceListener{
         // insert target into arr such that arr[first..last] is sorted,
         //   given that arr[first..last-1] is already sorted.
         //   Return the position where inserted.
-        int i = NUMBEROFCARS;
-        while ((i > first) && (target < distanceList[i-1][2]))
+        int i = NUMBEROFCARS-1;
+        // TODO ADDING CAR ID
+        while ((i > first) && (target < distanceList[i][1]))
         {
-            distanceList[i][2] = distanceList[i-1][2];
+            distanceList[i][1] = distanceList[i][1];
             i = i - 1;
         }
-        distanceList[i][2] = target;
+        distanceList[i][1] = target;
         return i;
     }
 
@@ -293,7 +294,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
             JSONObject jo = new JSONObject(result);
             String dist = jo.getJSONObject("route").getString("distance");
             Log.d("getDistance()", "CarID: " + car.getCarID() + " Distance From x: " + dist);
-            car.setDistance(Integer.parseInt(dist));
+            car.setDistance(Double.parseDouble(dist));
         } catch (JSONException e) {
             Log.d("error", e.getMessage());
         }
