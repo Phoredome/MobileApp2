@@ -1,6 +1,5 @@
-package com.example.myapplication.border;
+package com.example.myapplication.border.pages;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,15 +9,13 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.controller.LoginManager;
+import com.example.myapplication.controller.manager.LoginManager;
 import com.example.myapplication.R;
-import com.google.android.material.navigation.NavigationView;
 
 
 public class CreateAccount extends AppCompatActivity {
@@ -42,6 +39,8 @@ public class CreateAccount extends AppCompatActivity {
                 signup();
             }
         });
+
+
 
     }
 

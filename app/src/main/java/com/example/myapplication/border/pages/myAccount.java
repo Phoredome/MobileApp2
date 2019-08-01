@@ -1,23 +1,22 @@
-package com.example.myapplication.border;
+package com.example.myapplication.border.pages;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.LoginManager;
+import com.example.myapplication.controller.manager.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 
 public class myAccount  extends AppCompatActivity {
 
 
     public LoginManager lm;
+    Bundle b;
 
 
     @Override
@@ -28,31 +27,57 @@ public class myAccount  extends AppCompatActivity {
 
         final NavigationView navigationView = findViewById(R.id.nav_myaccount);
 
+        Intent i = getIntent();
+        b = i.getExtras();
+
+        Boolean status = b.getBoolean("status");
+
+        if(status){
+            navigationView.inflateMenu(R.menu.activity_admin_drawer);
+
+        } else {
+            navigationView.inflateMenu(R.menu.activity_main_drawer);
+        }
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 int id = menuItem.getItemId();
 
                 switch (id){
                     case R.id.nav_home:
-                        startActivity(new Intent(myAccount.this, MainActivity.class));
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        i.putExtras(b);
+                        startActivity(i);
                         break;
                     case R.id.nav_account:
-                        startActivity(new Intent(myAccount.this, myAccount.class));
+                        Intent j = new Intent(getApplicationContext(), myAccount.class);
+                        j.putExtras(b);
+                        startActivity(j);
                         break;
                     case R.id.nav_history:
-                        startActivity(new Intent(myAccount.this, TripHistory.class));
+                        Intent k = new Intent(getApplicationContext(), TripHistory.class);
+                        k.putExtras(b);
+                        startActivity(k);
                         break;
                     case R.id.nav_car_controller:
-                        startActivity(new Intent(myAccount.this, AdminMap.class));
+                        Intent a = new Intent(getApplicationContext(), AdminMap.class);
+                        a.putExtras(b);
+                        startActivity(a);
                         break;
                     case R.id.nav_car_info:
-                        startActivity(new Intent(myAccount.this, AdminCarInfo.class));
+                        Intent n = new Intent(getApplicationContext(), AdminCarInfo.class);
+                        n.putExtras(b);
+                        startActivity(n);
                         break;
                 }
                 return false;
+
             }
         });
+
     }
 
 }

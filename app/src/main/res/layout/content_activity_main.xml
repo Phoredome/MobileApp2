@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="border.MainActivity">
+    tools:context=".border.pages.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="298dp"
+                android:layout_height="335dp"
                 android:layout_weight="0" />
 
             <LinearLayout

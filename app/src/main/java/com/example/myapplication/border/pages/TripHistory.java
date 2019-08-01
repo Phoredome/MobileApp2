@@ -1,4 +1,4 @@
-package com.example.myapplication.border;
+package com.example.myapplication.border.pages;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.controller.CarController;
 
 import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
@@ -28,7 +28,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
 
     private MapView mapView;
     private GoogleMap gmap;
-
+    Bundle b;
     CarController cc;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -41,6 +41,22 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_history);
         cc = new CarController(getApplicationContext());
 
+        Intent i = getIntent();
+        b = i.getExtras();
+
+        Boolean status = b.getBoolean("status");
+
+
+        final NavigationView navigationView = findViewById(R.id.nav_history);
+
+        if(status){
+            navigationView.inflateMenu(R.menu.activity_admin_drawer);
+
+        } else {
+            navigationView.inflateMenu(R.menu.activity_main_drawer);
+        }
+
+
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -52,40 +68,44 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         mapView.getMapAsync(this);
 
 
-        final NavigationView navigationView = findViewById(R.id.nav_history);
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 int id = menuItem.getItemId();
 
                 switch (id){
                     case R.id.nav_home:
-                        startActivity(new Intent(TripHistory.this, MainActivity.class));
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        i.putExtras(b);
+                        startActivity(i);
                         break;
                     case R.id.nav_account:
-                        startActivity(new Intent(TripHistory.this, myAccount.class));
+                        Intent j = new Intent(getApplicationContext(), myAccount.class);
+                        j.putExtras(b);
+                        startActivity(j);
                         break;
                     case R.id.nav_history:
-                        startActivity(new Intent(TripHistory.this, TripHistory.class));
+                        Intent k = new Intent(getApplicationContext(), TripHistory.class);
+                        k.putExtras(b);
+                        startActivity(k);
                         break;
                     case R.id.nav_car_controller:
-                        startActivity(new Intent(TripHistory.this, AdminMap.class));
+                        Intent a = new Intent(getApplicationContext(), AdminMap.class);
+                        a.putExtras(b);
+                        startActivity(a);
                         break;
                     case R.id.nav_car_info:
-                        startActivity(new Intent(TripHistory.this, AdminCarInfo.class));
+                        Intent n = new Intent(getApplicationContext(), AdminCarInfo.class);
+                        n.putExtras(b);
+                        startActivity(n);
                         break;
                 }
                 return false;
+
             }
         });
 
-
-        RecyclerView rv2 = findViewById(R.id.recyclerView2);
-        ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
-        rv2.setLayoutManager(new LinearLayoutManager(this));
-        rv2.setAdapter(adapter);
 
 
 
@@ -144,6 +164,11 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gmap = googleMap;
+        RecyclerView rv2 = findViewById(R.id.recyclerView2);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
+        rv2.setLayoutManager(new LinearLayoutManager(this));
+        rv2.setAdapter(adapter);
         gmap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));

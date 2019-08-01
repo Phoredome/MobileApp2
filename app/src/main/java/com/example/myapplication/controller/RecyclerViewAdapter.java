@@ -1,29 +1,40 @@
 package com.example.myapplication.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.border.pages.MainActivity;
 import com.example.myapplication.entities.Car;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<View_Holder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.View_Holder> {
 
-    ArrayList<Car> list;
-    Context context;
+    public ArrayList<Car> list;
+    public Context context;
+    public GoogleMap gmap;
 
-    public RecyclerViewAdapter(ArrayList<Car> list, Context context) {
+    public RecyclerViewAdapter(ArrayList<Car> list, Context context, GoogleMap gmap) {
         this.list = list;
         this.context = context;
+        this.gmap = gmap;
     }
 
     @Override
@@ -49,6 +60,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<View_Holder> {
 
         TextView description = holder.description;
         description.setText(list.get(position).getVehicleType());
+
+        holder.setClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                LatLng MLatLng = new LatLng(list.get(position).getCoordX(), list.get(position).getCoordY());
+                CameraPosition newCameraPosition = new CameraPosition.Builder().target(MLatLng).build();
+                gmap.moveCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition));
+            }
+        });
 
         //animate(holder);
 
@@ -78,5 +98,49 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<View_Holder> {
         notifyItemRemoved(position);
     }
 
+    class View_Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView title, description;
+        ImageView imageView;
+        ItemClickListener clickListener;
+        LinearLayout ll;
+
+        public View_Holder(View itemView) {
+            super(itemView);
+            title = (TextView) itemView.findViewById(R.id.recyclerTextView3);
+            description = (TextView) itemView.findViewById(R.id.recyclerTextView4);
+            //imageView = (ImageView) itemView.findViewById(R.id.recyclerImageView);
+            ll = itemView.findViewById(R.id.linearLayoutRecycler);
+            ll.setOnClickListener(this);
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int pos = getAdapterPosition();
+//
+//                    if (pos != RecyclerView.NO_POSITION) {
+//                        Car selectedCar = list.get(pos);
+//                        Toast.makeText(view.getContext(), "You clicked " + selectedCar.getCarID(), Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(view.getContext(), MainActivity.class);
+//                        intent.putExtra("lat", selectedCar.getCoordX());
+//                        intent.putExtra("long", selectedCar.getCoordY());
+//                        view.getContext().startActivity(intent);
+//                    }
+//                }
+//            });
+        }
+
+        public void setClickListener(ItemClickListener itemClickListener) {
+            this.clickListener = itemClickListener;
+        }
+
+        @Override
+        public void onClick(View view) {
+            clickListener.onClick(view, getLayoutPosition());
+        }
+    }
+    public interface ItemClickListener {
+        void onClick(View view, int position);
+    }
 }
+
 

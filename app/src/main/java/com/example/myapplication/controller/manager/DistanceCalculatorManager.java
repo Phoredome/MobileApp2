@@ -1,15 +1,13 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.manager;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.myapplication.border.GetDistanceProbe;
-import com.example.myapplication.border.MainActivity;
-import com.example.myapplication.border.dao.CarDAO;
-import com.example.myapplication.border.dao.ISync;
 import com.example.myapplication.entities.Car;
 
+import android.util.Log;
+
+import com.example.myapplication.border.info.GetDistanceProbe;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -9,7 +9,7 @@
     android:foregroundGravity="center"
     android:gravity="center|center_horizontal"
     app:layout_anchorGravity="center|center_horizontal"
-    tools:context=".border.LoginPage">
+    tools:context=".border.pages.LoginPage">
 
     <LinearLayout
         android:layout_width="wrap_content"
