@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-    Bundle b, account;
+    Bundle f, l, b, a, p, e, add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +60,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         Intent i = getIntent();
-
         b = i.getExtras();
+        a = i.getExtras();
+        p = i.getExtras();
+        e = i.getExtras();
+        f = i.getExtras();
+        l = i.getExtras();
+
+        add = i.getExtras();
+
         Boolean status = b.getBoolean("status");
+        String first = f.getString("firstName");
+        String last = l.getString("lastName");
+        String uName = a.getString("username");
+        String pass = p.getString("password");
+        String email = e.getString("email");
+        String address = add.getString("address");
+
+        TextView usName;
+        usName = (TextView) findViewById(R.id.userName_up);
+        usName.setHint().get;
 
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
@@ -129,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         carSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
 
             }
 

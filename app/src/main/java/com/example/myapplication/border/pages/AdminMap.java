@@ -77,10 +77,11 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                Intent i = null;
-                int id = menuItem.getItemId();
 
-                switch (id){
+                int id = menuItem.getItemId();
+                Intent i = null;
+
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
@@ -97,8 +98,14 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
-                return false;
 
+                if (i != null) {
+
+                    i.putExtras(b);
+                    startActivity(i);
+
+                }
+                return false;
             }
         });
 

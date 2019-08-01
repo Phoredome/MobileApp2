@@ -16,7 +16,7 @@ public class myAccount  extends AppCompatActivity {
 
 
     public LoginManager lm;
-    Bundle b;
+    Bundle b, a, p, e, add;
 
 
     @Override
@@ -29,8 +29,19 @@ public class myAccount  extends AppCompatActivity {
 
         Intent i = getIntent();
         b = i.getExtras();
+        b = i.getExtras();
+        a = i.getExtras();
+        p = i.getExtras();
+        e = i.getExtras();
+        add = i.getExtras();
 
         Boolean status = b.getBoolean("status");
+        String uName = a.getString("username");
+        String pass = p.getString("password");
+        String email = e.getString("email");
+        String address = add.getString("address");
+
+
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
