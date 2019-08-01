@@ -10,6 +10,7 @@ import com.example.myapplication.controller.DBController;
 import com.example.myapplication.entities.Trip;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TripDAO {
 
@@ -22,7 +23,7 @@ public class TripDAO {
     }
 
     public boolean addTrip(int carId, int userId, double amount,
-                           int kmsRunForTrip, String timeOfTrip,
+                           double kmsRunForTrip, String timeOfTrip,
                            String dateOfTrip, double startingX,
                            double startingY, double endingX, double endingY) {
         ContentValues values = new ContentValues();
@@ -30,6 +31,7 @@ public class TripDAO {
         values.put("userId", userId);
         values.put("amount",amount);
         values.put("kmsRunForTrip", kmsRunForTrip);
+        //TODO CHANGE date and time to date object
         values.put("timeOfTrip", timeOfTrip);
         values.put("dateOfTrip", dateOfTrip);
         values.put("startingX", startingX);
