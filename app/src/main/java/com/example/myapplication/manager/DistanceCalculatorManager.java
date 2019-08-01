@@ -28,7 +28,7 @@ public class DistanceCalculatorManager
         return result;
     }
 
-    public void startSearch(GetDistanceProbe.DistanceListener context, Car c, double fromLat, double fromLng, double toLat, double toLng)
+    public void startSearch(GetDistanceProbe.DistanceListener context, double fromLat, double fromLng, double toLat, double toLng)
     {
 
         String from = fromLat + "," + fromLng;

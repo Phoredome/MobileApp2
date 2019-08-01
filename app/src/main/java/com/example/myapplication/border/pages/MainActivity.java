@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap gmap;
     private MapController mc;
     private CarController cc;
+    private CarController ccc;
     private RecyclerView.Adapter mAdapter;
     private User user;
 
@@ -105,10 +107,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 }
                     return false;
-
             }
         });
-
 
 
         Bundle mapViewBundle = null;
@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        ccc = new CarController();
+        cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
     }
 
     @Override

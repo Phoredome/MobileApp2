@@ -21,6 +21,7 @@ public class CarController{
 
     double depotx = 0.00;
     double depoty = 0.00;
+    int NUMBEROFCARS = 10;
 
     /*GetDistanceProbe.DistanceListener context;
     GetDistanceProbe asyncTask =new GetDistanceProbe(context);*/
@@ -28,6 +29,10 @@ public class CarController{
     public CarController(Context context) {
         cd = new CarDAO(context);
         mc = new MapController();
+    }
+
+    public CarController(){
+
     }
 
     public Car getCarById(int carId) {
@@ -159,89 +164,78 @@ public class CarController{
         return false;
     }
 
-    //TODO
-    public void getNearByLocation (GetDistanceProbe.DistanceListener context, LatLng latLng) {
-        //ArrayList<AsyncTask<String, Void, String>> dcm = new ArrayList<AsyncTask<String, Void, String>>();
+    public void getCarDistance(GetDistanceProbe.DistanceListener context)
+    {
         ArrayList<Car> carList = cd.getAllCars();
+        double[][] distanceList = new double[NUMBEROFCARS][2];
 
-        for (Car c : carList) {
+        for (Car c : carList)
+        {
             double x = c.getCoordX();
             double y = c.getCoordY();
 
-            DistanceCalculatorManager dcm = new DistanceCalculatorManager(c);
-            dcm.startSearch(context,c, latLng.latitude, latLng.longitude, x, y);
-            //give me distance of car from location
-            //TODO*/
-
-            double[][] list = new double[10][2];
-
-            for (int i = 0; i < 10; i++) {
-                double dist = list[i][2];
-
-                if (c.getDistance() < dist && i < 10) {
-                    while (i < 10) {
-                        updateList(i, list, c, c.getDistance());
-                        i++;
-                    }
-
-                    list[i][1] = c.getCarID();
-                    list[i][2] = c.getDistance();
-                }
-            }
+            getNearByLocation(context, c, x, y);
+            compareDist(distanceList, carList);
         }
     }
-
-    public double[][] updateList(int i, double[][] list, Car c, double distance)
-    {
-        if(i == 9)
-        {
-            return list;
-        }
-        list[i + 1] = list[i];
-        i++;
-
-        updateList(i,list,c,distance);
-        return list;
-
-            //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
-
-    }
-    
     //TODO
-    public ArrayList<Car> getNearByCars (GetDistanceProbe.DistanceListener context, LatLng latLng)
+    public ArrayList<Car> getNearByCar (GetDistanceProbe.DistanceListener context, Car c)
+    { getNearByLocation(context,c,c.getCoordX(),c.getCoordY());
+    return null;}
+
+    public void getNearByLocation (GetDistanceProbe.DistanceListener context,Car c, double x, double y)
     {
         ArrayList<Car> carList = cd.getAllCars();
-        ArrayList<Car> nearByCars = cd.getAllCars();
-        Car c = null;
-        double x = 0;
-        double y = 0;
 
-        for (int i = 0; i < carList.size(); i++)
-        {
-            c = carList.get(i);
-
-            double x1 = c.getCoordX();
-            double y1 = c.getCoordY();
-
-            for(int j = i+1; j < carList.size(); j++)
-            {
-                Car d = carList.get(j);
-
+        for (Car d : carList) {
+            if(c.getCarID() != d.getCarID()) {
                 double x2 = d.getCoordX();
                 double y2 = d.getCoordY();
 
-
+                DistanceCalculatorManager dcm = new DistanceCalculatorManager(d);
+                dcm.startSearch(context, x, y, x2, y2);
             }
-
+            //give me distance of car from location
+            //TODO*/
         }
-        //asyncTask.delegate = this;
 
-        DistanceCalculatorManager dcm = new DistanceCalculatorManager(c);
-        dcm.startSearch(context,c, latLng.latitude, latLng.longitude, x, y);
-
-        //TODO compare cars list to search location, return top 10-15 closest cars using googleMatrix api (or any way that may be easier)
-        return nearByCars;
     }
+    
+    public double[][] compareDist(double[][] distanceList, ArrayList<Car> carList)
+    {
+            for(Car c : carList)
+            {
+                double dist = c.getDistance();
+                if(checkDist(distanceList, dist));
+                orderedInsert(distanceList, 0, dist);
+            }
+            return distanceList;
+    }
+
+    public boolean checkDist(double[][] distanceList,double dist)
+    {
+        for(int j = 0; j < NUMBEROFCARS; j++)
+            if(dist < distanceList[j][2])
+                return true;
+
+            return false;
+    }
+
+    public int orderedInsert (double[][] distanceList, int first, double target)
+    {
+        // insert target into arr such that arr[first..last] is sorted,
+        //   given that arr[first..last-1] is already sorted.
+        //   Return the position where inserted.
+        int i = NUMBEROFCARS;
+        while ((i > first) && (target < distanceList[i-1][2]))
+        {
+            distanceList[i][2] = distanceList[i-1][2];
+            i = i - 1;
+        }
+        distanceList[i][2] = target;
+        return i;
+    }
+
 
     public void initializeCars(GoogleMap map)
     {

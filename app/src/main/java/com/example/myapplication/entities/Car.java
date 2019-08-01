@@ -10,6 +10,7 @@ public class Car {
     private int kmsSinceLastService;
 
     private int distance;
+    private double[][] dist;
 
     private double costOfRunning;
     private double coordX;
