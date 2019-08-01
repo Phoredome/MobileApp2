@@ -1,24 +1,14 @@
 package com.example.myapplication.controller;
 
-public class CarRemote implements Runnable {
+import com.example.myapplication.border.dao.CarDAO;
+import com.example.myapplication.border.info.GetDistanceProbe;
+import com.example.myapplication.entities.Car;
+import com.example.myapplication.manager.DistanceCalculatorManager;
+import com.google.android.gms.maps.model.LatLng;
 
-    double xCoord;
-    double yCoord;
+import java.util.ArrayList;
 
-    CarRemote(double xCoord, double yCoord)
-    {
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
-    }
+public class CarRemote {
 
-    public void run()
-    {
 
-    }
-
-    public void hi()
-    {
-        CarRemote cr = new CarRemote(143.00, 150.00);
-        new Thread(cr).start();
-    }
 }
