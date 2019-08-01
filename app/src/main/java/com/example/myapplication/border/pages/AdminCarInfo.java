@@ -26,7 +26,6 @@ public class AdminCarInfo extends AppCompatActivity {
 
         Intent i = getIntent();
         b = i.getExtras();
-
         Boolean status = b.getBoolean("status");
 
         final NavigationView navigationView = findViewById(R.id.nav_admin_info);

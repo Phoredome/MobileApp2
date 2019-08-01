@@ -39,6 +39,8 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_history);
+
+
         cc = new CarController(getApplicationContext());
 
         Intent i = getIntent();

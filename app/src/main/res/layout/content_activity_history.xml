@@ -19,7 +19,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView2"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 tools:listitem="@layout/recycler_view_item_4" />
@@ -34,7 +34,7 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="298dp"
+                android:layout_height="300dp"
                 android:layout_weight="0" />
 
             <LinearLayout
