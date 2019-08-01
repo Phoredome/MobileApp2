@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.controller.CarController;
+import com.example.myapplication.controller.CarController;
 import com.google.android.material.navigation.NavigationView;
 
 public class CreateCar extends AppCompatActivity {

@@ -16,9 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.example.myapplication.controller.controller.CarController;
-import com.example.myapplication.controller.controller.MapController;
+import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-    Bundle b;
+    Bundle b, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent i = getIntent();
         b = i.getExtras();
 
+
         Boolean status = b.getBoolean("status");
+
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -68,10 +71,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
           navigationView.inflateMenu(R.menu.activity_main_drawer);
         }
 
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+
 
                 int id = menuItem.getItemId();
                 Intent i = null;

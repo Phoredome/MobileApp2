@@ -45,33 +45,31 @@ public class myAccount  extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 int id = menuItem.getItemId();
+                Intent i = null;
 
                 switch (id){
                     case R.id.nav_home:
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        i.putExtras(b);
-                        startActivity(i);
+                        i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        Intent j = new Intent(getApplicationContext(), myAccount.class);
-                        j.putExtras(b);
-                        startActivity(j);
+                        i = new Intent(getApplicationContext(), myAccount.class);
                         break;
                     case R.id.nav_history:
-                        Intent k = new Intent(getApplicationContext(), TripHistory.class);
-                        k.putExtras(b);
-                        startActivity(k);
+                        i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
                     case R.id.nav_car_controller:
-                        Intent a = new Intent(getApplicationContext(), AdminMap.class);
-                        a.putExtras(b);
-                        startActivity(a);
+                        i = new Intent(getApplicationContext(), AdminMap.class);
                         break;
                     case R.id.nav_car_info:
-                        Intent n = new Intent(getApplicationContext(), AdminCarInfo.class);
-                        n.putExtras(b);
-                        startActivity(n);
+                        i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
+                }
+
+                if(i!=null) {
+
+                    i.putExtras(b);
+                    startActivity(i);
+
                 }
                 return false;
 
