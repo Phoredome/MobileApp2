@@ -2,6 +2,8 @@ package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -13,6 +15,8 @@ import android.widget.Button;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.RecyclerViewAdapter;
+import com.example.myapplication.entities.Car;
 import com.example.myapplication.manager.DistanceCalculatorManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,6 +24,8 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
 
@@ -36,6 +42,7 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_admin_map);
 
+        cc = new CarController(getApplicationContext());
         Intent i = getIntent();
         b = i.getExtras();
 
@@ -159,9 +166,17 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gmap = googleMap;
+
+        RecyclerView rv = findViewById(R.id.adminMapRecyclerView);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(), gmap);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+
         gmap.setMinZoomPreference(12);
         LatLng van = new LatLng(49.267279, -123.218318);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(van));
+        cc.initializeCars(gmap);
 
     }
 
