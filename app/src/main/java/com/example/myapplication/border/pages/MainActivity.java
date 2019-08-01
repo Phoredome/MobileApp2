@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         gmap.setLatLngBoundsForCameraTarget(bounds);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(49.232000, -123.023000)));
 
-        gmap.setInfoWindowAdapter(new InfoWindow(MainActivity.this));
+      //  gmap.setInfoWindowAdapter(new InfoWindow(MainActivity.this));
 
 
         RecyclerView rv = findViewById(R.id.recyclerView);

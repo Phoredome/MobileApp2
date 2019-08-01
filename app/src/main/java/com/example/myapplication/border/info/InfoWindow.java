@@ -16,13 +16,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 
-public class InfoWindow implements GoogleMap.InfoWindowAdapter {
-        //GoogleMap.OnInfoWindowClickListener,
-        //OnMapReadyCallback {
+public class InfoWindow extends AppCompatActivity implements
+        GoogleMap.OnInfoWindowClickListener,
+        OnMapReadyCallback {
 
 
-    private GoogleMap mMap;
-    CarController cc;
+   private GoogleMap mMap;
+
+
+   /* CarController cc;
     Car carObj;
     Context context;
     LayoutInflater inflater;
@@ -48,7 +50,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
         carId.setText(marker.getSnippet());
         licP.setText(marker.getSnippet());
 
-        return v;
+        return null;
 
         //get marker location
         //get all cars object
@@ -56,9 +58,9 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
 
 
     }
+*/
 
-
-   /* @Override
+   @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
         // Add markers to the map and do other map setup.
@@ -74,6 +76,6 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
         Toast.makeText(this, "Info window clicked",
                 Toast.LENGTH_SHORT).show();
     }
-*/
+
 
 }
