@@ -1,22 +1,32 @@
 package com.example.myapplication.border.pages;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.widgets.Helper;
 
 import com.example.myapplication.R;
+import com.example.myapplication.border.dao.UserDAO;
+import com.example.myapplication.entities.User;
 import com.example.myapplication.manager.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 
-public class myAccount  extends AppCompatActivity {
+public class MyAccount extends AppCompatActivity {
 
 
     public LoginManager lm;
-    Bundle b, a, p, e, add;
+    Bundle b, a;
+    UserDAO ud;
 
 
     @Override
@@ -29,21 +39,46 @@ public class myAccount  extends AppCompatActivity {
 
         Intent i = getIntent();
         b = i.getExtras();
-        b = i.getExtras();
         a = i.getExtras();
-        p = i.getExtras();
-        e = i.getExtras();
-        add = i.getExtras();
+        ud = new UserDAO(MyAccount.this);
 
         Boolean status = b.getBoolean("status");
-        String uName = a.getString("username");
-        String pass = p.getString("password");
-        String email = e.getString("email");
-        String address = add.getString("address");
+        String uName = a.getString("user");
+
+        Log.d("myaccount", uName);
+        User user = ud.getUser(uName);
 
 
+        final Integer userId = user.getUserId();
 
-        if(status){
+        String first = user.getFirstName();
+        String last = user.getLastName();
+        String userN = user.getUserName();
+        String pass = user.getPassword();
+        String email = user.getEmail();
+
+        final TextView firstName;
+        firstName = findViewById(R.id.fName_up);
+        firstName.setHint(first);
+
+        final TextView lastName;
+        lastName = findViewById(R.id.LName_up);
+        lastName.setHint(last);
+
+        final TextView userName;
+        userName = findViewById(R.id.userName_up);
+        userName.setHint(userN);
+
+        final TextView password;
+        password = findViewById(R.id.password_up);
+        password.setHint(pass);
+
+        final TextView eMail;
+        eMail = findViewById(R.id.email_up);
+        eMail.setHint(email);
+
+
+        if (status) {
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
 
         } else {
@@ -58,12 +93,12 @@ public class myAccount  extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 Intent i = null;
 
-                switch (id){
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        i = new Intent(getApplicationContext(), myAccount.class);
+                        i = new Intent(getApplicationContext(), MyAccount.class);
                         break;
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
@@ -76,7 +111,7 @@ public class myAccount  extends AppCompatActivity {
                         break;
                 }
 
-                if(i!=null) {
+                if (i != null) {
 
                     i.putExtras(b);
                     startActivity(i);
@@ -87,6 +122,24 @@ public class myAccount  extends AppCompatActivity {
             }
         });
 
+
+       Button update = (Button)findViewById(R.id.updateBtn);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String profileFirst = firstName.getText().toString();
+                String profileLast = lastName.getText().toString();
+                String profileUser = userName.getText().toString();
+                String profilePass = password.getText().toString();
+                String profileEmail = eMail.getText().toString();
+
+                ud.updateAccount(userId, profileFirst, profileLast,profileUser, profilePass, profileEmail);
+            }
+
+
+
+        });
     }
 
-}
+    }
+

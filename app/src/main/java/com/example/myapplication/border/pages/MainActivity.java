@@ -15,9 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
@@ -25,7 +23,6 @@ import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.User;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -61,25 +58,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Intent i = getIntent();
         b = i.getExtras();
-        a = i.getExtras();
-        p = i.getExtras();
-        e = i.getExtras();
-        f = i.getExtras();
-        l = i.getExtras();
-
-        add = i.getExtras();
 
         Boolean status = b.getBoolean("status");
-        String first = f.getString("firstName");
-        String last = l.getString("lastName");
-        String uName = a.getString("username");
-        String pass = p.getString("password");
-        String email = e.getString("email");
-        String address = add.getString("address");
-
-        TextView usName;
-        usName = (TextView) findViewById(R.id.userName_up);
-        usName.setHint().get;
 
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
@@ -103,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        i = new Intent(getApplicationContext(), myAccount.class);
+                        i = new Intent(getApplicationContext(), MyAccount.class);
                         break;
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);

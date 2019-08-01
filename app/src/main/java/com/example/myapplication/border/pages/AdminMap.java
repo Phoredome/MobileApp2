@@ -86,7 +86,7 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
                     case R.id.nav_account:
-                        i = new Intent(getApplicationContext(), myAccount.class);
+                        i = new Intent(getApplicationContext(), MyAccount.class);
                         break;
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
