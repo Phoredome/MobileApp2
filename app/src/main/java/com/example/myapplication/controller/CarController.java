@@ -13,11 +13,12 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-public class CarController{
+public class CarController {
 
     CarDAO cd;
     MapController mc;
     CreateCar cc;
+    GetDistanceProbe dl;
 
     double depotx = 0.00;
     double depoty = 0.00;

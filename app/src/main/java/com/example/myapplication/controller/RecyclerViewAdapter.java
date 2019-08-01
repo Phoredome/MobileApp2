@@ -37,6 +37,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.gmap = gmap;
     }
 
+    public RecyclerViewAdapter(ArrayList<Car> list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
+
     @Override
     public View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the layout, initialize the View Holder
@@ -60,18 +65,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView description = holder.description;
         description.setText(list.get(position).getVehicleType());
+        if (gmap !=null) {
+            holder.setClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+                    LatLng MLatLng = new LatLng(list.get(position).getCoordX(), list.get(position).getCoordY());
+                    CameraPosition newCameraPosition = new CameraPosition.Builder().target(MLatLng).build();
+                    gmap.moveCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition));
+                }
+            });
 
-        holder.setClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                LatLng MLatLng = new LatLng(list.get(position).getCoordX(), list.get(position).getCoordY());
-                CameraPosition newCameraPosition = new CameraPosition.Builder().target(MLatLng).build();
-                gmap.moveCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition));
-            }
-        });
-
-        //animate(holder);
-
+            //animate(holder);
+        }
     }
 
     @Override

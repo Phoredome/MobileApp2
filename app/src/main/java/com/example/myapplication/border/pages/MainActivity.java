@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         ccc = new CarController();
-        cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
+        //cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
     }
 
     @Override
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
         cc.initializeCars(gmap);
-        cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
+        //cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }
 
     /*
