@@ -97,6 +97,12 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
+                if (i != null) {
+
+                    i.putExtras(b);
+                    startActivity(i);
+
+                }
                 return false;
 
             }
