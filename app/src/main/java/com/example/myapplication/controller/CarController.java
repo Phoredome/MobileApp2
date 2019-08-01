@@ -50,11 +50,11 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     public ArrayList<Car> getAllCars() {
         return cd.getAllCars();}
 
-    public Boolean check(String license, String costOfRun)
+    public Boolean check(String costOfRun)
     {
-        Car car = null;
+        //Car car = null;
         try {
-            car = cd.getCarByLicense(license);
+            //car = cd.getCarByLicense(license);
             if (car != null && costOfRun != null)
                 return true;
             else
