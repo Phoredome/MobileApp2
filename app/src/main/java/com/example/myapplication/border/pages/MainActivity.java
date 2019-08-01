@@ -1,4 +1,3 @@
-
 package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
@@ -18,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-    Bundle b, name;
+    Bundle b, account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         cc = new CarController(getApplicationContext());
 
+
         Intent i = getIntent();
+
         b = i.getExtras();
-
-
         Boolean status = b.getBoolean("status");
 
 
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLngBounds bounds = builder.build();
         gmap.setLatLngBoundsForCameraTarget(bounds);
 
-        //gmap.setInfoWindowAdapter(new InfoWind);
+        gmap.setInfoWindowAdapter(new InfoWindow(MainActivity.this));
 
 
         RecyclerView rv = findViewById(R.id.recyclerView);

@@ -1,51 +1,64 @@
 package com.example.myapplication.border.info;
+import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.Marker;
+
+import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 
-public class InfoWindow extends AppCompatActivity implements
-        GoogleMap.OnInfoWindowClickListener,
-        GoogleMap.InfoWindowAdapter,
-        OnMapReadyCallback {
+public class InfoWindow implements GoogleMap.InfoWindowAdapter {
+        //GoogleMap.OnInfoWindowClickListener,
+        //OnMapReadyCallback {
 
-    Car carObj;
+
     private GoogleMap mMap;
     CarController cc;
+    Car carObj;
+    Context context;
+    LayoutInflater inflater;
 
-    public InfoWindow(Car car) {
-        carObj = car;
+    public InfoWindow(Context context) {
+        this.context = context;
     }
 
 
     @Override
     public View getInfoContents(Marker marker) {
-       /* CarController cc = (CarController) marker.getTag();
-
-        View v = LayoutInflater.from(getApplicationContext())
-        //        .inflate(R.layout.content_info_window, map, false);
-
-        TextView carId = v.findViewById(R.id.carIdTxt);
-        TextView licPlate = v.findViewById(R.id.licensePlateTxt);
-        */
         return null;
-
     }
 
     @Override
     public View getInfoWindow(Marker marker) {
-        return null;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.activity_info_window, null);
+
+        TextView carId = (TextView) v.findViewById(R.id.carIdTxt);
+        TextView licP = (TextView) v.findViewById(R.id.licensePlateTxt);
+
+        carId.setText(marker.getSnippet());
+        licP.setText(marker.getSnippet());
+
+        return v;
+
+        //get marker location
+        //get all cars object
+        //find the car at marker location
+
+
     }
 
 
-    @Override
+   /* @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
         // Add markers to the map and do other map setup.
@@ -61,5 +74,6 @@ public class InfoWindow extends AppCompatActivity implements
         Toast.makeText(this, "Info window clicked",
                 Toast.LENGTH_SHORT).show();
     }
+*/
 
 }
