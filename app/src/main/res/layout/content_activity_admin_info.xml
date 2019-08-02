@@ -114,6 +114,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/adminInfoRecyclerView"
             android:layout_width="535dp"
             android:layout_height="228dp"
             tools:listitem="@layout/recycler_view_item_2">
