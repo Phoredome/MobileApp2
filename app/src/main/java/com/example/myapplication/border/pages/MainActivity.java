@@ -173,6 +173,12 @@ public class MainActivity extends AppCompatActivity
 
                 LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
                 // ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
+
+                if(latLng != null) {
+                    gmap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                }
+
+                ArrayList<Car> nearByCars = cc.getDistanceFromBase();
             }
         });
 
