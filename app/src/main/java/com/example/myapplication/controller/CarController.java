@@ -208,6 +208,11 @@ public class CarController{
         }
     }
 
+    public void getNearCarsFromLocation(GetDistanceProbe.DistanceListener dlistener, double x, double y )
+    {
+        Car c = null;
+        getCarDistances(dlistener, c, x, y);}
+
     public void getDistanceFromBase(GetDistanceProbe.DistanceListener dlistener)
     {
         Car c = null;
