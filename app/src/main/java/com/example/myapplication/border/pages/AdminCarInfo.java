@@ -120,6 +120,8 @@ public class AdminCarInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Create a car button", "add car button");
                 Intent i = new Intent(getApplicationContext(), CreateCar.class);
+                i.putExtras(b);
+                i.putExtras(a);
                 startActivity(i);
                 finish();
             }
