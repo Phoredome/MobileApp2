@@ -36,7 +36,7 @@ public class CreateCar extends AppCompatActivity {
         String userId = a.getString("userId");
         Boolean status = b.getBoolean("status");
 
-        final NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_create_car);
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
