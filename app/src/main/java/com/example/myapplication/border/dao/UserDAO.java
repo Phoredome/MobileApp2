@@ -39,15 +39,15 @@ public class UserDAO
         return true;
     }
 
-    public Boolean updateAccount(Integer userId, String user, String pass, String fName, String lName, String email) {
+    public Boolean updateAccount(Integer userId, String fName, String lName, String user, String pass,  String email) {
         Log.d("Inside userdao", "Inside createaccount-updateacct");
 
         ContentValues values = new ContentValues();
         values.put("firstName", fName);
         values.put("lastName", lName);
-        values.put("email", email);
         values.put("userName", user);
         values.put("password", pass);
+        values.put("email", email);
 
         wdb.update("User", values, "userId="+ userId, null);
 
@@ -68,6 +68,21 @@ public class UserDAO
             if (uname.equals(userName)) {
                 user = users.get(i);
                 Log.d("UserName", userName);
+
+            }
+        }
+        return user;
+    }
+
+    public User getUserById(Integer userId)
+    {
+        Log.d("inside user", "inside user");
+
+        ArrayList<User> users = getUsers();
+        User user = null;
+        for (int i= 0; i < users.size(); i++) {
+            if (userId == users.get(i).getUserId()) {
+                user = users.get(i);
 
             }
         }

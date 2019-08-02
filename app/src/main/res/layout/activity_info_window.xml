@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="360dp"
+    android:layout_height="175dp"
     tools:context=".border.info.InfoWindow">
 
     <LinearLayout
@@ -18,11 +18,11 @@
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:text="license plat txt"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="316dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -32,49 +32,58 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:text="car id txt"
-                android:textSize="24sp">
+                android:textSize="20sp">
 
             </TextView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="130dp">
 
 
-            <Button
-                android:id="@+id/sendLotBtn"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="Send to Lot" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/serviceBtn"
+                <Button
+                    android:id="@+id/serviceBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Service" />
+
+                <Button
+                    android:id="@+id/sendLotBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Send to Lot" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Service" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/locationInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                <EditText
+                    android:id="@+id/locationInput"
+                    android:layout_width="93dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
 
-            <Button
-                android:id="@+id/goBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="Go!" />
+                <Button
+                    android:id="@+id/goBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Go!" />
+            </LinearLayout>
+
         </LinearLayout>
 
 

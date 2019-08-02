@@ -2,6 +2,8 @@ package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,10 +24,11 @@ import java.util.ArrayList;
 
 public class AdminCarInfo extends AppCompatActivity {
 
-    Bundle b;
+    Bundle a, b;
     CarController cc;
     double total;
     int counter, counter1;
+    RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +38,14 @@ public class AdminCarInfo extends AppCompatActivity {
         cc = new CarController(getApplicationContext());
 
         Intent i = getIntent();
+
         b = i.getExtras();
+        a = i.getExtras();
+
+        String userId = a.getString("userId");
         Boolean status = b.getBoolean("status");
+
+
         TextView totalMade = findViewById(R.id.totalMade);
         TextView numActive = findViewById(R.id.numActive);
         TextView numRunning = findViewById(R.id.numRunning);
@@ -97,6 +107,7 @@ public class AdminCarInfo extends AppCompatActivity {
                 if(i!=null) {
 
                     i.putExtras(b);
+                    i.putExtras(a);
                     startActivity(i);
 
                 }
@@ -104,6 +115,12 @@ public class AdminCarInfo extends AppCompatActivity {
 
             }
         });
+
+        rv = findViewById(R.id.adminInfoRecyclerView);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
 
 
         Button createCar = findViewById(R.id.createCarBtn);
@@ -113,6 +130,8 @@ public class AdminCarInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Create a car button", "add car button");
                 Intent i = new Intent(getApplicationContext(), CreateCar.class);
+                i.putExtras(b);
+                i.putExtras(a);
                 startActivity(i);
                 finish();
             }

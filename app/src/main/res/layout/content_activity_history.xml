@@ -34,33 +34,24 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="222dp"
                 android:layout_weight="0" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/selectCar"
-                    android:layout_width="177dp"
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="0"
-                    android:foregroundGravity="center" />
-
-                <Button
-                    android:id="@+id/pickBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="0"
-                    android:foregroundGravity="center"
-                    android:text="PickCar" />
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:text="Generate car info history" />
             </LinearLayout>
 
         </LinearLayout>

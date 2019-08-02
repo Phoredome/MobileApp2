@@ -15,8 +15,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.border.info.GetDistanceProbe;
+import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
@@ -30,11 +33,14 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GetDistanceProbe.DistanceListener {
+public class MainActivity extends AppCompatActivity
+        implements OnMapReadyCallback, GetDistanceProbe.DistanceListener, GoogleMap.OnInfoWindowClickListener {
+
 
     private MapView mapView;
     private GoogleMap gmap;
@@ -47,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-    Bundle f, l, b, a, p, e, add;
+    Bundle b, a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +65,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         Intent i = getIntent();
-        b = i.getExtras();
 
+        b = i.getExtras();
+        a = i.getExtras();
+
+        Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
 
 
@@ -101,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (i != null) {
 
                     i.putExtras(b);
+                    i.putExtras(a);
                     startActivity(i);
 
                 }
@@ -250,6 +260,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
+        InfoWindow infoAdapter = new InfoWindow(allCars, getApplicationContext());
+        gmap.setInfoWindowAdapter(infoAdapter);
+
     /*
     @Override
     public boolean onSupportNavigateUp() {
@@ -264,12 +277,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void setNearByList(ArrayList<Car> result) {
         shortList = result;
         // time to get the distance
-        if (gmap != null)
-        {
+        if (gmap != null) {
             rv.setAdapter(null);
-            RecyclerViewAdapter adapter = new RecyclerViewAdapter(shortList,getApplication(), gmap);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(shortList, getApplication(), gmap);
             rv.setLayoutManager(new LinearLayoutManager(this));
             rv.setAdapter(adapter);
         }
+    }
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, marker.getId(), Toast.LENGTH_SHORT).show();
+
     }
 }

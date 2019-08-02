@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 public class CreateCar extends AppCompatActivity {
 
     public CarController cc;
-    Bundle b;
+    Bundle a, b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,14 @@ public class CreateCar extends AppCompatActivity {
         setContentView(R.layout.activity_create_car);
 
         Intent i = getIntent();
-        b = i.getExtras();
 
+        b = i.getExtras();
+        a = i.getExtras();
+
+        String userId = a.getString("userId");
         Boolean status = b.getBoolean("status");
 
-
-        final NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_create_car);
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
@@ -48,10 +50,11 @@ public class CreateCar extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                Intent i = null;
-                int id = menuItem.getItemId();
 
-                switch (id){
+                int id = menuItem.getItemId();
+                Intent i = null;
+
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
@@ -68,10 +71,17 @@ public class CreateCar extends AppCompatActivity {
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
-                return false;
+                if (i != null) {
 
+                    i.putExtras(b);
+                    i.putExtras(a);
+                    startActivity(i);
+
+                }
+                return false;
             }
         });
+
 
         Button addCar = findViewById(R.id.addCarBtn);
 
