@@ -6,7 +6,6 @@ public class Car {
     private int carID;
     private int seats;
     private int doors;
-    private int capacity;
     private int serviceTime;
     private double kmsRun;
     private double kmsSinceLastService;
@@ -22,7 +21,7 @@ public class Car {
 
     private boolean inUse;
     private boolean inActiveService;
-
+    private boolean inStation;
 
     public Car(int carID, double costOfRunning, int seats, int doors, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inActiveService, double coordX, double coordY) {
         this.carID = carID;
@@ -66,14 +65,6 @@ public class Car {
 
     public void setDoors(int doors) {
         this.doors = doors;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     public int getServiceTime() {
@@ -157,6 +148,14 @@ public class Car {
 
     public void setInActiveService(boolean inActiveService) {
         this.inActiveService = inActiveService;
+    }
+
+    public boolean isInStation() {
+        return inStation;
+    }
+
+    public void setInStation(boolean inStation) {
+        this.inStation = inStation;
     }
 
     @Override
