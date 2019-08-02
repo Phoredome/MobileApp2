@@ -169,16 +169,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
+                /*final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
 
                 LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
-                // ArrayList<Car> nearByCars = cc.getNearByCars(latLng);
 
                 if(latLng != null) {
                     gmap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
 
-                ArrayList<Car> nearByCars = cc.getDistanceFromBase();
+                cc.getNearCarsFromLocation(MainActivity.this, latLng.latitude, latLng.longitude);*/
             }
         });
 
