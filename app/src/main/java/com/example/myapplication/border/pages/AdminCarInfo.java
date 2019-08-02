@@ -2,6 +2,8 @@ package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,6 +28,7 @@ public class AdminCarInfo extends AppCompatActivity {
     CarController cc;
     double total;
     int counter, counter1;
+    RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +115,12 @@ public class AdminCarInfo extends AppCompatActivity {
 
             }
         });
+
+        rv = findViewById(R.id.adminInfoRecyclerView);
+        ArrayList<Car> allCars = cc.getAllCars();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
 
 
         Button createCar = findViewById(R.id.createCarBtn);

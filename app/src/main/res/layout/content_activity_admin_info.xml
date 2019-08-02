@@ -122,6 +122,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="247dp"
+            android:id="@+id/adminInfoRecyclerView"
             tools:listitem="@layout/recycler_view_item_2">
 
         </androidx.recyclerview.widget.RecyclerView>
