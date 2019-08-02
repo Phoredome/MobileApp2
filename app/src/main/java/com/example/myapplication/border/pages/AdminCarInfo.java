@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class AdminCarInfo extends AppCompatActivity {
 
-    Bundle b;
+    Bundle a, b;
     CarController cc;
     double total;
     int counter, counter1;
@@ -34,8 +34,14 @@ public class AdminCarInfo extends AppCompatActivity {
         cc = new CarController(getApplicationContext());
 
         Intent i = getIntent();
+
         b = i.getExtras();
+        a = i.getExtras();
+
+        String uName = a.getString("user");
         Boolean status = b.getBoolean("status");
+
+
         TextView totalMade = findViewById(R.id.totalMade);
         TextView numActive = findViewById(R.id.numActive);
         TextView numRunning = findViewById(R.id.numRunning);
@@ -97,6 +103,7 @@ public class AdminCarInfo extends AppCompatActivity {
                 if(i!=null) {
 
                     i.putExtras(b);
+                    i.putExtras(a);
                     startActivity(i);
 
                 }

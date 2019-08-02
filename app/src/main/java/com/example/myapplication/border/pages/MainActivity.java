@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
-    Bundle f, l, b, a, p, e, add;
+    Bundle b, a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +58,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         Intent i = getIntent();
-        b = i.getExtras();
 
+        b = i.getExtras();
+        a = i.getExtras();
+
+        Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
 
 
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (i != null) {
 
                     i.putExtras(b);
+                    i.putExtras(a);
                     startActivity(i);
 
                 }

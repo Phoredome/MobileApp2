@@ -27,7 +27,7 @@ public class MyAccount extends AppCompatActivity {
     public LoginManager lm;
     Bundle b, a;
     UserDAO ud;
-
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,27 +37,26 @@ public class MyAccount extends AppCompatActivity {
 
         final NavigationView navigationView = findViewById(R.id.nav_myaccount);
 
-        Intent i = getIntent();
+        i = getIntent();
         b = i.getExtras();
         a = i.getExtras();
-        ud = new UserDAO(MyAccount.this);
+        ud = new UserDAO(getApplicationContext());
 
         Boolean status = b.getBoolean("status");
-        String uName = a.getString("user");
 
-        Log.d("myaccount", uName);
-        User user = ud.getUser(uName);
+        Integer userId = a.getInt("userId");
 
 
-        final Integer userId = user.getUserId();
+        Log.d("myaccount", userId +"");
+        final User user = ud.getUserById(userId);
 
         String first = user.getFirstName();
         String last = user.getLastName();
         String userN = user.getUserName();
-        String pass = user.getPassword();
-        String email = user.getEmail();
 
         final TextView firstName;
+        String pass = user.getPassword();
+        String email = user.getEmail();
         firstName = findViewById(R.id.fName_up);
         firstName.setHint(first);
 
@@ -114,6 +113,7 @@ public class MyAccount extends AppCompatActivity {
                 if (i != null) {
 
                     i.putExtras(b);
+                    i.putExtras(a);
                     startActivity(i);
 
                 }
@@ -127,6 +127,7 @@ public class MyAccount extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Integer userId = user.getUserId();
                 String profileFirst = firstName.getText().toString();
                 String profileLast = lastName.getText().toString();
                 String profileUser = userName.getText().toString();
@@ -134,7 +135,14 @@ public class MyAccount extends AppCompatActivity {
                 String profileEmail = eMail.getText().toString();
 
                 ud.updateAccount(userId, profileFirst, profileLast,profileUser, profilePass, profileEmail);
+
+//                Intent intent = new Intent(MyAccount.this, LoginPage.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+
+                finish();
             }
+
 
 
 

@@ -28,7 +28,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
 
     private MapView mapView;
     private GoogleMap gmap;
-    Bundle b;
+    Bundle a, b;
     CarController cc;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -44,8 +44,11 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         cc = new CarController(getApplicationContext());
 
         Intent i = getIntent();
-        b = i.getExtras();
 
+        b = i.getExtras();
+        a = i.getExtras();
+
+        String uName = a.getString("user");
         Boolean status = b.getBoolean("status");
 
 
@@ -98,6 +101,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                 if(i!=null) {
 
                     i.putExtras(b);
+                    i.putExtras(a);
                     startActivity(i);
 
                 }
