@@ -159,4 +159,26 @@ public class CarDAO {
         Log.d("Updated car", "Car Updated");
     }
 
+    public boolean updateCarInfo(int carNum, double costOfRunning, int seats, int doors, int serviceTime,
+                              double kmsRun, double kmSinceLastService, String vehicleType, String licensePlate,
+                              boolean inUse, boolean inService, double coordX, double coordY){
+
+        ContentValues values = new ContentValues();
+        values.put("costOfRunning", costOfRunning);
+        values.put("seats", seats);
+        values.put("doors", doors);
+        values.put("serviceTime", serviceTime);
+        values.put("kmsRun", kmsRun);
+        values.put("kmSinceLastService", kmSinceLastService);
+        values.put("vehicleType", vehicleType);
+        values.put("licensePlate", licensePlate);
+        values.put("inUse", inUse);
+        values.put("inService", inService);
+        values.put("coordX", coordX);
+        values.put("coordY", coordY);
+
+        wdb.update("Car",values, "carId="+carNum, null);
+        return true;
+    }
+
 }

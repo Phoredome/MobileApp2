@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
+import com.example.myapplication.controller.RecyclerViewListAdapter;
 import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
 
@@ -118,7 +119,7 @@ public class AdminCarInfo extends AppCompatActivity {
 
         rv = findViewById(R.id.adminInfoRecyclerView);
         ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication());
+        RecyclerViewListAdapter adapter = new RecyclerViewListAdapter(allCars, getApplication());
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
