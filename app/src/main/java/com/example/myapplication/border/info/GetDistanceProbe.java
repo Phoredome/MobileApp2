@@ -3,6 +3,8 @@ package com.example.myapplication.border.info;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.myapplication.entities.Car;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,65 +12,64 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
-public class GetDistanceProbe extends AsyncTask<String, Void, String> {
+public class GetDistanceProbe extends AsyncTask<ArrayList<Future<Car>>, Void, ArrayList<Car>> {
 
     private final String TAG = this.getClass().getName();
     public DistanceListener dlistener;
 
+    private final int LISTSIZE = 10;
 
     public GetDistanceProbe(DistanceListener dlistener) {
         this.dlistener = dlistener;
     }
 
-    protected String doInBackground(String ...params) {
-        try {
-            // This is getting the url from the string we passed in
-            URL url = new URL(params[0]);
+    @Override
+    protected ArrayList<Car> doInBackground(ArrayList<Future<Car>> ...params) {
+        ArrayList<Car> cars = new ArrayList<>();
 
-            // Create the urlConnection
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoInput(true);
-
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-
-            int statusCode = urlConnection.getResponseCode();
-
-            if (statusCode ==  200) {
-
-                InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-
-                BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-                StringBuilder sb = new StringBuilder();
-                String line;
-                try {
-                    while((line = bufferedReader.readLine()) != null) {
-                        sb.append(line);
-                    }
-                } catch (IOException e) {
-                    Log.d(TAG, e.getMessage());
-                }
-                Log.d(TAG, sb.toString());
-                return sb.toString();
-
-            } else {
-                // Status code is not 200
-                // Do something to handle the error
+        ArrayList<Car> carList = new ArrayList<>();
+        for (Future<Car> f:params[0])
+        {
+            try
+            {
+            carList.add(f.get());
             }
-
-        } catch (Exception e) {
-            Log.d(TAG, e.getMessage());
+            catch (ExecutionException | InterruptedException REEE)
+            {
+                Log.d("GetDistanceProbe", "CAR:" + carList.size());
+                Log.d("GetDistanceProbe", REEE.getMessage());
+            }
         }
-        return "";
+
+        for (int i = 0; i < LISTSIZE; i++)
+        {
+            Car c = null;
+            for (int j = 0; j <carList.size(); j++)
+            {
+                Car futureCar = carList.get(j);
+                if(c == null || c.getDistance() < futureCar.getDistance())
+                {
+                    carList.remove(j);
+                    c = futureCar;
+                }
+            }
+            if(c != null)
+                cars.add(c);
+        }
+        return cars;
     }
 
     // automatically called by doInBackground
     @Override
-    protected void onPostExecute(String result) {
-        dlistener.getDistance(result);    // this is calling the callback
+    protected void onPostExecute(ArrayList<Car> result) {
+        dlistener.setNearByList(result);    // this is calling the callback
     }
 
     public interface DistanceListener {
-        void getDistance(String result);
+        void setNearByList(ArrayList<Car> result);
     }
 }

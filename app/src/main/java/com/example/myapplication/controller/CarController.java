@@ -13,9 +13,22 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class CarController implements GetDistanceProbe.DistanceListener{
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
+public class CarController{
 
     public CarDAO cd;
     public MapController mc;
@@ -26,7 +39,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
     double depoty = 0.00;
     int NUMBEROFCARS = 10;
 
-    double[][] distanceList;
+    Context context;
 
     /*GetDistanceProbe.DistanceListener context;
     GetDistanceProbe asyncTask =new GetDistanceProbe(context);*/
@@ -35,7 +48,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
         cd = new CarDAO(context);
         mc = new MapController();
 
-        distanceList = new double[NUMBEROFCARS][2];
+        this.context = context;
     }
 
     public Car getCarById(int carId) {
@@ -167,7 +180,7 @@ public class CarController implements GetDistanceProbe.DistanceListener{
         return false;
     }
 
-    public void getCarDistance()
+    public void getCarDistance(GetDistanceProbe.DistanceListener dlistener)
     {
         ArrayList<Car> carList = cd.getAllCars();
 
@@ -176,80 +189,35 @@ public class CarController implements GetDistanceProbe.DistanceListener{
             double x = c.getCoordX();
             double y = c.getCoordY();
 
-            getNearByLocation(c, x, y);
-            compareDist(distanceList, carList);
+            getCarDistances(dlistener, c, x, y);
         }
     }
 
-    //TODO
-    public double[][] getNearCars (Double x, Double y)
-    {
-        Car c = null;
-        getNearByLocation(c, x, y);
-        compareDist(distanceList, cd.getAllCars());
-        return distanceList;
-    }
-
-
-
-    public void getNearByLocation (Car c, double x, double y)
+    public void getCarDistances(GetDistanceProbe.DistanceListener dlistener, Car c, double x, double y)
     {
         ArrayList<Car> carList = cd.getAllCars();
+        ArrayList<Future<Car>> futuristicCars = new ArrayList<>();
 
+        ExecutorService pool = Executors.newCachedThreadPool();
+        
         for (Car d : carList) {
             if(!d.equals(c)) {
                 double x2 = d.getCoordX();
                 double y2 = d.getCoordY();
 
-                this.car = d;
-                startSearch( x, y, x2, y2);
+                futuristicCars.add(pool.submit(new DistanceCallable(d, x, y, x2, y2)));
             }
             //give me distance of car from location
             //TODO*/
         }
+        GetDistanceProbe gdp = new GetDistanceProbe(dlistener);
+        gdp.execute(futuristicCars);
 
-    }
-    
-    public void compareDist(double[][] distanceList, ArrayList<Car> carList)
-    {
-            for(Car c : carList)
-            {
-                double dist = c.getDistance();
-                if(checkDist(distanceList, dist));
-                orderedInsert(distanceList, 0, dist);
-            }
-    }
-
-    public boolean checkDist(double[][] distanceList,double dist)
-    {
-        for(int j = 0; j < NUMBEROFCARS; j++) {
-            if (dist < distanceList[j][1])
-                return true;
-
-
-        }
-        return false;
-    }
-
-    public int orderedInsert (double[][] distanceList, int first, double target)
-    {
-        // insert target into arr such that arr[first..last] is sorted,
-        //   given that arr[first..last-1] is already sorted.
-        //   Return the position where inserted.
-        int i = NUMBEROFCARS-1;
-        // TODO ADDING CAR ID
-        while ((i > first) && (target < distanceList[i][1]))
-        {
-            distanceList[i][1] = distanceList[i][1];
-            i = i - 1;
-        }
-        distanceList[i][1] = target;
-        return i;
     }
 
     public void getTripDistance(Car c, LatLng ll)
     {
-        startSearch( c.getCoordX(), c.getCoordY(), ll.latitude, ll.longitude);
+        //TODO Change to callable --- startSearch( c.getCoordX(), c.getCoordY(), ll.latitude, ll.longitude);
     }
 
     public void initializeCars(GoogleMap map)
@@ -268,44 +236,6 @@ public class CarController implements GetDistanceProbe.DistanceListener{
             {
                 Log.d("CarController initCar", "Cannot initialize car: " + c.getCarID());
             }
-        }
-    }
-
-    //ASync Methods
-//===========================================================================================================================
-    private String site = "https://www.mapquestapi.com/directions/v2/route?";
-    private String myKey = "c8ZKDbXkXeFKJh8ACe0R2zSQxBbVo7OF";
-
-
-    public String assembleURL(String from, String to) {
-        String result ="" ;
-        result = site  + "key=" + myKey + "&from=" + from + "&to=" + to + "&outFormat=json&ambiguities=ignore&routeType=fastest";
-
-        return result;
-    }
-
-    public void startSearch(double fromLat, double fromLng, double toLat, double toLng)
-    {
-
-        String from = fromLat + "," + fromLng;
-        String to = toLat + "," + toLng;
-
-        String mSite = assembleURL(from, to);
-        GetDistanceProbe gdw = new GetDistanceProbe(CarController.this);
-        gdw.execute(mSite); // will call doInBackground
-    }
-
-    // this is for the callback
-
-    public void getDistance(String result) {
-        // time to get the distance
-        try {
-            JSONObject jo = new JSONObject(result);
-            String dist = jo.getJSONObject("route").getString("distance");
-            Log.d("getDistance()", "CarID: " + car.getCarID() + " Distance From x: " + dist);
-            car.setDistance(Double.parseDouble(dist));
-        } catch (JSONException e) {
-            Log.d("error", e.getMessage());
         }
     }
 
@@ -331,6 +261,105 @@ public class CarController implements GetDistanceProbe.DistanceListener{
 
     /*@Override
     public void processFinish(String output) {
-
     }*/
+//==================================================================================================
+    private class DistanceCallable implements Callable<Car>
+    {
+        Double x1;
+        Double y1;
+        Double x2;
+        Double y2;
+
+        Car c;
+
+        public DistanceCallable(Car c, Double x1, Double y1, Double x2, Double y2) {
+            this.x1 = x1;
+            this.y1 = y1;
+            this.x2 = x2;
+            this.y2 = y2;
+
+            this.c = c;
+        }
+
+        @Override
+        public Car call() throws Exception
+        {
+            String from = x1 + "," + y1;
+            String to = x2 + "," + y2;
+
+            String mSite = assembleURL(from, to);
+            String result = reachSite(new URL(mSite));
+
+            car.setDistance(extractDistance(result));
+
+            return car;
+        }
+
+        //ASync Methods
+    //===========================================================================================================================
+        private String site = "https://www.mapquestapi.com/directions/v2/route?";
+        private String myKey = "c8ZKDbXkXeFKJh8ACe0R2zSQxBbVo7OF";
+
+
+        public String assembleURL(String from, String to) {
+            String result = "";
+            result = site + "key=" + myKey + "&from=" + from + "&to=" + to + "&outFormat=json&ambiguities=ignore&routeType=fastest";
+
+            return result;
+        }
+
+        protected String reachSite(URL url) {
+            try {
+                // This is getting the url from the string we passed in
+
+                // Create the urlConnection
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setDoInput(true);
+
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+
+                int statusCode = urlConnection.getResponseCode();
+
+                if (statusCode ==  200) {
+
+                    InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
+
+                    BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    try {
+                        while((line = bufferedReader.readLine()) != null) {
+                            sb.append(line);
+                        }
+                    } catch (IOException e) {
+                        Log.d(TAG, e.getMessage());
+                    }
+                    Log.d(TAG, sb.toString());
+                    return sb.toString();
+
+                } else {
+                    // Status code is not 200
+                    // Do something to handle the error
+                }
+
+            } catch (Exception e) {
+                Log.d(TAG, e.getMessage());
+            }
+            return "";
+        }
+
+        private Double extractDistance(String result)
+        {
+            String dist = null;
+            try {
+                JSONObject jo = new JSONObject(result);
+                dist = jo.getJSONObject("route").getString("distance");
+
+            } catch (JSONException e) {
+                Log.d("error", e.getMessage());
+            }
+            return Double.parseDouble(dist);
+        }
+    }
 }
+

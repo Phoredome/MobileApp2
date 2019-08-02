@@ -43,7 +43,13 @@ public class TripController
         c.getCostOfRunning();
 
         //TODO FIX TripDAO
-        //td.addTrip(c.getCarID(),ud.getUser(user).getUserId(),c.getCostOfRunning()*c.getDistance(),c.getDistance(), Calendar.getInstance().getTime(),c.getCoordX(),c.getCoordY(), ll.latitude, ll.longitude);
+         /*td.addTrip(c.getCarID(),
+         ud.getUser(user).getUserId(),
+         c.getCostOfRunning()*c.getDistance(),
+         c.getDistance(),
+         Calendar.getInstance().getTime(),
+         c.getCoordX(),c.getCoordY(),
+         ll.latitude, ll.longitude);*/
     }
 
     public ArrayList<Trip> getUserTrip(String user)
