@@ -43,7 +43,7 @@ public class AdminCarInfo extends AppCompatActivity {
         b = i.getExtras();
         a = i.getExtras();
 
-        String userId = a.getString("userId");
+        Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
 
 

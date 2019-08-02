@@ -106,5 +106,26 @@ public class TripDAO {
 
     }
 
+    public Trip getTripByUserId(Integer userId) {
+        ArrayList<Trip> trips = getAllTrips();
+        Trip trip = null;
+        for(Trip t:trips) {
+            if(userId == t.getUserId()){
+                trip = t;
+            }
+        }
+        return trip;
+    }
+
+    public Trip getTripById(Integer id) {
+        ArrayList<Trip> trip = getAllTrips();
+        for (Trip t:trip) {
+            if(t.getTripId() == id) {
+                return t;
+            }
+        }
+        return null;
+    }
+
 
 }

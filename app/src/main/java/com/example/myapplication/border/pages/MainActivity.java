@@ -2,6 +2,7 @@ package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity
                     startActivity(i);
 
                 }
+
                 return false;
             }
         });

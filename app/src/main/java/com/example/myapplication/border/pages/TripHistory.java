@@ -1,9 +1,12 @@
 package com.example.myapplication.border.pages;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,10 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.border.dao.TripDAO;
+import com.example.myapplication.border.info.RecyclerItemClickListener;
 import com.example.myapplication.controller.CarController;
 
 import com.example.myapplication.controller.RecyclerViewAdapter;
+import com.example.myapplication.controller.TripController;
 import com.example.myapplication.entities.Car;
+import com.example.myapplication.entities.Trip;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -30,8 +37,11 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
     private GoogleMap gmap;
     Bundle a, b;
     CarController cc;
+    TripController tc;
+    TripDAO td;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
+    private Context context;
 
 
     @Override
@@ -40,15 +50,17 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_history);
 
-
         cc = new CarController(getApplicationContext());
+        tc = new TripController(getApplicationContext());
+        td = new TripDAO(getApplicationContext());
+
 
         Intent i = getIntent();
 
         b = i.getExtras();
         a = i.getExtras();
 
-        String userId = a.getString("userId");
+        Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
 
 
@@ -60,6 +72,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         } else {
             navigationView.inflateMenu(R.menu.activity_main_drawer);
         }
+
 
 
 
@@ -165,18 +178,43 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gmap = googleMap;
+
         RecyclerView rv2 = findViewById(R.id.recyclerView2);
         ArrayList<Car> allCars = cc.getAllCars();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
         rv2.setLayoutManager(new LinearLayoutManager(this));
         rv2.setAdapter(adapter);
+
+        rv2.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        TextView carHistory = findViewById(R.id.historyInfo);
+
+                        Trip t = td.getTripById(position);
+                        StringBuilder sp = new StringBuilder();
+                        sp.append("Trip id: " + t.getTripId()+ "\n");
+                        sp.append("Trip date: " + t.getDateOfTrip()+ "\n");
+                        sp.append("Trip timestamp: " + t.getTimeOfTrip()+ "\n");
+                        sp.append("Trip amount: " + t.getAmount()+ "\n");
+                        sp.append("Trip kilometers: " + t.getKmsRunForTrip());
+
+                       carHistory.setText(sp);
+
+                       gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(t.getStartingX(), t.getStartingY())));
+                    }
+                })
+        );
+
+
         gmap.setMinZoomPreference(12);
         LatLng van = new LatLng(49.267279, -123.218318);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(van));
-
-//        cc.initializeCars(gmap);
-      //  cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
+        // cc.initializeCars(gmap);
+        // cc.moveCar(gmap, cc.getCarById(1), 40.7143527, -74.0059731);
     }
+
+
+
 
 
 }
