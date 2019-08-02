@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
@@ -38,7 +38,9 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
+public class MainActivity extends AppCompatActivity
+        implements OnMapReadyCallback, GetDistanceProbe.DistanceListener, GoogleMap.OnInfoWindowClickListener {
+
 
     private MapView mapView;
     private GoogleMap gmap;
@@ -175,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         cc.setAllCars();
         //cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
 
-       // cc.getCarDistance();
+       cc.getCarDistance(MainActivity.this);
 
     }
 
@@ -244,10 +246,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         rv = findViewById(R.id.recyclerView);
         ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(), gmap);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(adapter);
-
+        if (shortList != null)
+        {
+            RecyclerViewAdapter adapter2 = new RecyclerViewAdapter(shortList,getApplication(), gmap);
+            rv.setLayoutManager(new LinearLayoutManager(this));
+            rv.setAdapter(adapter2);
+        }
+        else {
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(), gmap);
+            rv.setLayoutManager(new LinearLayoutManager(this));
+            rv.setAdapter(adapter);
+        }
 
         gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
@@ -263,8 +272,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }*/
     }
 
+    ArrayList<Car> shortList;
+    @Override
+    public void setNearByList(ArrayList<Car> result) {
+        shortList = result;
+        // time to get the distance
+        if (gmap != null) {
+            rv.setAdapter(null);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(shortList, getApplication(), gmap);
+            rv.setLayoutManager(new LinearLayoutManager(this));
+            rv.setAdapter(adapter);
+        }
+    }
     @Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this, marker.getId(), Toast.LENGTH_SHORT).show();
+
     }
 }
