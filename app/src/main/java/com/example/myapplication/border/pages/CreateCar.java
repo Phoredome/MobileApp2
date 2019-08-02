@@ -33,7 +33,7 @@ public class CreateCar extends AppCompatActivity {
         b = i.getExtras();
         a = i.getExtras();
 
-        String uName = a.getString("user");
+        String userId = a.getString("userId");
         Boolean status = b.getBoolean("status");
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
