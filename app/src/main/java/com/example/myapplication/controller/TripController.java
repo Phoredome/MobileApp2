@@ -16,22 +16,17 @@ import java.util.Calendar;
 public class TripController
 {
     CarController cc;
-    CarDAO cd;
     MapController mc;
     TripDAO td;
-    UserDAO ud;
 
     public TripController(Context context) {
         cc = new CarController(context);
-        cd = new CarDAO(context);
         mc = new MapController();
         td = new TripDAO(context);
-        ud = new UserDAO(context);
-
     }
 
 
-    public void addTrip(Context context, Car c,String user, String address)
+    public void addTrip(Context context, Car c,Integer user, String address)
     {
         LatLng ll = mc.getLocationFromAddress(context, address);
 
@@ -46,14 +41,14 @@ public class TripController
         //td.addTrip(c.getCarID(),ud.getUser(user).getUserId(),c.getCostOfRunning()*c.getDistance(),c.getDistance(), Calendar.getInstance().getTime(),c.getCoordX(),c.getCoordY(), ll.latitude, ll.longitude);
     }
 
-    public ArrayList<Trip> getUserTrip(String user)
+    public ArrayList<Trip> getUserTrip(Integer userId)
     {
         ArrayList<Trip> trip = td.getAllTrips();
         ArrayList<Trip> userTrip = null;
 
         for (Trip t: trip)
         {
-            if(t.getUserId() == ud.getUser(user).getUserId())
+            if(t.getUserId() == td.getTripByUserId(userId).getUserId())
                 userTrip.add(t);
         }
         return userTrip;
