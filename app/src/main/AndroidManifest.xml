@@ -67,6 +67,11 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
+            android:name=".border.pages.EditCar"
+            android:label="Edit Car"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
             android:name=".border.pages.AdminCarInfo"
             android:label="AdminCarInfo"
             android:theme="@style/AppTheme.NoActionBar" />

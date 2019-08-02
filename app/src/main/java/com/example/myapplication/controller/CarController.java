@@ -82,6 +82,21 @@ public class CarController implements GetDistanceProbe.DistanceListener{
 
         return cd.addCar(costOfRunning, seats, doors, serviceTime, kmsRun, kmSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
     }
+    public Boolean updateCar(int carNum,
+                             double costOfRunning,
+                             int seats,
+                             int doors,
+                             int serviceTime,
+                             double kmsRun,
+                             double kmSinceLastService,
+                             String vehicleType,
+                             String licensePlate,
+                             boolean inUse,
+                             boolean inService,
+                             double coordX,
+                             double coordY) {
+        return cd.updateCarInfo(carNum,costOfRunning,seats,doors,serviceTime,kmsRun,kmSinceLastService,vehicleType,licensePlate,inUse,inService,coordX,coordY);
+    }
 
     public int validateCars(String license, Double costOfRun)
     {
