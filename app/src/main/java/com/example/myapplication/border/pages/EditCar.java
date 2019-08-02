@@ -145,7 +145,7 @@ public class EditCar extends AppCompatActivity {
 
                 switch (cc.validateCars(license.getText().toString(), Double.parseDouble(costRunTxt.getText().toString()))) {
                     case 0:
-                        if (cc.check(costRunTxt.getText().toString())) {
+                        if (cc.check(license.getText().toString(), costRunTxt.getText().toString())) {
                             editingCar();
                         } else
                             Toast.makeText(getBaseContext(), "Editing a car failed", Toast.LENGTH_LONG).show();

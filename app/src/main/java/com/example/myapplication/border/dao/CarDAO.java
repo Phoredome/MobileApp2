@@ -31,6 +31,15 @@ public class CarDAO {
         return null;
     }
 
+    public Car getCarByLicense(String license) {
+        ArrayList<Car> cars = getAllCars();
+        for(Car c : cars)
+            if(license.equals(c.getLicensePlate()))
+                return c;
+        return null;
+    }
+
+
     public Car getCarByLocation(LatLng ll)
     {
         Double x = ll.latitude;
@@ -173,7 +182,7 @@ public class CarDAO {
         values.put("vehicleType", vehicleType);
         values.put("licensePlate", licensePlate);
         values.put("inUse", inUse);
-        values.put("inService", inService);
+        values.put("inActiveService", inService);
         values.put("coordX", coordX);
         values.put("coordY", coordY);
 
