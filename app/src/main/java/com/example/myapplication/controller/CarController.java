@@ -208,6 +208,11 @@ public class CarController{
         }
     }
 
+    public void getDistanceFromBase(GetDistanceProbe.DistanceListener dlistener)
+    {
+        Car c = null;
+        getCarDistances(dlistener, c,49.232000, -123.023000);}
+
     public void getCarDistances(GetDistanceProbe.DistanceListener dlistener, Car c, double x, double y)
     {
         ArrayList<Car> carList = cd.getAllCars();
@@ -305,15 +310,15 @@ public class CarController{
             String mSite = assembleURL(from, to);
             String result = reachSite(new URL(mSite));
 
-            car.setDistance(extractDistance(result));
+            c.setDistance(extractDistance(result));
 
-            return car;
+            return c;
         }
 
         //ASync Methods
     //===========================================================================================================================
         private String site = "https://www.mapquestapi.com/directions/v2/route?";
-        private String myKey = "c8ZKDbXkXeFKJh8ACe0R2zSQxBbVo7OF";
+        private String myKey = "2WhLFPJWrtuhfaYnCdu00uDLpf5aYVa1";
 
 
         public String assembleURL(String from, String to) {
