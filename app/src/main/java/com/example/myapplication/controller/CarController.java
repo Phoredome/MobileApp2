@@ -220,27 +220,15 @@ public class CarController{
     public void getDistanceFromBase(GetDistanceProbe.DistanceListener dlistener)
     {
         Car c = null;
-        getCarDistances(dlistener, c,49.232000, -123.023000);}
+        getCarDistances(dlistener, c,49.232000, -123.023000);
+    }
+
 
     public void getCarDistances(GetDistanceProbe.DistanceListener dlistener, Car c, double x, double y)
     {
-        ArrayList<Car> carList = cd.getAllCars();
-        ArrayList<Future<Car>> futuristicCars = new ArrayList<>();
-
-        ExecutorService pool = Executors.newCachedThreadPool();
-        
-        for (Car d : carList) {
-            if(!d.equals(c)) {
-                double x2 = d.getCoordX();
-                double y2 = d.getCoordY();
-
-                futuristicCars.add(pool.submit(new DistanceCallable(d, x, y, x2, y2)));
-            }
-            //give me distance of car from location
-            //TODO*/
-        }
         GetDistanceProbe gdp = new GetDistanceProbe(dlistener);
-        gdp.execute(futuristicCars);
+        gdp.setOrigin(x, y);
+        gdp.execute(cd.getAllCars());
 
     }
 
@@ -287,108 +275,9 @@ public class CarController{
             cd.updateCar(c.getCarID(), x, y);
         }
     }
-
     /*@Override
     public void processFinish(String output) {
     }*/
 //==================================================================================================
-    private class DistanceCallable implements Callable<Car>
-    {
-        Double x1;
-        Double y1;
-        Double x2;
-        Double y2;
-
-        Car c;
-
-        public DistanceCallable(Car c, Double x1, Double y1, Double x2, Double y2) {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-
-            this.c = c;
-        }
-
-        @Override
-        public Car call() throws Exception
-        {
-            String from = x1 + "," + y1;
-            String to = x2 + "," + y2;
-
-            String mSite = assembleURL(from, to);
-            String result = reachSite(new URL(mSite));
-
-            c.setDistance(extractDistance(result));
-
-            return c;
-        }
-
-        //ASync Methods
-    //===========================================================================================================================
-        private String site = "https://www.mapquestapi.com/directions/v2/route?";
-        private String myKey = "2WhLFPJWrtuhfaYnCdu00uDLpf5aYVa1";
-
-
-        public String assembleURL(String from, String to) {
-            String result = "";
-            result = site + "key=" + myKey + "&from=" + from + "&to=" + to + "&outFormat=json&ambiguities=ignore&routeType=fastest";
-
-            return result;
-        }
-
-        protected String reachSite(URL url) {
-            try {
-                // This is getting the url from the string we passed in
-
-                // Create the urlConnection
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setDoInput(true);
-
-                urlConnection.setRequestProperty("Content-Type", "application/json");
-
-                int statusCode = urlConnection.getResponseCode();
-
-                if (statusCode ==  200) {
-
-                    InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-
-                    BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    try {
-                        while((line = bufferedReader.readLine()) != null) {
-                            sb.append(line);
-                        }
-                    } catch (IOException e) {
-                        Log.d(TAG, e.getMessage());
-                    }
-                    Log.d(TAG, sb.toString());
-                    return sb.toString();
-
-                } else {
-                    // Status code is not 200
-                    // Do something to handle the error
-                }
-
-            } catch (Exception e) {
-                Log.d(TAG, e.getMessage());
-            }
-            return "";
-        }
-
-        private Double extractDistance(String result)
-        {
-            String dist = null;
-            try {
-                JSONObject jo = new JSONObject(result);
-                dist = jo.getJSONObject("route").getString("distance");
-
-            } catch (JSONException e) {
-                Log.d("error", e.getMessage());
-            }
-            return Double.parseDouble(dist);
-        }
-    }
 }
 
