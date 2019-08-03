@@ -53,7 +53,6 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
         ExecutorService pool = Executors.newCachedThreadPool();
         Log.d("inside do in background", "do in background");
 
-
         /*for (Car d : carList) {
             if(!d.equals(c)) {
 
@@ -81,7 +80,7 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
         {
             callDistance(x,y,car);
         }
-        
+
         for (int i = 0; i < LISTSIZE; i++)
         {
             Car c = null;

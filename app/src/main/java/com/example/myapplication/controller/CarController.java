@@ -145,7 +145,7 @@ public class CarController{
                 for (int i = 0; i < carList.size(); i++) {
                     Car c = carList.get(i);
                         if(c.isInActiveService()&&!c.isInUse()&&c.isInStation())
-                            if (s.getLocationx() == c.getCoordX() && s.getLocationy() == c.getCoordY()) {
+                            if (s.getLocationx() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
                             count++;
 
                         }
