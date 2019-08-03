@@ -34,6 +34,7 @@ public class CreateCar extends AppCompatActivity {
         b = i.getExtras();
         a = i.getExtras();
 
+        cc = new CarController(getApplicationContext());
         Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
 
@@ -92,8 +93,6 @@ public class CreateCar extends AppCompatActivity {
                 EditText license = findViewById(R.id.licenseP);
                 EditText costRunTxt = findViewById(R.id.costRun);
 
-                CarController cc = new CarController(getApplicationContext());
-
                 switch (cc.validateCars(license.getText().toString(), Double.parseDouble(costRunTxt.getText().toString()))) {
                     case 0:
                         if (cc.checkToAdd()) {
@@ -112,7 +111,7 @@ public class CreateCar extends AppCompatActivity {
             }
         });
     }
-
+//====================================================================================================
     public void addingCar() {
 
             Button add = findViewById(R.id.addCarBtn);

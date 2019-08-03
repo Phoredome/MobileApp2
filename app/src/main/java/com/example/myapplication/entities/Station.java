@@ -9,6 +9,7 @@ public class Station
 
     private boolean stationActive;
 
+
     public Station(int stationID, int carsAtStation, int locationx, int locationy, boolean stationActive) {
         this.stationID = stationID;
         this.carsAtStation = carsAtStation;
