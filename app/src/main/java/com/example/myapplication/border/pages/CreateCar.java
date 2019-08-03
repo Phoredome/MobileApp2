@@ -22,6 +22,7 @@ public class CreateCar extends AppCompatActivity {
     public CarController cc;
     Bundle a, b;
     Integer seats, door;
+    boolean inUse, inServ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class CreateCar extends AppCompatActivity {
         b = i.getExtras();
         a = i.getExtras();
 
+        cc = new CarController(getApplicationContext());
         Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
 
@@ -65,13 +67,20 @@ public class CreateCar extends AppCompatActivity {
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(CreateCar.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
+
                 if (i != null) {
 
                     i.putExtras(b);
@@ -79,10 +88,10 @@ public class CreateCar extends AppCompatActivity {
                     startActivity(i);
 
                 }
+
                 return false;
             }
         });
-
 
         Button addCar = findViewById(R.id.addCarBtn);
 
@@ -91,8 +100,6 @@ public class CreateCar extends AppCompatActivity {
             public void onClick(View view) {
                 EditText license = findViewById(R.id.licenseP);
                 EditText costRunTxt = findViewById(R.id.costRun);
-
-                CarController cc = new CarController(getApplicationContext());
 
                 switch (cc.validateCars(license.getText().toString(), Double.parseDouble(costRunTxt.getText().toString()))) {
                     case 0:
@@ -112,7 +119,7 @@ public class CreateCar extends AppCompatActivity {
             }
         });
     }
-
+//====================================================================================================
     public void addingCar() {
 
             Button add = findViewById(R.id.addCarBtn);
@@ -133,9 +140,18 @@ public class CreateCar extends AppCompatActivity {
             RadioButton useYesBtn = findViewById(R.id.radYes);
             RadioButton servYesBtn = findViewById(R.id.radYes2);
 
-            boolean inUse = useYesBtn.isChecked();
-            boolean inServ = servYesBtn.isChecked();
-
+            if (useYesBtn.isChecked()){
+                inUse = true;
+            }
+            else {
+                inUse = false;
+            }
+            if (servYesBtn.isChecked()){
+                inServ = true;
+            }
+            else {
+                inServ = false;
+            }
             String licP = license.getText().toString();
             String vehicleType = vehicleTypeSpin.getSelectedItem().toString();
             Double kmRun = Double.parseDouble(kmRunTxt.getText().toString());
@@ -154,6 +170,7 @@ public class CreateCar extends AppCompatActivity {
             }
             if ((cc.addCar(costR, seats, door, servTime, kmRun, kmSinceLastService,
                     vehicleType, licP, inUse, inServ, coordX, coordY))) {
+                Toast.makeText(this,"Car created", Toast.LENGTH_SHORT).show();
                 this.finish();
 
             }

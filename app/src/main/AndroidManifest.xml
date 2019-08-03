@@ -62,7 +62,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".border.pages.AdminMap"
+            android:name=".border.pages.AdminCarController"
             android:label="AdminMap"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 

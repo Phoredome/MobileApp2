@@ -1,6 +1,7 @@
 package com.example.myapplication.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
@@ -31,6 +32,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 
 public class MapController // extends AsyncTask<String, String, String>
 {
@@ -87,6 +89,7 @@ public class MapController // extends AsyncTask<String, String, String>
         List<Address> address;
         LatLng ll = null;
 
+        Log.d("Map controller", strAddress);
         try {
             // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
@@ -95,10 +98,12 @@ public class MapController // extends AsyncTask<String, String, String>
             }
 
             Address location = address.get(0);
-            ll = new LatLng(location.getLatitude(), location.getLongitude() );
+            Log.i("PlaceInfo", address.get(0).toString());
+            Log.d("Map controller ", location.getLatitude() + location.getLongitude() + (""));
+
+            ll = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
-
             ex.printStackTrace();
         }
 

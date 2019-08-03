@@ -1,10 +1,8 @@
 package com.example.myapplication.border.pages;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.solver.widgets.Helper;
 
 import com.example.myapplication.R;
 import com.example.myapplication.border.dao.UserDAO;
@@ -89,6 +86,7 @@ public class MyAccount extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+
                 int id = menuItem.getItemId();
                 Intent i = null;
 
@@ -102,8 +100,14 @@ public class MyAccount extends AppCompatActivity {
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(MyAccount.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
@@ -117,8 +121,8 @@ public class MyAccount extends AppCompatActivity {
                     startActivity(i);
 
                 }
-                return false;
 
+                return false;
             }
         });
 
@@ -146,6 +150,14 @@ public class MyAccount extends AppCompatActivity {
 
 
 
+        });
+
+        Button cancel = (Button)findViewById(R.id.cancelBtn);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
     }
 

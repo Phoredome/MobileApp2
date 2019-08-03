@@ -90,10 +90,11 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+
                 int id = menuItem.getItemId();
                 Intent i = null;
 
-                switch (id){
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
@@ -103,23 +104,29 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(TripHistory.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
 
-                if(i!=null) {
+                if (i != null) {
 
                     i.putExtras(b);
                     i.putExtras(a);
                     startActivity(i);
 
                 }
-                return false;
 
+                return false;
             }
         });
 

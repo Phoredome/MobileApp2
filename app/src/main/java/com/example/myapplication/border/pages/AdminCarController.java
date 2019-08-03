@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.R;
+import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
@@ -27,11 +28,12 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
+public class AdminCarController extends AppCompatActivity implements OnMapReadyCallback  {
 
     private MapView mapView;
     private GoogleMap gmap;
     Bundle a,b;
+    InfoWindow iw;
     CarController cc;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -94,13 +96,20 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(AdminCarController.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
+
                 if (i != null) {
 
                     i.putExtras(b);
@@ -108,6 +117,7 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
                     startActivity(i);
 
                 }
+
                 return false;
             }
         });
@@ -122,7 +132,13 @@ public class AdminMap extends AppCompatActivity implements OnMapReadyCallback  {
                 finish();
             }
         });
+
+
     }
+
+
+
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

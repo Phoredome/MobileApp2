@@ -26,11 +26,10 @@ public class TripController
     }
 
 
-    public void addTrip(Context context, Car c,Integer user, String address)
+    public void addTrip(Context context, Car c,User user, LatLng ll)
     {
-        LatLng ll = mc.getLocationFromAddress(context, address);
 
-        int num = getHighestTripNum(getUserTrip(user));
+        int num = getHighestTripNum(getUserTrip(user.getUserId()));
 
         cc.getTripDistance(c,ll);
 

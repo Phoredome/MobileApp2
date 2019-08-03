@@ -39,6 +39,13 @@ public class CarDAO {
         return null;
     }
 
+    public int getCarCount() {
+        String selectQuery = "SELECT * FROM Car;";
+        Cursor cursor = rdb.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 
     public Car getCarByLocation(LatLng ll)
     {

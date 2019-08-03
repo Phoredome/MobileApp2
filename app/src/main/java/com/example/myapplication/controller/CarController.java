@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
+import com.example.myapplication.border.dao.StationDAO;
 import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
+import com.example.myapplication.entities.Station;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -33,6 +35,7 @@ public class CarController{
     public CarDAO cd;
     public MapController mc;
     public CreateCar cc;
+    public StationDAO sd;
     public Car car;
 
     double depotx = 0.00;
@@ -47,6 +50,7 @@ public class CarController{
     public CarController(Context context) {
         cd = new CarDAO(context);
         mc = new MapController();
+        sd = new StationDAO(context);
 
         this.context = context;
     }
@@ -129,26 +133,24 @@ public class CarController{
 
     }
     // will use other methods to aid in redistributing unused car locations
-    public Boolean equalize()
+    public Boolean countOfCarsInStation()
     {
         //TODO
         ArrayList<Car> carList = cd.getAllCars();
-        for (int i = 0; i < carList.size(); i++)
-        {
-            Car c = carList.get(i);
+        ArrayList<Station> stationList = sd.getAllStations();
+        int[][] stationCars = new int[sd.getStationCount()][cd.getCarCount()];
+        int count = 0;
+        for(Station s : stationList)
+            if(s.isStationActive()) {
+                for (int i = 0; i < carList.size(); i++) {
+                    Car c = carList.get(i);
+                        if(c.isInActiveService()&&!c.isInUse()&&c.isInStation())
+                            if (s.getLocationx() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
+                            count++;
 
-            double x1 = c.getCoordX();
-            double y1 = c.getCoordY();
-
-            for(int j = i+1; j < carList.size(); j++)
-            {
-                Car d = carList.get(j);
-
-                double x2 = d.getCoordX();
-                double y2 = d.getCoordY();
-
-
-            }
+                        }
+                        s.setCarsAtStation(count);
+                    }
 
         }
         // if cars are too close to each other, move the furthest one from base away
@@ -187,7 +189,7 @@ public class CarController{
     /**
      * @param car Id of car intended to be sent to depot for repairs/servicing
      */
-    public boolean carToDepot(Car car)
+    public boolean serviceCar(Car car)
     {
         if(!car.isInUse())
         {
@@ -228,6 +230,7 @@ public class CarController{
     {
         GetDistanceProbe gdp = new GetDistanceProbe(dlistener);
         gdp.setOrigin(x, y);
+        Log.d("Car controller - get car distances", "origin set");
         gdp.execute(cd.getAllCars());
 
     }
