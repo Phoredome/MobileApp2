@@ -34,11 +34,11 @@ public class Station
         this.carsAtStation = carsAtStation;
     }
 
-    public double getLocationx() {
+    public double getLocationX() {
         return locationX;
     }
 
-    public void setLocationx(double locationx) {
+    public void setLocationX(double locationx) {
         this.locationX = locationx;
     }
 
