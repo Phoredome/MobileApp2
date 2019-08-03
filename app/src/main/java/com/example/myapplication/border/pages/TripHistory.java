@@ -19,6 +19,7 @@ import com.example.myapplication.border.info.RecyclerItemClickListener;
 import com.example.myapplication.controller.CarController;
 
 import com.example.myapplication.controller.RecyclerViewAdapter;
+import com.example.myapplication.controller.RecyclerViewAdapter_Trip;
 import com.example.myapplication.controller.TripController;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
@@ -187,8 +188,8 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         gmap = googleMap;
 
         RecyclerView rv2 = findViewById(R.id.recyclerView2);
-        ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
+        ArrayList<Trip> allTrips = tc.getAllTrips();
+        RecyclerViewAdapter_Trip adapter = new RecyclerViewAdapter_Trip(allTrips, getApplication(),gmap);
         rv2.setLayoutManager(new LinearLayoutManager(this));
         rv2.setAdapter(adapter);
 

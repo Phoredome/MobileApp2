@@ -25,7 +25,9 @@ public class TripController
         td = new TripDAO(context);
     }
 
-
+    public ArrayList<Trip> getAllTrips() {
+        return td.getAllTrips();
+    }
     public void addTrip(Context context, Car c,User user, LatLng ll)
     {
 

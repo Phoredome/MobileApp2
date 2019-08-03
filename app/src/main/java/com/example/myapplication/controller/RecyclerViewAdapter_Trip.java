@@ -26,19 +26,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.View_Holder> {
+public class RecyclerViewAdapter_Trip extends RecyclerView.Adapter<RecyclerViewAdapter_Trip.View_Holder> {
 
-    public ArrayList<Car> list;
+    public ArrayList<Trip> list;
     public Context context;
     public GoogleMap gmap;
 
-    public RecyclerViewAdapter(ArrayList<Car> list, Context context, GoogleMap gmap) {
+    public RecyclerViewAdapter_Trip(ArrayList<Trip> list, Context context, GoogleMap gmap) {
         this.list = list;
         this.context = context;
         this.gmap = gmap;
     }
 
-    public RecyclerViewAdapter(ArrayList<Car> list, Context context) {
+    public RecyclerViewAdapter_Trip(ArrayList<Trip> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -63,15 +63,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
 
         TextView textView = holder.title;
-        textView.setText(String.valueOf(list.get(position).getCarID()));
+        textView.setText(String.valueOf(list.get(position).getTripId()));
 
         TextView description = holder.description;
-        description.setText(list.get(position).getVehicleType());
+        description.setText(list.get(position).getDateOfTrip());
         if (gmap !=null) {
             holder.setClickListener(new ItemClickListener() {
                 @Override
                 public void onClick(View view, int position) {
-                    LatLng MLatLng = new LatLng(list.get(position).getCoordX(), list.get(position).getCoordY());
+                    LatLng MLatLng = new LatLng(list.get(position).getStartingX(), list.get(position).getStartingY());
                     CameraPosition newCameraPosition = new CameraPosition.Builder().target(MLatLng).build();
                     gmap.moveCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition));
                 }
@@ -93,14 +93,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // Insert a new item to the RecyclerView on a predefined position
-    public void insert(int position, Car car) {
-        list.add(position, car);
+    public void insert(int position, Trip trip) {
+        list.add(position, trip);
         notifyItemInserted(position);
     }
 
     // Remove a RecyclerView item containing a specified Data object
-    public void remove(Car car) {
-        int position = list.indexOf(car);
+    public void remove(Trip trip) {
+        int position = list.indexOf(trip);
         list.remove(position);
         notifyItemRemoved(position);
     }
