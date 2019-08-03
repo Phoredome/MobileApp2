@@ -22,6 +22,7 @@ public class CreateCar extends AppCompatActivity {
     public CarController cc;
     Bundle a, b;
     Integer seats, door;
+    boolean inUse, inServ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,9 +133,18 @@ public class CreateCar extends AppCompatActivity {
             RadioButton useYesBtn = findViewById(R.id.radYes);
             RadioButton servYesBtn = findViewById(R.id.radYes2);
 
-            boolean inUse = useYesBtn.isChecked();
-            boolean inServ = servYesBtn.isChecked();
-
+            if (useYesBtn.isChecked()){
+                inUse = true;
+            }
+            else {
+                inUse = false;
+            }
+            if (servYesBtn.isChecked()){
+                inServ = true;
+            }
+            else {
+                inServ = false;
+            }
             String licP = license.getText().toString();
             String vehicleType = vehicleTypeSpin.getSelectedItem().toString();
             Double kmRun = Double.parseDouble(kmRunTxt.getText().toString());
@@ -153,6 +163,7 @@ public class CreateCar extends AppCompatActivity {
             }
             if ((cc.addCar(costR, seats, door, servTime, kmRun, kmSinceLastService,
                     vehicleType, licP, inUse, inServ, coordX, coordY))) {
+                Toast.makeText(this,"Car created", Toast.LENGTH_SHORT).show();
                 this.finish();
 
             }
