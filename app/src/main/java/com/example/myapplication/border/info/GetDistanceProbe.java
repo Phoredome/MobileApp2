@@ -77,6 +77,11 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
             }
         }*/
 
+        for (Car car : params[0])
+        {
+            callDistance(x,y,car);
+        }
+        
         for (int i = 0; i < LISTSIZE; i++)
         {
             Car c = null;
