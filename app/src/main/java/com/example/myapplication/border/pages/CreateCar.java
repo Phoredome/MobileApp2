@@ -21,6 +21,7 @@ public class CreateCar extends AppCompatActivity {
 
     public CarController cc;
     Bundle a, b;
+    Integer seats, door;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,15 +92,14 @@ public class CreateCar extends AppCompatActivity {
                 EditText license = findViewById(R.id.licenseP);
                 EditText costRunTxt = findViewById(R.id.costRun);
 
-
                 CarController cc = new CarController(getApplicationContext());
 
                 switch (cc.validateCars(license.getText().toString(), Double.parseDouble(costRunTxt.getText().toString()))) {
                     case 0:
-                        if (cc.check(license.getText().toString(), costRunTxt.getText().toString())) {
+                        if (cc.checkToAdd()) {
                             addingCar();
                         } else
-                            Toast.makeText(getBaseContext(), "Adding a car failed", Toast.LENGTH_LONG).show();
+                          Toast.makeText(getBaseContext(), "Adding a car failed", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         license.setError("Enter a valid license plate number longer than 6 characters");
@@ -133,8 +133,8 @@ public class CreateCar extends AppCompatActivity {
             RadioButton useYesBtn = findViewById(R.id.radYes);
             RadioButton servYesBtn = findViewById(R.id.radYes2);
 
-            boolean inUse = useYesBtn.isSelected();
-            boolean inServ = servYesBtn.isSelected();
+            boolean inUse = useYesBtn.isChecked();
+            boolean inServ = servYesBtn.isChecked();
 
             String licP = license.getText().toString();
             String vehicleType = vehicleTypeSpin.getSelectedItem().toString();
@@ -146,10 +146,13 @@ public class CreateCar extends AppCompatActivity {
 
             Double costR = Double.parseDouble(costRunTxt.getText().toString());
 
-            Integer seats = Integer.parseInt(seatsSpin.getSelectedItem().toString());
-            Integer door = Integer.parseInt(doorsSpin.getSelectedItem().toString());
-
-            if (!(cc.addCar(costR, seats, door, servTime, kmRun, kmSinceLastService,
+            if (seatsSpin.getSelectedItemPosition() != 0) {
+                seats = Integer.parseInt(seatsSpin.getSelectedItem().toString().substring(0,1));
+            }
+            if (doorsSpin.getSelectedItemPosition() != 0) {
+                door = Integer.parseInt(doorsSpin.getSelectedItem().toString().substring(0,1));
+            }
+            if ((cc.addCar(costR, seats, door, servTime, kmRun, kmSinceLastService,
                     vehicleType, licP, inUse, inServ, coordX, coordY))) {
                 this.finish();
 

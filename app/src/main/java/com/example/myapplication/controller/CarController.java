@@ -78,6 +78,10 @@ public class CarController{
         }
         return false;
     }
+    public Boolean checkToAdd() {
+        return true;
+    }
+
 
     public Boolean addCar(double costOfRunning,
                                  int seats,

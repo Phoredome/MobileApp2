@@ -169,7 +169,7 @@ public class CarDAO {
     }
 
     public boolean updateCarInfo(int carNum, double costOfRunning, int seats, int doors, int serviceTime,
-                              double kmsRun, double kmSinceLastService, String vehicleType, String licensePlate,
+                              double kmsRun, double kmsSinceLastService, String vehicleType, String licensePlate,
                               boolean inUse, boolean inService, double coordX, double coordY){
 
         ContentValues values = new ContentValues();
@@ -178,7 +178,7 @@ public class CarDAO {
         values.put("doors", doors);
         values.put("serviceTime", serviceTime);
         values.put("kmsRun", kmsRun);
-        values.put("kmSinceLastService", kmSinceLastService);
+        values.put("kmsSinceLastService", kmsSinceLastService);
         values.put("vehicleType", vehicleType);
         values.put("licensePlate", licensePlate);
         values.put("inUse", inUse);
