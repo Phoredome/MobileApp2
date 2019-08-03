@@ -70,13 +70,20 @@ public class EditCar extends AppCompatActivity {
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(EditCar.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
+
                 if (i != null) {
 
                     i.putExtras(b);
@@ -84,9 +91,11 @@ public class EditCar extends AppCompatActivity {
                     startActivity(i);
 
                 }
+
                 return false;
             }
         });
+
         EditText license = findViewById(R.id.licenseP_ed);
         license.setText(car.getLicensePlate());
         EditText costRunTxt = findViewById(R.id.costRun_ed);

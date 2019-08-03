@@ -15,8 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.CarController;
-import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.controller.RecyclerViewListAdapter;
 import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
@@ -31,11 +31,13 @@ public class AdminCarInfo extends AppCompatActivity {
     int counter, counter1;
     RecyclerView rv;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_admin_info);
+
         cc = new CarController(getApplicationContext());
 
         Intent i = getIntent();
@@ -71,6 +73,8 @@ public class AdminCarInfo extends AppCompatActivity {
             }
         }
 
+
+
         final NavigationView navigationView = findViewById(R.id.nav_admin_info);
 
         if(status){
@@ -84,10 +88,11 @@ public class AdminCarInfo extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+
                 int id = menuItem.getItemId();
                 Intent i = null;
 
-                switch (id){
+                switch (id) {
                     case R.id.nav_home:
                         i = new Intent(getApplicationContext(), MainActivity.class);
                         break;
@@ -97,23 +102,29 @@ public class AdminCarInfo extends AppCompatActivity {
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(AdminCarInfo.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
                         break;
                 }
 
-                if(i!=null) {
+                if (i != null) {
 
                     i.putExtras(b);
                     i.putExtras(a);
                     startActivity(i);
 
                 }
-                return false;
 
+                return false;
             }
         });
 
@@ -123,9 +134,7 @@ public class AdminCarInfo extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-
         Button createCar = findViewById(R.id.createCarBtn);
-
         createCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,5 +146,8 @@ public class AdminCarInfo extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
     }
 }
