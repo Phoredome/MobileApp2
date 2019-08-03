@@ -183,7 +183,7 @@ public class CarController{
     /**
      * @param car Id of car intended to be sent to depot for repairs/servicing
      */
-    public boolean carToDepot(Car car)
+    public boolean serviceCar(Car car)
     {
         if(!car.isInUse())
         {

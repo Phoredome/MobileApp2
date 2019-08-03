@@ -2,13 +2,13 @@ package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.border.info.GetDistanceProbe;
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         cc = new CarController(getApplicationContext());
+        mc = new MapController();
 
 
         Intent i = getIntent();
@@ -100,8 +100,14 @@ public class MainActivity extends AppCompatActivity
                     case R.id.nav_history:
                         i = new Intent(getApplicationContext(), TripHistory.class);
                         break;
+                    case R.id.nav_logout:
+                        i = new Intent(MainActivity.this, LoginPage.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                        break;
                     case R.id.nav_car_controller:
-                        i = new Intent(getApplicationContext(), AdminMap.class);
+                        i = new Intent(getApplicationContext(), AdminCarController.class);
                         break;
                     case R.id.nav_car_info:
                         i = new Intent(getApplicationContext(), AdminCarInfo.class);
@@ -129,7 +135,6 @@ public class MainActivity extends AppCompatActivity
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
-
 
         Spinner carSelect = findViewById(R.id.carSelect);
         ArrayList<String> carTypes = cc.getCarTypes();
@@ -169,15 +174,19 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                /*final EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
+               EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
+               String address = usernameInput.getText().toString();
+               Log.d("mainactivity onclick ", address);
 
-                LatLng latLng = mc.getLocationFromAddress(getApplicationContext(), usernameInput.getText().toString());
+               LatLng latLng = mc.getLocationFromAddress(MainActivity.this,address);
 
-                if(latLng != null) {
+               Log.d("mainactivity", "on search btn click; " + latLng.latitude+ latLng.longitude);
+
+               if(latLng != null) {
                     gmap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
 
-                cc.getNearCarsFromLocation(MainActivity.this, latLng.latitude, latLng.longitude);*/
+               cc.getNearCarsFromLocation(MainActivity.this, latLng.latitude, latLng.longitude);
             }
         });
 
@@ -186,6 +195,8 @@ public class MainActivity extends AppCompatActivity
         cc.getDistanceFromBase(MainActivity.this);
        //cc.getCarDistance(MainActivity.this);
 
+        //LatLng ll = mc.getLocationFromAddress(MainActivity.this, "London");
+        // Log.d("MA LocationFrom", ll + "");
     }
 
     @Override
