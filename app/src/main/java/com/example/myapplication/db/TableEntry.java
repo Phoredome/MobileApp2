@@ -33,6 +33,7 @@ public class TableEntry implements BaseColumns {
     public static final String CAR_COLUMN_NAME_IN_SERVICE = "inActiveService";
     public static final String CAR_COLUMN_NAME_COORDX = "coordX";
     public static final String CAR_COLUMN_NAME_COORDY = "coordY";
+    public static final String CAR_COLUMN_NAME_IN_STATION = "inStation";
 
     public static final String TRIP_TABLE_NAME = "Trip";
     public static final String TRIP_COLUMN_NAME_TRIP_ID = "tripId";
@@ -46,6 +47,13 @@ public class TableEntry implements BaseColumns {
     public static final String TRIP_COLUMN_NAME_STARTINGX = "startingX";
     public static final String TRIP_COLUMN_NAME_ENDINGY = "endingY";
     public static final String TRIP_COLUMN_NAME_ENDINGX = "endingX";
+
+    public static final String STATION_TABLE_NAME = "Station";
+    public static final String STATION_COLUMN_NAME_STATION_ID = "stationId";
+    public static final String STATION_COLUMN_NAME_CARS_AT_STATION = "carsAtStation";
+    public static final String STATION_COLUMN_NAME_LOCATION_X = "locationX";
+    public static final String STATION_COLUMN_NAME_LOCATION_Y = "locationY";
+    public static final String STATION_COLUMN_NAME_STATION_ACTIVE = "stationActive";
 
 
 }

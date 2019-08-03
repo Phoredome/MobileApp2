@@ -2,6 +2,7 @@ package com.example.myapplication.border.pages;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,8 @@ public class EditCar extends AppCompatActivity {
 
     public CarController cc;
     Bundle a, b;
-    Integer carId;
+    Integer carId, seats, door;
+    boolean inUse, inServ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +156,7 @@ public class EditCar extends AppCompatActivity {
 
                 switch (cc.validateCars(license.getText().toString(), Double.parseDouble(costRunTxt.getText().toString()))) {
                     case 0:
-                        if (cc.check(costRunTxt.getText().toString())) {
+                        if (cc.check(license.getText().toString(), costRunTxt.getText().toString())) {
                             editingCar();
                         } else
                             Toast.makeText(getBaseContext(), "Editing a car failed", Toast.LENGTH_LONG).show();
@@ -191,9 +193,21 @@ public class EditCar extends AppCompatActivity {
             RadioButton useYesBtn = findViewById(R.id.radYes_ed);
             RadioButton servYesBtn = findViewById(R.id.radYes2_ed);
 
-            boolean inUse = useYesBtn.isSelected();
-            boolean inServ = servYesBtn.isSelected();
 
+            if (useYesBtn.isChecked()){
+                inUse = true;
+            }
+            else {
+                inUse = false;
+            }
+            if (servYesBtn.isChecked()){
+                inServ = true;
+            }
+            else {
+                inServ = false;
+            }
+
+            Log.d("inUse", String.valueOf(inUse));
             String licP = license.getText().toString();
             String vehicleType = vehicleTypeSpin.getSelectedItem().toString();
             Double kmRun = Double.parseDouble(kmRunTxt.getText().toString());
@@ -204,9 +218,13 @@ public class EditCar extends AppCompatActivity {
 
             Double costR = Double.parseDouble(costRunTxt.getText().toString());
 
-            Integer seats = Integer.parseInt(seatsSpin.getSelectedItem().toString());
-            Integer door = Integer.parseInt(doorsSpin.getSelectedItem().toString());
 
+            if (seatsSpin.getSelectedItemPosition() != 0) {
+                seats = Integer.parseInt(seatsSpin.getSelectedItem().toString().substring(0,1));
+            }
+            if (doorsSpin.getSelectedItemPosition() != 0) {
+                door = Integer.parseInt(doorsSpin.getSelectedItem().toString().substring(0,1));
+            }
             if ((cc.updateCar(carId, costR, seats, door, servTime, kmRun, kmSinceLastService,
                     vehicleType, licP, inUse, inServ, coordX, coordY))) {
                 this.finish();

@@ -31,6 +31,22 @@ public class CarDAO {
         return null;
     }
 
+    public Car getCarByLicense(String license) {
+        ArrayList<Car> cars = getAllCars();
+        for(Car c : cars)
+            if(license.equals(c.getLicensePlate()))
+                return c;
+        return null;
+    }
+
+    public int getCarCount() {
+        String selectQuery = "SELECT * FROM Car;";
+        Cursor cursor = rdb.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
     public Car getCarByLocation(LatLng ll)
     {
         Double x = ll.latitude;
@@ -160,7 +176,7 @@ public class CarDAO {
     }
 
     public boolean updateCarInfo(int carNum, double costOfRunning, int seats, int doors, int serviceTime,
-                              double kmsRun, double kmSinceLastService, String vehicleType, String licensePlate,
+                              double kmsRun, double kmsSinceLastService, String vehicleType, String licensePlate,
                               boolean inUse, boolean inService, double coordX, double coordY){
 
         ContentValues values = new ContentValues();
@@ -169,11 +185,11 @@ public class CarDAO {
         values.put("doors", doors);
         values.put("serviceTime", serviceTime);
         values.put("kmsRun", kmsRun);
-        values.put("kmSinceLastService", kmSinceLastService);
+        values.put("kmsSinceLastService", kmsSinceLastService);
         values.put("vehicleType", vehicleType);
         values.put("licensePlate", licensePlate);
         values.put("inUse", inUse);
-        values.put("inService", inService);
+        values.put("inActiveService", inService);
         values.put("coordX", coordX);
         values.put("coordY", coordY);
 

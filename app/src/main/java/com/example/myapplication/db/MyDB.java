@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.awt.font.TextAttribute;
+
 
 public class MyDB extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 2;
@@ -51,8 +53,9 @@ public class MyDB extends SQLiteOpenHelper {
                     TableEntry.CAR_COLUMN_NAME_KMS_SINCE_LAST_SERVICE + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_IN_USE + " NUMERIC," +
                     TableEntry.CAR_COLUMN_NAME_IN_SERVICE + " NUMERIC," +
-                    TableEntry.CAR_COLUMN_NAME_COORDX + " NUMERIC, " +
-                    TableEntry.CAR_COLUMN_NAME_COORDY + " NUMERIC)";
+                    TableEntry.CAR_COLUMN_NAME_COORDX + " NUMERIC," +
+                    TableEntry.CAR_COLUMN_NAME_COORDY + " NUMERIC," +
+                    TableEntry.CAR_COLUMN_NAME_IN_STATION + " NUMERIC)";
 
     private static final String SQL_CREATE_ENTRIES_TRIP =
             "CREATE TABLE " + TableEntry.TRIP_TABLE_NAME + " (" +
@@ -70,6 +73,14 @@ public class MyDB extends SQLiteOpenHelper {
                     "FOREIGN KEY(carId) REFERENCES Car(carId)," +
                     "FOREIGN KEY(userId) REFERENCES User(userId))";
 
+    private static final String SQL_CREATE_ENTRIES_STATION =
+            "CREATE TABLE " + TableEntry.STATION_TABLE_NAME + " (" +
+                    TableEntry.STATION_COLUMN_NAME_STATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    TableEntry.STATION_COLUMN_NAME_CARS_AT_STATION + " INTEGER," +
+                    TableEntry.STATION_COLUMN_NAME_LOCATION_X + " NUMERIC," +
+                    TableEntry.STATION_COLUMN_NAME_LOCATION_Y + " NUMERIC," +
+                    TableEntry.STATION_COLUMN_NAME_STATION_ACTIVE + " NUMERIC)";
+
     private static final String SQL_DELETE_ENTRIES_USER =
             "DROP TABLE IF EXISTS " + TableEntry.USER_TABLE_NAME;
 
@@ -78,6 +89,10 @@ public class MyDB extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_ENTRIES_TRIP =
             "DROP TABLE IF EXISTS " + TableEntry.TRIP_TABLE_NAME;
+
+
+    private static final String SQL_DELETE_ENTRIES_STATION =
+            "DROP TABLE IF EXISTS " + TableEntry.STATION_TABLE_NAME;
 
     private static final String SQL_INSERT_USER =
                     "insert into User (userName, password, firstName, lastName, email, phoneNumber, address, city, country, dateOfBirth, paymentOptions, status) " +
@@ -452,6 +467,7 @@ public class MyDB extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ENTRIES_USER);
         db.execSQL(SQL_CREATE_ENTRIES_CAR);
         db.execSQL(SQL_CREATE_ENTRIES_TRIP);
+        db.execSQL(SQL_CREATE_ENTRIES_STATION);
         db.execSQL(SQL_INSERT_USER);
         db.execSQL(SQL_INSERT_CAR);
         db.execSQL(SQL_INSERT_TRIP);
@@ -462,6 +478,7 @@ public class MyDB extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_ENTRIES_USER);
         db.execSQL(SQL_DELETE_ENTRIES_CAR);
         db.execSQL(SQL_DELETE_ENTRIES_TRIP);
+        db.execSQL(SQL_DELETE_ENTRIES_STATION);
         Log.d("MyDB","OnUpgrade");
         onCreate(db);
     }
