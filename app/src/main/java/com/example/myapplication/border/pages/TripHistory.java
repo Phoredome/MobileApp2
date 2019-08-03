@@ -18,6 +18,7 @@ import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.border.info.RecyclerItemClickListener;
 import com.example.myapplication.controller.CarController;
 
+import com.example.myapplication.controller.MapController;
 import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.controller.RecyclerViewAdapter_Trip;
 import com.example.myapplication.controller.TripController;
@@ -40,6 +41,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
     CarController cc;
     TripController tc;
     TripDAO td;
+    MapController mc;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     private Context context;
@@ -54,7 +56,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         cc = new CarController(getApplicationContext());
         tc = new TripController(getApplicationContext());
         td = new TripDAO(getApplicationContext());
-
+        mc = new MapController();
 
         Intent i = getIntent();
 
@@ -198,7 +200,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                     @Override public void onItemClick(View view, int position) {
                         TextView carHistory = findViewById(R.id.historyInfo);
 
-                        Trip t = td.getTripById(position);
+                        Trip t = td.getTripById(position+1);
                         StringBuilder sp = new StringBuilder();
                         sp.append("Trip id: " + t.getTripId()+ "\n");
                         sp.append("Trip date: " + t.getDateOfTrip()+ "\n");
@@ -207,7 +209,8 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                         sp.append("Trip kilometers: " + t.getKmsRunForTrip());
 
                        carHistory.setText(sp);
-
+                       mc.setMarker(gmap,"START", t.getStartingX(), t.getStartingY());
+                       mc.setMarker(gmap, "FINISH", t.getEndingX(), t.getEndingY());
                        gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(t.getStartingX(), t.getStartingY())));
                     }
                 })
