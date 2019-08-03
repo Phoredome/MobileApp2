@@ -109,6 +109,14 @@ public class MapController // extends AsyncTask<String, String, String>
 
         return ll;
     }
+
+    public void setMarker(GoogleMap map, String s,double xCoord, double yCoord)
+    {
+        map.addMarker(new MarkerOptions()
+                .position(new LatLng(xCoord, yCoord))
+                .title(s) //s = START or FINISH
+                .draggable(false));
+    }
 /*
     public CallAPI(){
         //set context variables if required
