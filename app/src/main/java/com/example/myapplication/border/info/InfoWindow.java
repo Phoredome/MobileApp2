@@ -92,7 +92,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             public void onClick(View view) {
                 Station s = sc.getStationById(0);
 
-                cc.moveCar(gmap, c, s.getLocationx(), s.getLocationy());
+                cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
 
             }
         });
