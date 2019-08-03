@@ -228,6 +228,7 @@ public class CarController{
     {
         GetDistanceProbe gdp = new GetDistanceProbe(dlistener);
         gdp.setOrigin(x, y);
+        Log.d("Car controller - get car distances", "origin set");
         gdp.execute(cd.getAllCars());
 
     }

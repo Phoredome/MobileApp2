@@ -51,6 +51,7 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
         ArrayList<Future<Car>> futuristicCars = new ArrayList<>();
 
         ExecutorService pool = Executors.newCachedThreadPool();
+        Log.d("inside do in background", "do in background");
 
 
         /*for (Car d : carList) {
@@ -86,6 +87,7 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
                 {
                     params[0].remove(j);
                     c = futureCar;
+
                 }
             }
             if(c != null)
