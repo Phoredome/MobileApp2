@@ -58,9 +58,15 @@ public class StationDAO
         cursor.close();
         return count;
     }
-    public Station getStationByID()
+    public Station getStationByID(int stationId)
     {
+        ArrayList<Station> stations = getAllStations();
         Station station = null;
+        for (Station s : stations) {
+            if (stationId == s.getStationId()) {
+                station = s;
+            }
+        }
         return station;
     }
 }
