@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity
 
         gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
-        InfoWindow infoAdapter = new InfoWindow(allCars, getApplicationContext());
+        InfoWindow infoAdapter = new InfoWindow(gmap, user, allCars, getApplicationContext());
         gmap.setInfoWindowAdapter(infoAdapter);
 
     /*

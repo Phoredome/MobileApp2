@@ -3,6 +3,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.controller.CarController;
 import com.example.myapplication.controller.MapController;
+import com.example.myapplication.controller.StationController;
 import com.example.myapplication.controller.TripController;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Station;
@@ -90,7 +91,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
         sendToLot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Station s = sc.getStationById(0);
+                Station s = sc.getStationByID(0);
 
                 cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
 
