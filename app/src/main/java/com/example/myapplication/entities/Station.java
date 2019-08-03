@@ -2,27 +2,27 @@ package com.example.myapplication.entities;
 
 public class Station
 {
-    private int stationID;
+    private int stationId;
     private int carsAtStation;
-    private int locationx;
-    private int locationy;
+    private double locationX;
+    private double locationY;
 
     private boolean stationActive;
 
-    public Station(int stationID, int carsAtStation, int locationx, int locationy, boolean stationActive) {
-        this.stationID = stationID;
+    public Station(int stationId, int carsAtStation, double locationx, double locationY, boolean stationActive) {
+        this.stationId = stationId;
         this.carsAtStation = carsAtStation;
-        this.locationx = locationx;
-        this.locationy = locationy;
+        this.locationX = locationx;
+        this.locationY = locationY;
         this.stationActive = stationActive;
     }
 
-    public int getStationID() {
-        return stationID;
+    public int getStationId() {
+        return stationId;
     }
 
-    public void setStationID(int stationID) {
-        this.stationID = stationID;
+    public void setStationId(int stationId) {
+        this.stationId = stationId;
     }
 
     public int getCarsAtStation() {
@@ -33,20 +33,20 @@ public class Station
         this.carsAtStation = carsAtStation;
     }
 
-    public int getLocationx() {
-        return locationx;
+    public double getLocationx() {
+        return locationX;
     }
 
-    public void setLocationx(int locationx) {
-        this.locationx = locationx;
+    public void setLocationx(double locationx) {
+        this.locationX = locationx;
     }
 
-    public int getLocationy() {
-        return locationy;
+    public double getLocationY() {
+        return locationY;
     }
 
-    public void setLocationy(int locationy) {
-        this.locationy = locationy;
+    public void setLocationY(double locationY) {
+        this.locationY = locationY;
     }
 
     public boolean isStationActive() {

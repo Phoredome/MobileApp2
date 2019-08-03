@@ -52,7 +52,6 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
 
         ExecutorService pool = Executors.newCachedThreadPool();
 
-
         /*for (Car d : carList) {
             if(!d.equals(c)) {
 
@@ -80,7 +79,7 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
         {
             callDistance(x,y,car);
         }
-        
+
         for (int i = 0; i < LISTSIZE; i++)
         {
             Car c = null;
