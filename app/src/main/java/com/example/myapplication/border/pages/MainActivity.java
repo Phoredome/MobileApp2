@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.border.info.AddressResultReceiver;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.border.info.MapWrapperLayout;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.Adapter mAdapter;
     private User user;
     private RecyclerView rv;
+    private AddressResultReceiver resultReceiver;
 
     protected Location lastLocation;
 
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity
     EditText location;
     Button service, sendToLot, go;
     ArrayList<Car> allCars;
+
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
