@@ -176,7 +176,7 @@ public class CarController{
         {
             car.setInActiveService(false);
             car.setKmsSinceLastService(0);
-
+            Log.d("Sent to service", "Sent");
             return true;
         }
         return false;
@@ -243,8 +243,8 @@ public class CarController{
     public void setAllCars()
     {
         ArrayList<Car> carList = cd.getAllCars();
-        double max = 0.000999;
-        double min = -0.000999;
+        double max = 0.009999;
+        double min = -0.009999;
         double range = max - min;
 
         for(Car c: carList) {
@@ -263,7 +263,7 @@ public class CarController{
     public void redistribute() {
         ArrayList<Station> stationList = sc.getAllStations();
         //calls to check number of cars in all stations
-        int avg = sc.countCarsInStation(stationList);
+        int avg = sc.countCarsInStation(stationList, cd.getAllCars());
         // returns average in number of cars
         ArrayList<Car> usableCars = getUsableCars(stationList, avg);
 
@@ -277,7 +277,7 @@ public class CarController{
                     }
                 }
             }
-        sc.countCarsInStation(stationList);
+        sc.countCarsInStation(stationList, cd.getAllCars());
         for (Station s : stationList) {
             if (s.isStationActive()) {
                 int carCount = s.getCarsAtStation();

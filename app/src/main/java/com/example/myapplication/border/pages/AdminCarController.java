@@ -134,6 +134,8 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
         });
 
 
+
+
     }
 
 
@@ -203,6 +205,17 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
         LatLng van = new LatLng(49.267279, -123.218318);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(van));
         cc.initializeCars(gmap);
+
+        Button distributeCars = findViewById(R.id.distributeCars);
+
+        distributeCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cc.setAllCars();
+                gmap.clear();
+                cc.initializeCars(gmap);
+            }
+        });
 
     }
 

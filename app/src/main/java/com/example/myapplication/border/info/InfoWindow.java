@@ -1,6 +1,7 @@
 package com.example.myapplication.border.info;
 import com.example.myapplication.R;
 import com.example.myapplication.border.dao.CarDAO;
+import com.example.myapplication.controller.adapters.OnInfoWindowElemTouchListener;
 import com.example.myapplication.controller.entityController.CarController;
 import com.example.myapplication.controller.entityController.MapController;
 import com.example.myapplication.controller.entityController.StationController;
@@ -36,6 +37,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
     User user;
     StationController sc;
     TripController tc;
+    OnInfoWindowElemTouchListener infowindow;
 
 
     public InfoWindow(GoogleMap gmap, User user, ArrayList<Car> list, Context context) {
@@ -83,6 +85,14 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             };
 
         });
+        infowindow = new OnInfoWindowElemTouchListener(service) {
+            @Override
+            protected void onClickConfirmed(View v, Marker marker) {
+                cc.serviceCar(c);
+            }
+        };
+
+        service.setOnTouchListener(infowindow);
 
         Button sendToLot = v.findViewById(R.id.sendLotBtn);
         sendToLot.setOnClickListener(new View.OnClickListener() {
