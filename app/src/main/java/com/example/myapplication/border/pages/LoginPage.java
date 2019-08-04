@@ -53,12 +53,11 @@ public class LoginPage extends AppCompatActivity
 
                             b.putBoolean("status", user.getStatus());
                             a.putInt("userId", user.getUserId());
-                            c.putString("userName", user.getUserName());
+                            a.putString("userN", user.getUserName());
 
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             i.putExtras(b);
                             i.putExtras(a);
-                            i.putExtras(c);
 
                             startActivity(i);
                             finish();
