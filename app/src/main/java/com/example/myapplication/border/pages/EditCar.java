@@ -234,7 +234,7 @@ public class EditCar extends AppCompatActivity {
             if (doorsSpin.getSelectedItemPosition() != 0) {
                 door = Integer.parseInt(doorsSpin.getSelectedItem().toString().substring(0,1));
             }
-            if ((cc.updateCar(carId, costR, seats, door, servTime, kmRun, kmSinceLastService,
+            if ((cc.editCar(carId, costR, seats, door, servTime, kmRun, kmSinceLastService,
                     vehicleType, licP, inUse, inServ, coordX, coordY))) {
                 this.finish();
 

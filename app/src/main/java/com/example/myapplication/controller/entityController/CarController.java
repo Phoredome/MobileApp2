@@ -111,6 +111,22 @@ public class CarController{
                              double coordY) {
         cd.updateCarInfo(carNum,costOfRunning,seats,doors,serviceTime,kmsRun,kmSinceLastService,vehicleType,licensePlate,inUse,inService,coordX,coordY);
     }
+    public boolean editCar(int carNum,
+                          double costOfRunning,
+                          int seats,
+                          int doors,
+                          int serviceTime,
+                          double kmsRun,
+                          double kmSinceLastService,
+                          String vehicleType,
+                          String licensePlate,
+                          boolean inUse,
+                          boolean inService,
+                          double coordX,
+                          double coordY) {
+        cd.updateCarInfo(carNum,costOfRunning,seats,doors,serviceTime,kmsRun,kmSinceLastService,vehicleType,licensePlate,inUse,inService,coordX,coordY);
+        return true;
+    }
 
     public int validateCars(String license, Double costOfRun)
     {

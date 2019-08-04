@@ -56,6 +56,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback, GetDistanceProbe.DistanceListener, GoogleMap.OnInfoWindowClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -178,6 +180,7 @@ public class MainActivity extends AppCompatActivity
 
         Spinner carSelect = findViewById(R.id.carSelect);
         ArrayList<String> carTypes = cc.getCarTypes();
+        Set<String> uniqueCarTypes = new HashSet<String>(carTypes);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carSelect.setAdapter(arrayAdapter);
