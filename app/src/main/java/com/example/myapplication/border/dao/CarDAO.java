@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.myapplication.controller.entityController.DBController;
 import com.example.myapplication.entities.Car;
+import com.example.myapplication.entities.Station;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -31,12 +32,21 @@ public class CarDAO {
         return null;
     }
 
-    public Car getCarByLicense(String license) {
+    public Car getCarByLicense(String license)
+    {
         ArrayList<Car> cars = getAllCars();
         for(Car c : cars)
             if(license.equals(c.getLicensePlate()))
                 return c;
         return null;
+    }
+
+    public ArrayList<Car> getAllCarsByStation(Station s)
+    {
+        ArrayList<Car> carsAtStation = null;
+        //TODO QUERY for cars at specific station x/y
+
+        return carsAtStation;
     }
 
     public int getCarCount() {
@@ -45,6 +55,12 @@ public class CarDAO {
         int count = cursor.getCount();
         cursor.close();
         return count;
+    }
+
+    public int getMaxCarAtStationCount()
+    {
+        //TODO MAYBE here? maybe just do in CarController
+        return 0;
     }
 
     public Car getCarByLocation(LatLng ll)
