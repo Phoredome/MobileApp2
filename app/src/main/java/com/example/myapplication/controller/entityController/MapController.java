@@ -1,4 +1,4 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.entityController;
 
 import android.content.Context;
 import android.content.Intent;

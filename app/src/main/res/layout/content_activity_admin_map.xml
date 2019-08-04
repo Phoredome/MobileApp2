@@ -37,12 +37,12 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_weight="0"/>
+                android:layout_height="356dp"
+                android:layout_weight="0" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:foregroundGravity="center"
                 android:gravity="center"
@@ -56,6 +56,14 @@
                     android:layout_weight="0"
                     android:foregroundGravity="center"
                     android:text="Redistribute" />
+
+                <Button
+                    android:id="@+id/distributeCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="0"
+                    android:text="Distribute" />
 
             </LinearLayout>
 

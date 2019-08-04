@@ -15,9 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.border.info.InfoWindow;
-import com.example.myapplication.controller.CarController;
-import com.example.myapplication.controller.RecyclerViewListAdapter;
+import com.example.myapplication.controller.entityController.CarController;
+import com.example.myapplication.controller.adapters.RecyclerViewListAdapter;
 import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
 

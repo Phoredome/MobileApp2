@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.entityController.CarController;
 import com.google.android.material.navigation.NavigationView;
 
 public class CreateCar extends AppCompatActivity {
@@ -116,6 +116,15 @@ public class CreateCar extends AppCompatActivity {
                         break;
                 }
 
+            }
+        });
+
+        Button cancelBtn = findViewById(R.id.cancelBtn);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

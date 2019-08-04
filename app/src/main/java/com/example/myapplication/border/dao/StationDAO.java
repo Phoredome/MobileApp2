@@ -5,8 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.myapplication.controller.DBController;
-import com.example.myapplication.entities.Car;
+import com.example.myapplication.controller.entityController.DBController;
 import com.example.myapplication.entities.Station;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class StationDAO
         }
         return stations;
     }
-    public int getStationCount() {
+    public int getNumberOfStations() {
         String selectQuery = "SELECT * FROM Station;";
         Cursor cursor = rdb.rawQuery(selectQuery, null);
         int count = cursor.getCount();

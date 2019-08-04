@@ -1,4 +1,4 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,13 +14,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.pages.EditCar;
 import com.example.myapplication.entities.Car;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 

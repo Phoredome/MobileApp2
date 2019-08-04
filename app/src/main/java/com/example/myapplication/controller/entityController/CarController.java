@@ -1,10 +1,9 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.entityController;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
-import com.example.myapplication.border.dao.StationDAO;
 import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
@@ -12,31 +11,15 @@ import com.example.myapplication.entities.Station;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class CarController{
 
     public CarDAO cd;
     public MapController mc;
     public CreateCar cc;
-    public StationDAO sd;
     public Car car;
+    public StationController sc;
 
     double depotx = 0.00;
     double depoty = 0.00;
@@ -50,7 +33,7 @@ public class CarController{
     public CarController(Context context) {
         cd = new CarDAO(context);
         mc = new MapController();
-        sd = new StationDAO(context);
+        sc = new StationController(context);
 
         this.context = context;
     }
@@ -65,8 +48,16 @@ public class CarController{
     }
 
 
-    public ArrayList<Car> getAllCars() {
-        return cd.getAllCars();}
+    public ArrayList<Car> getAllCars()
+    {
+        return cd.getAllCars();
+    }
+
+    public int getCarCount()
+    {return cd.getCarCount();}
+
+    public int getMaxCarAtStationCount()
+    {return cd.getMaxCarAtStationCount();}
 
     public Boolean check(String license, String costOfRun)
     {
@@ -82,6 +73,8 @@ public class CarController{
         }
         return false;
     }
+
+    //TODO Nani???
     public Boolean checkToAdd() {
         return true;
     }
@@ -133,29 +126,6 @@ public class CarController{
 
     }
     // will use other methods to aid in redistributing unused car locations
-    public Boolean countOfCarsInStation()
-    {
-        //TODO
-        ArrayList<Car> carList = cd.getAllCars();
-        ArrayList<Station> stationList = sd.getAllStations();
-        int[][] stationCars = new int[sd.getStationCount()][cd.getCarCount()];
-        int count = 0;
-        for(Station s : stationList)
-            if(s.isStationActive()) {
-                for (int i = 0; i < carList.size(); i++) {
-                    Car c = carList.get(i);
-                        if(c.isInActiveService()&&!c.isInUse()&&c.isInStation())
-                            if (s.getLocationX() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
-                            count++;
-
-                        }
-                        s.setCarsAtStation(count);
-                    }
-
-        }
-        // if cars are too close to each other, move the furthest one from base away
-        return false;
-    }
 
     //will randomly disperse unused cars to random locations across the map
     public void randomizeCarLocations()
@@ -186,6 +156,17 @@ public class CarController{
         return true;
     }
 
+    public boolean transferCar(Car c, Station destinationStation)
+    {
+        if(!car.isInUse() || car.isInActiveService()) {
+            car.setCoordX(destinationStation.getLocationX());
+            car.setCoordY(destinationStation.getLocationY());
+            cd.updateCar(car.getCarID(), destinationStation.getLocationX(), destinationStation.getLocationY());
+        }
+
+        return true;
+    }
+
     /**
      * @param car Id of car intended to be sent to depot for repairs/servicing
      */
@@ -195,7 +176,7 @@ public class CarController{
         {
             car.setInActiveService(false);
             car.setKmsSinceLastService(0);
-
+            Log.d("Sent to service", "Sent");
             return true;
         }
         return false;
@@ -262,8 +243,8 @@ public class CarController{
     public void setAllCars()
     {
         ArrayList<Car> carList = cd.getAllCars();
-        double max = 0.000999;
-        double min = -0.000999;
+        double max = 0.009999;
+        double min = -0.009999;
         double range = max - min;
 
         for(Car c: carList) {
@@ -278,9 +259,63 @@ public class CarController{
             cd.updateCar(c.getCarID(), x, y);
         }
     }
-    /*@Override
-    public void processFinish(String output) {
-    }*/
-//==================================================================================================
+
+    public void redistribute() {
+        ArrayList<Station> stationList = sc.getAllStations();
+        //calls to check number of cars in all stations
+        int avg = sc.countCarsInStation(stationList, cd.getAllCars());
+        // returns average in number of cars
+        ArrayList<Car> usableCars = getUsableCars(stationList, avg);
+
+        for(int i = 0; i < usableCars.size(); i++)
+            for (Station s : stationList) {
+                if (s.isStationActive()) {
+                    int carCount = s.getCarsAtStation();
+                    while(carCount < avg){
+                        transferCar(usableCars.get(i),s);
+                        carCount++;
+                    }
+                }
+            }
+        sc.countCarsInStation(stationList, cd.getAllCars());
+        for (Station s : stationList) {
+            if (s.isStationActive()) {
+                int carCount = s.getCarsAtStation();
+                while (carCount < avg) {
+                    for (Car c: cd.getAllCars()) {
+                        if(!c.isInUse()&&c.isInActiveService()&&!c.isInStation()) {
+                            transferCar(c, s);
+                            carCount++;
+                        }
+
+                    }
+                }
+            }
+        }
+        //===========================================================
+        //if value is greater than number of cars at station avg
+        //redistribute
+    }
+
+    public ArrayList<Car> getUsableCars(ArrayList<Station> stationList, int avg) {
+        ArrayList<Station> crowded = null;
+        ArrayList<Car> movableCars = null;
+        for (Station s : stationList) {
+            if (s.isStationActive()) {
+                int carCount = s.getCarsAtStation();
+                int usableCars;
+                if (carCount > avg) {
+                    ArrayList<Car> stationCars = null;
+                    for(Car c : cd.getAllCarsByStation(s))
+                        stationCars.add(c);
+
+                    usableCars = carCount - avg;
+                    for(int i = 0; i < usableCars; i++)
+                        movableCars.add(stationCars.get(i));
+                }
+            }
+        }
+        return movableCars;
+    }
 }
 

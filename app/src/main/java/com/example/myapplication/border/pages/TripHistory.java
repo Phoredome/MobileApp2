@@ -16,12 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.border.info.RecyclerItemClickListener;
-import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.entityController.CarController;
+import com.example.myapplication.controller.entityController.MapController;
+import com.example.myapplication.controller.adapters.RecyclerViewAdapter_Trip;
+import com.example.myapplication.controller.entityController.TripController;
 
-import com.example.myapplication.controller.MapController;
-import com.example.myapplication.controller.RecyclerViewAdapter;
-import com.example.myapplication.controller.TripController;
-import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -190,8 +189,8 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         gmap = googleMap;
 
         RecyclerView rv2 = findViewById(R.id.recyclerView2);
-        ArrayList<Car> allCars = cc.getAllCars();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(),gmap);
+        ArrayList<Trip> allTrips = tc.getAllTrips();
+        RecyclerViewAdapter_Trip adapter = new RecyclerViewAdapter_Trip(allTrips, getApplication(),gmap);
         rv2.setLayoutManager(new LinearLayoutManager(this));
         rv2.setAdapter(adapter);
 
@@ -200,7 +199,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                     @Override public void onItemClick(View view, int position) {
                         TextView carHistory = findViewById(R.id.historyInfo);
 
-                        Trip t = td.getTripById(position);
+                        Trip t = td.getTripById(position+1);
                         StringBuilder sp = new StringBuilder();
                         sp.append("Trip id: " + t.getTripId()+ "\n");
                         sp.append("Trip date: " + t.getDateOfTrip()+ "\n");
@@ -210,7 +209,8 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
 
 
                        carHistory.setText(sp);
-                       mc.setMarker(gmap, "START", t.getStartingX(), t.getStartingY());
+
+                       mc.setMarker(gmap,"START", t.getStartingX(), t.getStartingY());
                        mc.setMarker(gmap, "FINISH", t.getEndingX(), t.getEndingY());
 
                        gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(t.getStartingX(), t.getStartingY())));

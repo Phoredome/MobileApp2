@@ -1,15 +1,15 @@
 package com.example.myapplication.border.info;
 import com.example.myapplication.R;
 import com.example.myapplication.border.dao.CarDAO;
-import com.example.myapplication.controller.CarController;
-import com.example.myapplication.controller.MapController;
-import com.example.myapplication.controller.StationController;
-import com.example.myapplication.controller.TripController;
+import com.example.myapplication.controller.adapters.OnInfoWindowElemTouchListener;
+import com.example.myapplication.controller.entityController.CarController;
+import com.example.myapplication.controller.entityController.MapController;
+import com.example.myapplication.controller.entityController.StationController;
+import com.example.myapplication.controller.entityController.TripController;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Station;
 import com.example.myapplication.entities.User;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
@@ -20,8 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -39,6 +37,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
     User user;
     StationController sc;
     TripController tc;
+    OnInfoWindowElemTouchListener infowindow;
 
 
     public InfoWindow(GoogleMap gmap, User user, ArrayList<Car> list, Context context) {
@@ -86,6 +85,14 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             };
 
         });
+        infowindow = new OnInfoWindowElemTouchListener(service) {
+            @Override
+            protected void onClickConfirmed(View v, Marker marker) {
+                cc.serviceCar(c);
+            }
+        };
+
+        service.setOnTouchListener(infowindow);
 
         Button sendToLot = v.findViewById(R.id.sendLotBtn);
         sendToLot.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +106,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
         });
 
         Button go = v.findViewById(R.id.goBtn);
+
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -146,56 +146,7 @@ public class MyDB extends SQLiteOpenHelper {
                             "('msterland1b', '8XNGRVBAKxn6', 'Melissa', 'Sterland', 'msterland1b@1688.com', '927-462-7285', '3781 Amoth Road', 'Ganghwa-gun', 'South Korea', '18/10/1986', 'jcb', 'true')," +
                             "('sburstow1c', 'B3AD5FzL4Zk0', 'Seka', 'Burstow', 'sburstow1c@wunderground.com', '287-578-9585', '76982 Eggendart Plaza', 'Stockholm', 'Sweden', '05/08/1984', 'jcb', 'true')," +
                             "('nburston1d', 'hgVBkuMZ7oKJ', 'Nelle', 'Burston', 'nburston1d@google.com', '762-633-3773', '3596 Towne Way', 'Páno Polemídia', 'Cyprus', '01/01/1968', 'switch', 'true')," +
-                            "('clum1e', 'XTDEuJE', 'Cecil', 'Lum', 'clum1e@weather.com', '991-429-2129', '0 Drewry Plaza', 'Yinzhu', 'China', '04/07/1928', 'jcb', 'true')," +
-                            "('gdunridge1f', 'Lj6siMMVuA', 'Galina', 'Dunridge', 'gdunridge1f@clickbank.net', '586-532-3721', '9961 Truax Center', 'São Paulo', 'Brazil', '18/01/2002', 'switch', 'false')," +
-                            "('jgummory1g', 'YqKwT0e', 'Jojo', 'Gummory', 'jgummory1g@microsoft.com', '107-541-0583', '7 Schmedeman Street', 'Luchegorsk', 'Russia', '07/04/1976', 'china-unionpay', 'false')," +
-                            "('sjakaway1h', 'Yc9WYE', 'Stewart', 'Jakaway', 'sjakaway1h@e-recht24.de', '674-801-3341', '585 Killdeer Court', 'Željezno Polje', 'Bosnia and Herzegovina', '10/06/1967', 'bankcard', 'true')," +
-                            "('lkurth1i', 'GhbcdwqM2', 'Loren', 'Kurth', 'lkurth1i@jalbum.net', '347-815-3597', '4 Westend Trail', 'Pangkalan', 'Indonesia', '23/02/1936', 'americanexpress', 'true')," +
-                            "('mperrinchief1j', '7wsUcV', 'Merna', 'Perrinchief', 'mperrinchief1j@sphinn.com', '797-463-9090', '88923 Northview Pass', 'Edissiya', 'Russia', '11/01/1944', 'jcb', 'true')," +
-                            "('lheinish1k', 'gC9S6Y4Lxom', 'Leeanne', 'Heinish', 'lheinish1k@xing.com', '143-375-0118', '5 Talisman Road', 'Vologda', 'Russia', '27/09/1973', 'maestro', 'false')," +
-                            "('kmcenhill1l', 'x9jOSC', 'Kara-lynn', 'McEnhill', 'kmcenhill1l@google.fr', '136-212-7074', '379 Holy Cross Road', 'Ciangir', 'Indonesia', '30/06/2011', 'mastercard', 'false')," +
-                            "('rfoggarty1m', 'DAASuzY', 'Red', 'Foggarty', 'rfoggarty1m@moonfruit.com', '817-522-9232', '29107 La Follette Lane', 'Agusan', 'Philippines', '26/07/1982', 'jcb', 'false')," +
-                            "('bmedler1n', 'ZTZ27xW0f', 'Brenna', 'Medler', 'bmedler1n@wikipedia.org', '110-557-4100', '0278 Autumn Leaf Plaza', 'Mayong', 'China', '09/07/1976', 'instapayment', 'false')," +
-                            "('spelerin1o', 'gWjNXK', 'Susanne', 'Pelerin', 'spelerin1o@mapy.cz', '731-343-1937', '363 2nd Plaza', 'Tygda', 'Russia', '07/03/2001', 'jcb', 'false')," +
-                            "('rpyner1p', '7SM9GKkoO', 'Rivy', 'Pyner', 'rpyner1p@ebay.com', '317-557-6961', '116 Morrow Park', 'Anping', 'China', '22/08/1955', 'diners-club-enroute', 'false')," +
-                            "('gzamora1q', 'xnz0kOH6n7', 'Georgina', 'Zamora', 'gzamora1q@nps.gov', '530-383-1512', '12 East Way', 'Żórawina', 'Poland', '08/04/1920', 'visa-electron', 'true')," +
-                            "('dswainger1r', 'zIW3vtVeM9g', 'Dania', 'Swainger', 'dswainger1r@aboutads.info', '769-118-9124', '6201 Becker Terrace', 'Yanshi', 'China', '06/09/1966', 'mastercard', 'false')," +
-                            "('vtidgewell1s', 'lwOuCfAjIz22', 'Viviana', 'Tidgewell', 'vtidgewell1s@xing.com', '572-351-5547', '152 Superior Road', 'Krzanowice', 'Poland', '20/06/2012', 'diners-club-us-ca', 'true')," +
-                            "('swiggall1t', 'RSBg4hIQ', 'Sherrie', 'Wiggall', 'swiggall1t@un.org', '442-797-5111', '09 Arrowood Parkway', 'Bouillon', 'Belgium', '17/10/1974', 'mastercard', 'false')," +
-                            "('draden1u', 'LBpmKX8mID', 'Drew', 'Raden', 'draden1u@icq.com', '372-191-2555', '6 Meadow Vale Court', 'Tegalgunung', 'Indonesia', '25/11/1951', 'jcb', 'false')," +
-                            "('mstennine1v', 'yclgAM', 'Malina', 'Stennine', 'mstennine1v@nasa.gov', '748-269-5520', '382 Jenna Avenue', 'Gamay', 'Philippines', '15/10/1995', 'mastercard', 'true')," +
-                            "('rvannucci1w', 'CxYc3hQyn', 'Robbyn', 'Vannucci', 'rvannucci1w@hhs.gov', '428-505-1054', '7974 Miller Hill', 'Zaporizhzhya', 'Ukraine', '07/05/2007', 'mastercard', 'false')," +
-                            "('sleser1x', '1nht2J', 'Saleem', 'Leser', 'sleser1x@live.com', '677-714-8311', '69088 Sutteridge Parkway', 'Cojutepeque', 'El Salvador', '11/08/1941', 'switch', 'true')," +
-                            "('bbresson1y', '9ch5aR', 'Becka', 'Bresson', 'bbresson1y@dell.com', '945-200-6564', '681 Oneill Park', 'Gaoqiao', 'China', '02/12/1937', 'maestro', 'true')," +
-                            "('dgobert1z', '3QI3kg', 'Dar', 'Gobert', 'dgobert1z@youku.com', '784-742-5020', '43445 School Trail', 'Cilaja', 'Indonesia', '21/08/1949', 'jcb', 'true')," +
-                            "('sbodman20', 'VCqTVRW7', 'Sheryl', 'Bodman', 'sbodman20@desdev.cn', '337-590-3943', '316 8th Park', 'Beigong', 'China', '08/06/2013', 'instapayment', 'true')," +
-                            "('dsampey21', 'tHBYuh6V9R', 'Darryl', 'Sampey', 'dsampey21@infoseek.co.jp', '415-162-2878', '534 Evergreen Court', 'San Rafael', 'United States', '03/02/1930', 'bankcard', 'true')," +
-                            "('nscourfield22', 'gz92QWCVCsM', 'Norri', 'Scourfield', 'nscourfield22@trellian.com', '990-682-7223', '5 Sachtjen Street', 'Grahamstown', 'South Africa', '30/04/1976', 'diners-club-enroute', 'true')," +
-                            "('bplacidi23', '0QXkOE8eQC', 'Barbaraanne', 'Placidi', 'bplacidi23@buzzfeed.com', '650-671-9802', '90 Algoma Way', 'Regulice', 'Poland', '05/11/2015', 'instapayment', 'true')," +
-                            "('obyram24', 'A96T6SjMm', 'Obediah', 'Byram', 'obyram24@answers.com', '487-698-3324', '623 Springs Crossing', 'Yonglong', 'China', '29/01/1978', 'switch', 'true')," +
-                            "('rsennett25', 'KsKmwAwK', 'Roarke', 'Sennett', 'rsennett25@flickr.com', '332-107-0532', '03 Bluejay Avenue', 'Belyye Stolby', 'Russia', '13/04/1986', 'maestro', 'false')," +
-                            "('awand26', 'YJMAIsp8MsET', 'Alan', 'Wand', 'awand26@slashdot.org', '376-253-1068', '4861 4th Hill', 'Chhātak', 'Bangladesh', '15/12/1992', 'jcb', 'true')," +
-                            "('stofts27', 'c82vKl', 'Sibbie', 'Tofts', 'stofts27@marketwatch.com', '843-209-2431', '70 Columbus Lane', 'Beaufort', 'United States', '10/06/1984', 'jcb', 'true')," +
-                            "('mfilby28', 'ZpF3jq9', 'Marika', 'Filby', 'mfilby28@hugedomains.com', '380-991-2611', '8047 Mockingbird Trail', 'Dordrecht', 'Netherlands', '28/10/2002', 'jcb', 'true')," +
-                            "('eronchi29', 'XSV4IZ', 'Emiline', 'Ronchi', 'eronchi29@blinklist.com', '153-718-6900', '5 Jana Point', 'Cergy-Pontoise', 'France', '10/03/1948', 'jcb', 'true')," +
-                            "('mqualtrough2a', 'FKNVpu', 'Melosa', 'Qualtrough', 'mqualtrough2a@behance.net', '560-831-6681', '8035 Haas Terrace', 'Vrsi', 'Croatia', '04/10/1999', 'visa-electron', 'true')," +
-                            "('doris2b', 'Xa8tvufVHz', 'Dennie', 'Oris', 'doris2b@home.pl', '725-464-9706', '64 Meadow Valley Circle', 'Pimentel', 'Dominican Republic', '11/07/1941', 'maestro', 'true')," +
-                            "('pdoerren2c', 'nKS46Qqve5t', 'Pat', 'Doerren', 'pdoerren2c@hibu.com', '984-776-0041', '5 Dunning Terrace', 'Lidzbark', 'Poland', '13/11/1972', 'diners-club-us-ca', 'true')," +
-                            "('sdenne2d', 'kNrQkr', 'Staci', 'Denne', 'sdenne2d@prnewswire.com', '283-510-9182', '48424 Luster Circle', 'Made', 'Indonesia', '09/08/1968', 'switch', 'false')," +
-                            "('cbrockway2e', 'POSqmDF', 'Cherilyn', 'Brockway', 'cbrockway2e@addtoany.com', '967-304-5879', '8 Rockefeller Terrace', 'Krajan Dua Padomasan', 'Indonesia', '17/05/1919', 'jcb', 'true')," +
-                            "('ccaddell2f', 'eVpCfONG', 'Cyndi', 'Caddell', 'ccaddell2f@csmonitor.com', '486-940-0080', '34 Esch Parkway', 'Huangtan', 'China', '17/03/1968', 'instapayment', 'true')," +
-                            "('echason2g', 'FbHsn4kEEd', 'Ethel', 'Chason', 'echason2g@arstechnica.com', '696-173-6095', '6 Montana Avenue', 'Shuitou', 'China', '20/11/1914', 'americanexpress', 'true')," +
-                            "('alomasney2h', 'UvSsLD0FfT5', 'Araldo', 'Lomasney', 'alomasney2h@boston.com', '119-610-0748', '1 Declaration Street', 'Telgawah', 'Indonesia', '10/05/1932', 'jcb', 'true')," +
-                            "('rmacshane2i', 'Kv9cMCfPtP', 'Ruperta', 'MacShane', 'rmacshane2i@thetimes.co.uk', '830-194-1792', '36 Ridge Oak Place', 'Vila Franca', 'Portugal', '10/06/1929', 'diners-club-carte-blanche', 'false')," +
-                            "('wkun2j', 'JhAvZLqKiJz', 'Willyt', 'Kun', 'wkun2j@ucla.edu', '690-466-9913', '9 Little Fleur Drive', 'Dahe', 'China', '25/03/1960', 'jcb', 'true')," +
-                            "('adriutti2k', 'Rz6idoHhLy', 'Arte', 'Driutti', 'adriutti2k@google.com', '712-410-3701', '73945 Luster Court', 'Al Qanāţir al Khayrīyah', 'Egypt', '25/07/2007', 'laser', 'true')," +
-                            "('kembury2l', 'EncDRopyrM', 'Kimball', 'Embury', 'kembury2l@plala.or.jp', '502-366-7955', '11 Alpine Court', 'Utrecht (stad)', 'Netherlands', '30/10/1945', 'switch', 'true')," +
-                            "('dbatchelder2m', 't181pBzNZB', 'Dorey', 'Batchelder', 'dbatchelder2m@sphinn.com', '577-837-1334', '0483 Manufacturers Point', 'Kompaniyivka', 'Ukraine', '10/07/1977', 'jcb', 'false')," +
-                            "('mvanderkruijs2n', 'f594aAU', 'Marillin', 'Van der Kruijs', 'mvanderkruijs2n@istockphoto.com', '986-150-3780', '25 Pennsylvania Street', 'Sattahip', 'Thailand', '22/11/1916', 'mastercard', 'true')," +
-                            "('abraunes2o', '1dR9d3suSU8', 'Adriaens', 'Braunes', 'abraunes2o@wsj.com', '526-230-1337', '9 Arapahoe Lane', 'Liutang', 'China', '12/12/1951', 'jcb', 'true')," +
-                            "('npeckitt2p', 'z1hdUS8uEds', 'Nonnah', 'Peckitt', 'npeckitt2p@ibm.com', '203-125-3815', '13095 Golf Course Trail', 'Raksajaya', 'Indonesia', '16/06/1927', 'jcb', 'false')," +
-                            "('mwindress2q', 'o5t27TI5U1P', 'Michel', 'Windress', 'mwindress2q@mozilla.org', '343-720-7344', '914 Golf View Terrace', 'Sóc Sơn', 'Vietnam', '25/10/1950', 'jcb', 'true')," +
-                            "('lmucci2r', 'ybtDVjKmX', 'Luci', 'Mucci', 'lmucci2r@wikimedia.org', '743-168-9557', '88340 Hauk Place', 'Jawornik', 'Poland', '11/11/1967', 'jcb', 'true');";
+                            "('clum1e', 'XTDEuJE', 'Cecil', 'Lum', 'clum1e@weather.com', '991-429-2129', '0 Drewry Plaza', 'Yinzhu', 'China', '04/07/1928', 'jcb', 'true')";
 
 
     private static final String SQL_INSERT_CAR =
