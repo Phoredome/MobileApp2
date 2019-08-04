@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.example.myapplication.R;
 
-class AddressResultReceiver extends ResultReceiver {
+public class AddressResultReceiver extends ResultReceiver {
     public AddressResultReceiver(Handler handler) {
         super(handler);
     }
@@ -26,12 +26,12 @@ class AddressResultReceiver extends ResultReceiver {
         if (addressOutput == null) {
             addressOutput = "";
         }
-        Log.d("AddressResultReciever", addressOutput);
+        Log.d("AddressResultReceiver", addressOutput);
         //TODO displayAddressOutput();
 
         // Show a toast message if an address was found.
         if (resultCode == Constants.SUCCESS_RESULT) {
-            Log.d("AddressResultReciever","E.T. Found Home!!!!");
+            Log.d("AddressResultReceiver","E.T. Found Home!!!!");
         }
     }
 }
