@@ -96,7 +96,7 @@ public class CarController{
 
         return cd.addCar(costOfRunning, seats, doors, serviceTime, kmsRun, kmSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
     }
-    public Boolean updateCar(int carNum,
+    public void updateCar(int carNum,
                              double costOfRunning,
                              int seats,
                              int doors,
@@ -109,7 +109,7 @@ public class CarController{
                              boolean inService,
                              double coordX,
                              double coordY) {
-        return cd.updateCarInfo(carNum,costOfRunning,seats,doors,serviceTime,kmsRun,kmSinceLastService,vehicleType,licensePlate,inUse,inService,coordX,coordY);
+        cd.updateCarInfo(carNum,costOfRunning,seats,doors,serviceTime,kmsRun,kmSinceLastService,vehicleType,licensePlate,inUse,inService,coordX,coordY);
     }
 
     public int validateCars(String license, Double costOfRun)
@@ -149,7 +149,7 @@ public class CarController{
         else {
             car.setCoordX(xCoord);
             car.setCoordY(yCoord);
-            cd.updateCar(car.getCarID(),xCoord,yCoord);
+            cd.updateCarLocation(car.getCarID(),xCoord,yCoord);
         }
 
         mc.updateCarMarker(map, car, xCoord, yCoord);
@@ -161,7 +161,7 @@ public class CarController{
         if(!car.isInUse() || car.isInActiveService()) {
             car.setCoordX(destinationStation.getLocationX());
             car.setCoordY(destinationStation.getLocationY());
-            cd.updateCar(car.getCarID(), destinationStation.getLocationX(), destinationStation.getLocationY());
+            cd.updateCarLocation(car.getCarID(), destinationStation.getLocationX(), destinationStation.getLocationY());
         }
 
         return true;
@@ -256,7 +256,7 @@ public class CarController{
 
             double y = -123.023000 + random2;
 
-            cd.updateCar(c.getCarID(), x, y);
+            cd.updateCarLocation(c.getCarID(), x, y);
         }
     }
 
@@ -316,6 +316,11 @@ public class CarController{
             }
         }
         return movableCars;
+    }
+
+    public void setCarRates(int carNum, double scRate, double crvRate, double vanRate)
+    {
+        cd.updateCarRate(carNum,scRate,crvRate,vanRate);
     }
 }
 

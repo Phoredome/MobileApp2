@@ -179,7 +179,7 @@ public class CarDAO {
     }
 
     
-    public void updateCar(int carNum, double coordX,double coordY) {
+    public void updateCarLocation(int carNum, double coordX, double coordY) {
         //Car car = getCarById(carNum);
 
 //        String updateQuery = "UPDATE CAR SET coordX='" + coordX + ", coordY='" + coordY + "' WHERE carId='" + car.getCarID() + "';";
@@ -191,7 +191,22 @@ public class CarDAO {
         Log.d("Updated car", "Car Updated");
     }
 
-    public boolean updateCarInfo(int carNum, double costOfRunning, int seats, int doors, int serviceTime,
+    public void updateCarRate(int carNum, double scRate, double crvRate, double vanRate)
+    {
+        ContentValues values = new ContentValues();
+
+        Car c = getCarById(carNum);
+        if(c.getVehicleType() == "smallCar")
+            values.put("costOfRunning", scRate);
+        else if(c.getVehicleType() == "crv")
+            values.put("costOfRunning", crvRate);
+        else if(c.getVehicleType() == "van")
+            values.put("costOfRunning", vanRate);
+
+        wdb.update("Car", values,  "carId="+carNum, null);
+        Log.d("Updated car", "Car Updated");
+    }
+    public void updateCarInfo(int carNum, double costOfRunning, int seats, int doors, int serviceTime,
                               double kmsRun, double kmsSinceLastService, String vehicleType, String licensePlate,
                               boolean inUse, boolean inService, double coordX, double coordY){
 
@@ -210,7 +225,7 @@ public class CarDAO {
         values.put("coordY", coordY);
 
         wdb.update("Car",values, "carId="+carNum, null);
-        return true;
+
     }
 
 }
