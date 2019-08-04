@@ -156,7 +156,7 @@ public class CarController{
         {
             car.setInActiveService(false);
             car.setKmsSinceLastService(0);
-
+            Log.d("Sent to service", "Sent");
             return true;
         }
         return false;

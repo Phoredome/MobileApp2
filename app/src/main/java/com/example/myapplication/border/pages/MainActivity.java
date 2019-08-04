@@ -5,27 +5,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.border.info.InfoWindow;
+import com.example.myapplication.border.info.MapWrapperLayout;
+import com.example.myapplication.controller.adapters.OnInfoWindowElemTouchListener;
 import com.example.myapplication.controller.entityController.CarController;
 import com.example.myapplication.controller.entityController.MapController;
 import com.example.myapplication.controller.adapters.RecyclerViewAdapter;
+import com.example.myapplication.controller.entityController.StationController;
+import com.example.myapplication.controller.entityController.TripController;
 import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
+import com.example.myapplication.entities.Station;
+import com.example.myapplication.entities.Trip;
 import com.example.myapplication.entities.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,6 +43,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -46,10 +56,17 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap gmap;
     private MapController mc;
     private CarController cc;
-    private CarController ccc;
+    private TripController tc;
+    private StationController sc;
     private RecyclerView.Adapter mAdapter;
     private User user;
     private RecyclerView rv;
+    private MapWrapperLayout mapWrapperLayout;
+    ViewGroup v;
+    TextView carId, licP;
+    EditText location;
+    Button service, sendToLot, go;
+    ArrayList<Car> allCars;
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -63,7 +80,9 @@ public class MainActivity extends AppCompatActivity
 
         cc = new CarController(getApplicationContext());
         mc = new MapController();
-
+        sc = new StationController(getApplicationContext());
+        tc = new TripController(getApplicationContext());
+        allCars = cc.getAllCars();
 
         Intent i = getIntent();
 
@@ -133,6 +152,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         mapView = findViewById(R.id.mapView);
+        mapWrapperLayout = findViewById(R.id.mapWrapperLayout);
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this);
 
@@ -258,12 +278,73 @@ public class MainActivity extends AppCompatActivity
         LatLngBounds bounds = builder.build();
         gmap.setLatLngBoundsForCameraTarget(bounds);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(49.232000, -123.023000)));
-
+        mapWrapperLayout.init(gmap, getPixelsFromDp(this, 39 + 20));
       //  gmap.setInfoWindowAdapter(new InfoWindow(MainActivity.this));
 
-
         rv = findViewById(R.id.recyclerView);
-        ArrayList<Car> allCars = cc.getAllCars();
+
+
+        v = (ViewGroup)getLayoutInflater().inflate(R.layout.activity_info_window, null);
+        carId = (TextView) v.findViewById(R.id.carIdTxt);
+        licP = (TextView) v.findViewById(R.id.licensePlateTxt);
+        location = (EditText) v.findViewById(R.id.locationInput);
+        service = v.findViewById(R.id.serviceBtn);
+        sendToLot = v.findViewById(R.id.sendLotBtn);
+        go = v.findViewById(R.id.goBtn);
+
+        gmap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                String markerID = marker.getId().substring(1);
+                int markerId = (allCars.get(Integer.parseInt(markerID)-1).getCarID());
+                carId.setText(String.valueOf(markerId));
+                licP.setText(allCars.get(Integer.parseInt(markerID)-1).getLicensePlate());
+                //final Car c = cc.getCarById(Integer.parseInt(carId.getText().toString()));
+
+                mapWrapperLayout.setMarkerWithInfoWindow(marker, v);
+                return v;
+            }
+        });
+
+        OnInfoWindowElemTouchListener infoWindow = new OnInfoWindowElemTouchListener(service) {
+            @Override
+            protected void onClickConfirmed(View v, Marker marker) {
+                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                cc.serviceCar(c);
+            }
+        };
+        service.setOnTouchListener(infoWindow);
+
+        OnInfoWindowElemTouchListener infoWindow2 = new OnInfoWindowElemTouchListener(sendToLot) {
+            @Override
+            protected void onClickConfirmed(View v, Marker marker) {
+                Station s = sc.getStationByID(0);
+                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
+            }
+        };
+
+        sendToLot.setOnTouchListener(infoWindow2);
+
+        OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
+            @Override
+            protected void onClickConfirmed(View v, Marker marker) {
+                LatLng ll = mc.getLocationFromAddress(getApplicationContext(), location.getText().toString());
+                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                tc.addTrip(getApplicationContext(), c, user, ll);
+                cc.moveCar(gmap, c, ll.latitude, ll.longitude);
+            }
+        };
+
+        go.setOnTouchListener(infoWindow3);
+
+
         if (shortList != null)
         {
             RecyclerViewAdapter adapter2 = new RecyclerViewAdapter(shortList,getApplication(), gmap);
@@ -278,8 +359,8 @@ public class MainActivity extends AppCompatActivity
 
         gmap.setMinZoomPreference(12);
         cc.initializeCars(gmap);
-        InfoWindow infoAdapter = new InfoWindow(gmap, user, allCars, getApplicationContext());
-        gmap.setInfoWindowAdapter(infoAdapter);
+        //InfoWindow infoAdapter = new InfoWindow(gmap, user, allCars, getApplicationContext());
+
 
     /*
     @Override
@@ -306,5 +387,10 @@ public class MainActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this, marker.getId(), Toast.LENGTH_SHORT).show();
 
+    }
+
+    public static int getPixelsFromDp(Context context, float dp) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int)(dp * scale + 0.5f);
     }
 }

@@ -56,12 +56,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapView"
+            <com.example.myapplication.border.info.MapWrapperLayout
+                android:id="@+id/mapWrapperLayout"
                 android:layout_width="match_parent"
-                android:layout_height="335dp"
-                android:layout_weight="0" />
+                android:layout_height="match_parent">
 
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="335dp"
+                    android:layout_weight="0" />
+
+            </com.example.myapplication.border.info.MapWrapperLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
