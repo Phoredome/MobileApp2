@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.myapplication.border.dao.CarDAO;
-import com.example.myapplication.border.dao.StationDAO;
 import com.example.myapplication.border.pages.CreateCar;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
@@ -19,8 +18,8 @@ public class CarController{
     public CarDAO cd;
     public MapController mc;
     public CreateCar cc;
-    public StationDAO sd;
     public Car car;
+    public StationController sc;
 
     double depotx = 0.00;
     double depoty = 0.00;
@@ -34,7 +33,7 @@ public class CarController{
     public CarController(Context context) {
         cd = new CarDAO(context);
         mc = new MapController();
-        sd = new StationDAO(context);
+        sc = new StationController(context);
 
         this.context = context;
     }
@@ -49,8 +48,16 @@ public class CarController{
     }
 
 
-    public ArrayList<Car> getAllCars() {
-        return cd.getAllCars();}
+    public ArrayList<Car> getAllCars()
+    {
+        return cd.getAllCars();
+    }
+
+    public int getCarCount()
+    {return cd.getCarCount();}
+
+    public int getMaxCarAtStationCount()
+    {return cd.getMaxCarAtStationCount();}
 
     public Boolean check(String license, String costOfRun)
     {
@@ -66,6 +73,8 @@ public class CarController{
         }
         return false;
     }
+
+    //TODO Nani???
     public Boolean checkToAdd() {
         return true;
     }
@@ -144,6 +153,17 @@ public class CarController{
         }
 
         mc.updateCarMarker(map, car, xCoord, yCoord);
+        return true;
+    }
+
+    public boolean transferCar(Car c, Station destinationStation)
+    {
+        if(!car.isInUse() || car.isInActiveService()) {
+            car.setCoordX(destinationStation.getLocationX());
+            car.setCoordY(destinationStation.getLocationY());
+            cd.updateCar(car.getCarID(), destinationStation.getLocationX(), destinationStation.getLocationY());
+        }
+
         return true;
     }
 
@@ -240,71 +260,62 @@ public class CarController{
         }
     }
 
-    public int countOfCarsInStation(ArrayList<Station> stationList)
-    {
-        //TODO
-        ArrayList<Car> carList = cd.getAllCars();
-
-        int[][] stationCars = new int[sd.getNumberOfStations()][cd.getCarCount()];
-        int count = 0;
-        int lowest = 0;
-        int highest = 0;
-        int average = 0;
-        for(Station s : stationList)
-            if(s.isStationActive()) {
-                for (int i = 0; i < carList.size(); i++) {
-                    Car c = carList.get(i);
-                    if(c.isInActiveService()&&!c.isInUse()&&c.isInStation())
-                        if (s.getLocationX() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
-                            count++;
-                        }
-                }
-                s.setCarsAtStation(count);
-                if(count > highest)
-                    highest = count;
-                else if(count < lowest)
-                    lowest = count;
-            }
-        // if cars are too close to each other, move the furthest one from base away
-        return highest - lowest;
-    }
-
-    public void redistribute()
-    {
-        ArrayList<Station> stationList = sd.getAllStations();
+    public void redistribute() {
+        ArrayList<Station> stationList = sc.getAllStations();
         //calls to check number of cars in all stations
-        int diff = countOfCarsInStation(stationList);
-        // returns diffrence in number of cars
+        int avg = sc.countCarsInStation(stationList);
+        // returns average in number of cars
+        ArrayList<Car> usableCars = getUsableCars(stationList, avg);
 
-        //if value is greater than number of cars at station avg
-
-        //redistribute
-        //with logs
-        //for all stations with larger diff than avg
-
-        //if station x has more cars than station 1
-
-        //below put in method
-        Station fullStation = null;
-        for(Station s : sd.getAllStations()) {
-            int holdStation = 0;
-            for (int i = 0; i < sd.getNumberOfStations(); i++) {
-                int carsAtStation = sd.getStationByID(i).getCarsAtStation();
-                if (s.getCarsAtStation() < carsAtStation) ;
-                {
-                    int holdStationCars = sd.getStationByID(holdStation).getCarsAtStation();
-                    if (carsAtStation < holdStationCars) {
-                        //carsAtStation, holdStationCars
-                        holdStation = i;
+        for(int i = 0; i < usableCars.size(); i++)
+            for (Station s : stationList) {
+                if (s.isStationActive()) {
+                    int carCount = s.getCarsAtStation();
+                    while(carCount < avg){
+                        transferCar(usableCars.get(i),s);
+                        carCount++;
                     }
                 }
-                int carNumberDiffrence = holdStation;
+            }
+        sc.countCarsInStation(stationList);
+        for (Station s : stationList) {
+            if (s.isStationActive()) {
+                int carCount = s.getCarsAtStation();
+                while (carCount < avg) {
+                    for (Car c: cd.getAllCars()) {
+                        if(!c.isInUse()&&c.isInActiveService()&&!c.isInStation()) {
+                            transferCar(c, s);
+                            carCount++;
+                        }
+
+                    }
+                }
             }
         }
+        //===========================================================
+        //if value is greater than number of cars at station avg
+        //redistribute
     }
-    /*@Override
-    public void processFinish(String output) {
-    }*/
-//==================================================================================================
+
+    public ArrayList<Car> getUsableCars(ArrayList<Station> stationList, int avg) {
+        ArrayList<Station> crowded = null;
+        ArrayList<Car> movableCars = null;
+        for (Station s : stationList) {
+            if (s.isStationActive()) {
+                int carCount = s.getCarsAtStation();
+                int usableCars;
+                if (carCount > avg) {
+                    ArrayList<Car> stationCars = null;
+                    for(Car c : cd.getAllCarsByStation(s))
+                        stationCars.add(c);
+
+                    usableCars = carCount - avg;
+                    for(int i = 0; i < usableCars; i++)
+                        movableCars.add(stationCars.get(i));
+                }
+            }
+        }
+        return movableCars;
+    }
 }
 
