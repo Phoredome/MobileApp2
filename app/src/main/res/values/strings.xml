@@ -26,9 +26,12 @@
 
     <string name="title_activity_info_window">InfoWindow</string>
 
-    <string name="scRate">Small Car: $1.90</string>
-    <string name="vanRate">Van: $ 2.50</string>
-    <string name="crvRate">CRV: $3.75</string>
+    <string name="scRate">Small Car: $</string>
+    <string name="scCost">1.90</string>
+    <string name="vanRate">Van: $</string>
+    <string name="vanCost">2.50</string>
+    <string name="crvRate">CRV: $</string>
+    <string name="crvCost">3.75</string>
 
     <string-array name="door_spin">
         <item>Doors</item>
