@@ -1,17 +1,14 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.entityController;
 
 import android.content.Context;
 
-import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.border.dao.TripDAO;
-import com.example.myapplication.border.dao.UserDAO;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
 import com.example.myapplication.entities.User;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class TripController
 {

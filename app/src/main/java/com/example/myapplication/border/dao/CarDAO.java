@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.myapplication.controller.DBController;
+import com.example.myapplication.controller.entityController.DBController;
 import com.example.myapplication.entities.Car;
 import com.google.android.gms.maps.model.LatLng;
 

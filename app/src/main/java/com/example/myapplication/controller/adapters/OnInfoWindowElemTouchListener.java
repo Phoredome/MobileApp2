@@ -1,4 +1,4 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.os.Handler;

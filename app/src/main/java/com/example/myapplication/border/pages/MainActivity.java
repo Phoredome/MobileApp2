@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.border.info.InfoWindow;
-import com.example.myapplication.controller.CarController;
-import com.example.myapplication.controller.MapController;
-import com.example.myapplication.controller.RecyclerViewAdapter;
+import com.example.myapplication.controller.entityController.CarController;
+import com.example.myapplication.controller.entityController.MapController;
+import com.example.myapplication.controller.adapters.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;

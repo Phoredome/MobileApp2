@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.border.info.RecyclerItemClickListener;
-import com.example.myapplication.controller.CarController;
+import com.example.myapplication.controller.entityController.CarController;
 
-import com.example.myapplication.controller.MapController;
-import com.example.myapplication.controller.RecyclerViewAdapter_Trip;
-import com.example.myapplication.controller.TripController;
+import com.example.myapplication.controller.entityController.MapController;
+import com.example.myapplication.controller.adapters.RecyclerViewAdapter_Trip;
+import com.example.myapplication.controller.entityController.TripController;
 import com.example.myapplication.entities.Trip;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

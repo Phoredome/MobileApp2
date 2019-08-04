@@ -6,11 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.myapplication.controller.DBController;
+import com.example.myapplication.controller.entityController.DBController;
 import com.example.myapplication.entities.Trip;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TripDAO {
 

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.util.Log;
 
-import com.example.myapplication.controller.DBController;
+import com.example.myapplication.controller.entityController.DBController;
 import com.example.myapplication.entities.User;
 
 import java.util.ArrayList;

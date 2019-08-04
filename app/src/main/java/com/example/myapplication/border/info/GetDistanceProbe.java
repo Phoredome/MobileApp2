@@ -3,7 +3,6 @@ package com.example.myapplication.border.info;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.myapplication.controller.CarController;
 import com.example.myapplication.entities.Car;
 
 import org.json.JSONException;
@@ -18,12 +17,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<Car>> {
 
