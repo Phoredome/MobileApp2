@@ -80,6 +80,11 @@
             android:name=".border.pages.MyAccount"
             android:label="myAccount"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service
+            android:name=".manager.FetchAddressIntentService"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

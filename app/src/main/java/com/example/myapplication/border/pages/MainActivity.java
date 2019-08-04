@@ -1,13 +1,17 @@
 package com.example.myapplication.border.pages;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.myapplication.border.info.AddressResultReceiver;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.entityController.CarController;
@@ -27,6 +32,9 @@ import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.User;
+import com.example.myapplication.manager.FetchAddressIntentService;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -34,12 +42,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements OnMapReadyCallback, GetDistanceProbe.DistanceListener, GoogleMap.OnInfoWindowClickListener {
+        implements OnMapReadyCallback, GetDistanceProbe.DistanceListener, GoogleMap.OnInfoWindowClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
 
     private MapView mapView;
@@ -50,6 +59,9 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.Adapter mAdapter;
     private User user;
     private RecyclerView rv;
+    protected Location lastLocation;
+    private AddressResultReceiver resultReceiver;
+
 
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -305,6 +317,54 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this, marker.getId(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    protected void startIntentService() {
+        Intent intent = new Intent(this, FetchAddressIntentService.class);
+        intent.putExtra("com.example.myapplication.manager.RECEIVER", resultReceiver);
+        intent.putExtra("com.example.myapplication.manager.LOCATION_DATA_EXTRA", lastLocation);
+        startService(intent);
+    }
+/*
+    private void fetchAddressButtonHander(View view) {
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        lastKnownLocation = location;
+
+                        // In some rare cases the location returned can be null
+                        if (lastKnownLocation == null) {
+                            return;
+                        }
+
+                        if (!Geocoder.isPresent()) {
+                            Toast.makeText(MainActivity.this,
+                                    R.string.no_geocoder_available,
+                                    Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        // Start service and update UI to reflect new location
+                        startIntentService();
+                        updateUI();
+                    }
+                });
+    }*/
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 }
