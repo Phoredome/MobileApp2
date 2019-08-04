@@ -49,13 +49,16 @@ public class LoginPage extends AppCompatActivity
 
                             Bundle b = new Bundle();
                             Bundle a = new Bundle();
+                            Bundle c = new Bundle();
 
                             b.putBoolean("status", user.getStatus());
                             a.putInt("userId", user.getUserId());
+                            c.putString("userName", user.getUserName());
 
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             i.putExtras(b);
                             i.putExtras(a);
+                            i.putExtras(c);
 
                             startActivity(i);
                             finish();
