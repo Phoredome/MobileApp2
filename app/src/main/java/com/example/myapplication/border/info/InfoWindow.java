@@ -99,6 +99,7 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
         });
 
         Button go = v.findViewById(R.id.goBtn);
+
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
