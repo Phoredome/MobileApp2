@@ -19,10 +19,8 @@ import com.example.myapplication.border.info.RecyclerItemClickListener;
 import com.example.myapplication.controller.CarController;
 
 import com.example.myapplication.controller.MapController;
-import com.example.myapplication.controller.RecyclerViewAdapter;
 import com.example.myapplication.controller.RecyclerViewAdapter_Trip;
 import com.example.myapplication.controller.TripController;
-import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

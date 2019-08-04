@@ -51,7 +51,7 @@ public class StationDAO
         }
         return stations;
     }
-    public int getStationCount() {
+    public int getNumberOfStations() {
         String selectQuery = "SELECT * FROM Station;";
         Cursor cursor = rdb.rawQuery(selectQuery, null);
         int count = cursor.getCount();

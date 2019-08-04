@@ -12,23 +12,7 @@ import com.example.myapplication.entities.Station;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class CarController{
 
@@ -133,29 +117,6 @@ public class CarController{
 
     }
     // will use other methods to aid in redistributing unused car locations
-    public Boolean countOfCarsInStation()
-    {
-        //TODO
-        ArrayList<Car> carList = cd.getAllCars();
-        ArrayList<Station> stationList = sd.getAllStations();
-        int[][] stationCars = new int[sd.getStationCount()][cd.getCarCount()];
-        int count = 0;
-        for(Station s : stationList)
-            if(s.isStationActive()) {
-                for (int i = 0; i < carList.size(); i++) {
-                    Car c = carList.get(i);
-                        if(c.isInActiveService()&&!c.isInUse()&&c.isInStation())
-                            if (s.getLocationX() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
-                            count++;
-
-                        }
-                        s.setCarsAtStation(count);
-                    }
-
-        }
-        // if cars are too close to each other, move the furthest one from base away
-        return false;
-    }
 
     //will randomly disperse unused cars to random locations across the map
     public void randomizeCarLocations()
@@ -276,6 +237,69 @@ public class CarController{
             double y = -123.023000 + random2;
 
             cd.updateCar(c.getCarID(), x, y);
+        }
+    }
+
+    public int countOfCarsInStation(ArrayList<Station> stationList)
+    {
+        //TODO
+        ArrayList<Car> carList = cd.getAllCars();
+
+        int[][] stationCars = new int[sd.getNumberOfStations()][cd.getCarCount()];
+        int count = 0;
+        int lowest = 0;
+        int highest = 0;
+        int average = 0;
+        for(Station s : stationList)
+            if(s.isStationActive()) {
+                for (int i = 0; i < carList.size(); i++) {
+                    Car c = carList.get(i);
+                    if(c.isInActiveService()&&!c.isInUse()&&c.isInStation())
+                        if (s.getLocationX() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
+                            count++;
+                        }
+                }
+                s.setCarsAtStation(count);
+                if(count > highest)
+                    highest = count;
+                else if(count < lowest)
+                    lowest = count;
+            }
+        // if cars are too close to each other, move the furthest one from base away
+        return highest - lowest;
+    }
+
+    public void redistribute()
+    {
+        ArrayList<Station> stationList = sd.getAllStations();
+        //calls to check number of cars in all stations
+        int diff = countOfCarsInStation(stationList);
+        // returns diffrence in number of cars
+
+        //if value is greater than number of cars at station avg
+
+        //redistribute
+        //with logs
+        //for all stations with larger diff than avg
+
+        //if station x has more cars than station 1
+
+        //below put in method
+        Station fullStation = null;
+        for(Station s : sd.getAllStations()) {
+            int holdStation = 0;
+            for (int i = 0; i < sd.getNumberOfStations(); i++) {
+                int carsAtStation = sd.getStationByID(i).getCarsAtStation();
+                if (s.getCarsAtStation() < carsAtStation) ;
+                {
+                    int holdStationCars = sd.getStationByID(holdStation).getCarsAtStation();
+                    if (carsAtStation < holdStationCars) {
+                        //carsAtStation, holdStationCars
+                        holdStation = i;
+                    }
+                }
+                int carNumberDiffrence = holdStation;
+            }
         }
     }
     /*@Override
