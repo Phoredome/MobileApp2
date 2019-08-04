@@ -14,6 +14,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
 import android.util.Log;
+import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,9 +106,14 @@ public class MainActivity extends AppCompatActivity
 
         Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
+        String uName = a.getString("userN");
+
 
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView userNameTitle =  headerView.findViewById(R.id.nav_name);
+        userNameTitle.setText("Welcome,  " + uName);
 
         if (status) {
             navigationView.inflateMenu(R.menu.activity_admin_drawer);

@@ -17,10 +17,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.border.info.RecyclerItemClickListener;
 import com.example.myapplication.controller.entityController.CarController;
-
 import com.example.myapplication.controller.entityController.MapController;
 import com.example.myapplication.controller.adapters.RecyclerViewAdapter_Trip;
 import com.example.myapplication.controller.entityController.TripController;
+
 import com.example.myapplication.entities.Trip;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -55,6 +55,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         tc = new TripController(getApplicationContext());
         td = new TripDAO(getApplicationContext());
         mc = new MapController();
+
 
         Intent i = getIntent();
 
@@ -206,9 +207,12 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
                         sp.append("Trip amount: " + t.getAmount()+ "\n");
                         sp.append("Trip kilometers: " + t.getKmsRunForTrip());
 
+
                        carHistory.setText(sp);
+
                        mc.setMarker(gmap,"START", t.getStartingX(), t.getStartingY());
                        mc.setMarker(gmap, "FINISH", t.getEndingX(), t.getEndingY());
+
                        gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(t.getStartingX(), t.getStartingY())));
                     }
                 })
