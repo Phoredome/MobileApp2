@@ -12,13 +12,11 @@ import java.util.ArrayList;
 
 public class StationController
 {
-    CarController cc;
     MapController mc;
     TripDAO td;
     StationDAO sd;
 
     public StationController(Context context) {
-        cc = new CarController(context);
         mc = new MapController();
         td = new TripDAO(context);
         sd = new StationDAO(context);
@@ -33,12 +31,10 @@ public class StationController
     public int getNumberOfStations()
     {return sd.getNumberOfStations();}
 
-    public int countCarsInStation(ArrayList<Station> stationList)
+    public int countCarsInStation(ArrayList<Station> stationList, ArrayList<Car> carList)
     {
         //TODO
-        ArrayList<Car> carList = cc.getAllCars();
 
-        int[][] stationCars = new int[sd.getNumberOfStations()][cc.getMaxCarAtStationCount()];
         int count = 0;
         int lowest = 0;
         int highest = 0;

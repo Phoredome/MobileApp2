@@ -171,6 +171,15 @@ public class EditCar extends AppCompatActivity {
 
             }
         });
+
+        Button cancelBtn = findViewById(R.id.cancelBtn_ed);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void editingCar() {
