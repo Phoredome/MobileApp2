@@ -1,6 +1,8 @@
 package com.example.myapplication.controller.entityController;
 
 import android.content.Context;
+import android.service.autofill.UserData;
+import android.util.Log;
 
 import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.border.dao.UserDAO;
@@ -11,18 +13,23 @@ import com.example.myapplication.entities.User;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TripController
 {
     CarController cc;
     MapController mc;
     TripDAO td;
+    UserDAO ud;
 
     public TripController(Context context) {
         cc = new CarController(context);
         mc = new MapController();
         td = new TripDAO(context);
+        ud = new UserDAO(context);
     }
 
     public ArrayList<Trip> getAllTrips() {
@@ -45,11 +52,18 @@ public class TripController
         c.getCostOfRunning();
 
 
-        td.addTrip(c.getCarID(),
+        android.text.format.DateFormat df = new android.text.format.DateFormat();
+        String date = df.format("dd-MM-yyyy", new Date()).toString();
+        Log.d("Date", date);
+        String time = df.format("hh:mm a", new Date()).toString();
+        Log.d("Time", time);
+
+         td.addTrip(c.getCarID(),
          user.getUserId(),
          c.getCostOfRunning()*c.getDistance(),
          c.getDistance(),
-         Calendar.getInstance().getTime(),
+         time,
+         date,
          c.getCoordX(),c.getCoordY(),
          ll.latitude, ll.longitude);
 

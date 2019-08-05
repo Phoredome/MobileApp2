@@ -9,12 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.util.Log;
-import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +25,6 @@ import android.widget.Toast;
 
 import com.example.myapplication.border.info.AddressResultReceiver;
 import com.example.myapplication.border.info.GetDistanceProbe;
-import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.border.info.MapWrapperLayout;
 import com.example.myapplication.controller.adapters.OnInfoWindowElemTouchListener;
 import com.example.myapplication.controller.entityController.CarController;
@@ -40,7 +36,6 @@ import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.Station;
-import com.example.myapplication.entities.Trip;
 import com.example.myapplication.entities.User;
 import com.example.myapplication.manager.FetchAddressIntentService;
 import com.google.android.gms.common.ConnectionResult;
