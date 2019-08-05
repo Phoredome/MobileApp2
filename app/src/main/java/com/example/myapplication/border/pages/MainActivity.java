@@ -361,10 +361,15 @@ public class MainActivity extends AppCompatActivity
         OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
             @Override
             protected void onClickConfirmed(View v, Marker marker) {
-                LatLng ll = mc.getLocationFromAddress(getApplicationContext(), location.getText().toString());
-                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                tc.addTrip(getApplicationContext(), c, user, ll);
-                cc.moveCar(gmap, c, ll.latitude, ll.longitude);
+                String address = location.getText().toString();
+                if(address.indexOf(',') > 0) {
+                    LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    tc.addTrip(gmap, getApplicationContext(), c, user, ll);
+                }else{
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    tc.addTrip(gmap, getApplicationContext(), c, user, address);
+                }
             }
         };
 

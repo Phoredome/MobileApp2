@@ -139,7 +139,6 @@ public class CarController{
             valid = 2;
 
         return valid;
-
     }
     // will use other methods to aid in redistributing unused car locations
 
