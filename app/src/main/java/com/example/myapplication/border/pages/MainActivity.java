@@ -307,12 +307,12 @@ public class MainActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
 
         gmap = googleMap;
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        /*LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(new LatLng(49.368971, -123.278548));
         builder.include(new LatLng(49.008310, -122.139316));
-        LatLngBounds bounds = builder.build();
+        LatLngBounds bounds = builder.build();*/
         gmap.setMinZoomPreference(14);
-        gmap.setLatLngBoundsForCameraTarget(bounds);
+        // gmap.setLatLngBoundsForCameraTarget(bounds);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(49.232000, -123.023000)));
         mapWrapperLayout.init(gmap, getPixelsFromDp(this, 39 + 20));
         gmap.setMaxZoomPreference(17);
@@ -329,79 +329,142 @@ public class MainActivity extends AppCompatActivity
         sendToLot = v.findViewById(R.id.sendLotBtn);
         go = v.findViewById(R.id.goBtn);
 
-        gmap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-
-                String markerID = marker.getId().substring(1);
-                int markerId = (allCars.get(Integer.parseInt(markerID)-1).getCarID());
-                carId.setText(String.valueOf(markerId));
-                licP.setText(allCars.get(Integer.parseInt(markerID)-1).getLicensePlate());
-                //final Car c = cc.getCarById(Integer.parseInt(carId.getText().toString()));
-
-                mapWrapperLayout.setMarkerWithInfoWindow(marker, v);
-                return v;
-            }
-        });
-
-        OnInfoWindowElemTouchListener infoWindow = new OnInfoWindowElemTouchListener(service) {
-            @Override
-            protected void onClickConfirmed(View v, Marker marker) {
-                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                cc.serviceCar(c);
-            }
-        };
-        service.setOnTouchListener(infoWindow);
-
-        Log.d("SC Test", sc.getStationByID(0) +"");
-        OnInfoWindowElemTouchListener infoWindow2 = new OnInfoWindowElemTouchListener(sendToLot) {
-            @Override
-            protected void onClickConfirmed(View v, Marker marker)
-            {
-                s = sc.getStationByID(2);
-                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                Log.d("MainActivity-SendToLot",""+ s.getLocationX()+ s.getLocationY() );
-                cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
-            }
-        };
-
-
-
-        sendToLot.setOnTouchListener(infoWindow2);
-
-        OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
-            @Override
-            protected void onClickConfirmed(View v, Marker marker) {
-                String address = location.getText().toString();
-                if(address.indexOf(",") > 0) {
-                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                    tc.addTrip(gmap, MainActivity.this, c, user, address);
-                }else{
-                    LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
-                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                    tc.addTrip(gmap, MainActivity.this, c, user, ll);
-                }
-            }
-        };
-
-        go.setOnTouchListener(infoWindow3);
-
-
         if (shortList != null)
         {
             RecyclerViewAdapter adapter2 = new RecyclerViewAdapter(shortList,getApplication(), gmap);
             rv.setLayoutManager(new LinearLayoutManager(this));
             rv.setAdapter(adapter2);
+            gmap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                @Override
+                public View getInfoWindow(Marker marker) {
+                    return null;
+                }
+
+                @Override
+                public View getInfoContents(Marker marker) {
+
+                    String markerID = marker.getId().substring(1);
+                    int markerId = (shortList.get(Integer.parseInt(markerID)-1).getCarID());
+                    carId.setText(String.valueOf(markerId));
+                    licP.setText(shortList.get(Integer.parseInt(markerID)-1).getLicensePlate());
+                    //final Car c = cc.getCarById(Integer.parseInt(carId.getText().toString()));
+
+                    mapWrapperLayout.setMarkerWithInfoWindow(marker, v);
+                    return v;
+                }
+            });
+
+            OnInfoWindowElemTouchListener infoWindow = new OnInfoWindowElemTouchListener(service) {
+                @Override
+                protected void onClickConfirmed(View v, Marker marker) {
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    cc.serviceCar(c);
+                }
+            };
+            service.setOnTouchListener(infoWindow);
+
+            Log.d("SC Test", sc.getStationByID(0) +"");
+            OnInfoWindowElemTouchListener infoWindow2 = new OnInfoWindowElemTouchListener(sendToLot) {
+                @Override
+                protected void onClickConfirmed(View v, Marker marker)
+                {
+                    s = sc.getStationByID(2);
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    Log.d("MainActivity-SendToLot",""+ s.getLocationX()+ s.getLocationY() );
+                    cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
+                }
+            };
+
+
+
+            sendToLot.setOnTouchListener(infoWindow2);
+
+            OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
+                @Override
+                protected void onClickConfirmed(View v, Marker marker) {
+                    String address = location.getText().toString();
+                    if(address.indexOf(",") > 0) {
+                        Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                        tc.addTrip(gmap, MainActivity.this, c, user, address);
+                    }else{
+                        LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
+                        Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                        tc.addTrip(gmap, MainActivity.this, c, user, ll);
+                    }
+                }
+            };
+
+            go.setOnTouchListener(infoWindow3);
+
+
         }
         else {
             RecyclerViewAdapter adapter = new RecyclerViewAdapter(allCars, getApplication(), gmap);
             rv.setLayoutManager(new LinearLayoutManager(this));
             rv.setAdapter(adapter);
+            gmap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                @Override
+                public View getInfoWindow(Marker marker) {
+                    return null;
+                }
+
+                @Override
+                public View getInfoContents(Marker marker) {
+
+                    String markerID = marker.getId().substring(1);
+                    int markerId = (allCars.get(Integer.parseInt(markerID)-1).getCarID());
+                    carId.setText(String.valueOf(markerId));
+                    licP.setText(allCars.get(Integer.parseInt(markerID)-1).getLicensePlate());
+                    //final Car c = cc.getCarById(Integer.parseInt(carId.getText().toString()));
+
+                    mapWrapperLayout.setMarkerWithInfoWindow(marker, v);
+                    return v;
+                }
+            });
+
+            OnInfoWindowElemTouchListener infoWindow = new OnInfoWindowElemTouchListener(service) {
+                @Override
+                protected void onClickConfirmed(View v, Marker marker) {
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    cc.serviceCar(c);
+                }
+            };
+            service.setOnTouchListener(infoWindow);
+
+            Log.d("SC Test", sc.getStationByID(0) +"");
+            OnInfoWindowElemTouchListener infoWindow2 = new OnInfoWindowElemTouchListener(sendToLot) {
+                @Override
+                protected void onClickConfirmed(View v, Marker marker)
+                {
+                    s = sc.getStationByID(2);
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    Log.d("MainActivity-SendToLot",""+ s.getLocationX()+ s.getLocationY() );
+                    cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
+                }
+            };
+
+
+
+            sendToLot.setOnTouchListener(infoWindow2);
+
+            OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
+                @Override
+                protected void onClickConfirmed(View v, Marker marker) {
+                    String address = location.getText().toString();
+                    if(address.indexOf(",") > 0) {
+                        Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                        tc.addTrip(gmap, MainActivity.this, c, user, address);
+                    }else{
+                        LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
+                        Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                        tc.addTrip(gmap, MainActivity.this, c, user, ll);
+                    }
+                }
+            };
+
+            go.setOnTouchListener(infoWindow3);
+
+
         }
 
         gmap.setMinZoomPreference(12);
