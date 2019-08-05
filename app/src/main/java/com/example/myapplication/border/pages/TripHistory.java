@@ -197,6 +197,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         rv2.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
+                        gmap.clear();
                         TextView carHistory = findViewById(R.id.historyInfo);
 
                         Trip t = td.getTripById(position+1);
