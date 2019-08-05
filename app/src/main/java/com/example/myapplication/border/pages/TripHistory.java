@@ -56,6 +56,7 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
         td = new TripDAO(getApplicationContext());
         mc = new MapController();
 
+        final NavigationView navigationView = findViewById(R.id.nav_history);
 
         Intent i = getIntent();
 
@@ -64,9 +65,12 @@ public class TripHistory extends AppCompatActivity implements OnMapReadyCallback
 
         Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
+        String uName = a.getString("userN");
 
+        View headerView = navigationView.getHeaderView(0);
+        TextView userNameTitle =  headerView.findViewById(R.id.nav_name);
+        userNameTitle.setText("Hi, " + uName);
 
-        final NavigationView navigationView = findViewById(R.id.nav_history);
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);

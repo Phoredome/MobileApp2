@@ -49,7 +49,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="@string/scCost"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -66,12 +65,11 @@
                         android:text="@string/vanRate" />
 
                     <EditText
-                        android:id="@+id/editText2"
+                        android:id="@+id/rate2Txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="@string/vanCost"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -88,12 +86,11 @@
                         android:text="@string/crvRate" />
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/rate3Txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="@string/crvCost"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -128,23 +125,34 @@
                     android:text="Data"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                <TextView
-                    android:id="@+id/totalMade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/numActive"
+                <ScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/numRunning"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/totalMade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/numActive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/numRunning"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView" />
+                    </LinearLayout>
+                </ScrollView>
 
             </LinearLayout>
 

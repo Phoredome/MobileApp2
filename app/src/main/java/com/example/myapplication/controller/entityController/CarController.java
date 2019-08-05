@@ -311,9 +311,23 @@ public class CarController{
         return movableCars;
     }
 
-    public void setCarRates(int carNum, double scRate, double crvRate, double vanRate)
+    public void setCarRates(double scRate, double crvRate, double vanRate)
     {
-        cd.updateCarRate(carNum,scRate,crvRate,vanRate);
+        for (Car c : cd.getAllCars()) {
+            cd.updateCarRate(c, scRate,crvRate,vanRate);
+
+        }
+    }
+
+    public Double findCarRate(String carType) {
+        for (Car c : cd.getAllCars()) {
+            if(c.getVehicleType().equals(carType)) {
+                Log.d("CarController - findCarRate" , "" + c.getCostOfRunning());
+               return c.getCostOfRunning();
+            }
+        }
+        return 0.0;
+
     }
 }
 

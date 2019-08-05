@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,17 +33,24 @@ public class EditCar extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_edit_car);
 
+        final NavigationView navigationView = findViewById(R.id.nav_edit_car);
+
         Intent i = getIntent();
 
         b = i.getExtras();
         a = i.getExtras();
+        String uName = a.getString("userN");
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView userNameTitle =  headerView.findViewById(R.id.nav_name);
+        userNameTitle.setText("Hi, " + uName);
+
 
         cc = new CarController(getApplicationContext());
         carId = a.getInt("carId");
         Boolean status = b.getBoolean("status");
         Car car = cc.getCarById(carId);
 
-        final NavigationView navigationView = findViewById(R.id.nav_edit_car);
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
