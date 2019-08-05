@@ -56,9 +56,6 @@ public class CarController{
     public int getCarCount()
     {return cd.getCarCount();}
 
-    public int getMaxCarAtStationCount()
-    {return cd.getMaxCarAtStationCount();}
-
     public Boolean check(String license, String costOfRun)
     {
         Car car = null;
@@ -139,7 +136,6 @@ public class CarController{
             valid = 2;
 
         return valid;
-
     }
     // will use other methods to aid in redistributing unused car locations
 

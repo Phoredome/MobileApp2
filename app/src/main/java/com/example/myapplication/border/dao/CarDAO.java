@@ -44,7 +44,11 @@ public class CarDAO {
     public ArrayList<Car> getAllCarsByStation(Station s)
     {
         ArrayList<Car> carsAtStation = null;
-        //TODO QUERY for cars at specific station x/y
+        for(Car c : getAllCars())
+        {
+            if (c.getCoordX() == s.getLocationX() && c.getCoordY() == s.getLocationY())
+                carsAtStation.add(c);
+        }
 
         return carsAtStation;
     }
@@ -55,12 +59,6 @@ public class CarDAO {
         int count = cursor.getCount();
         cursor.close();
         return count;
-    }
-
-    public int getMaxCarAtStationCount()
-    {
-        //TODO MAYBE here? maybe just do in CarController
-        return 0;
     }
 
     public Car getCarByLocation(LatLng ll)

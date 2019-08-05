@@ -6,6 +6,7 @@ import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
 import com.example.myapplication.entities.User;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -25,7 +26,13 @@ public class TripController
     public ArrayList<Trip> getAllTrips() {
         return td.getAllTrips();
     }
-    public void addTrip(Context context, Car c,User user, LatLng ll)
+    public void addTrip(GoogleMap gmap, Context context, Car c,User user, String ll)
+    {
+        String[] xy = ll.split(",");
+        LatLng hold = new LatLng(Double.parseDouble(xy[0].trim()), Double.parseDouble(xy[1].trim()));
+        addTrip(gmap, context,c,user,hold);
+    }
+    public void addTrip(GoogleMap gmap, Context context, Car c, User user, LatLng ll)
     {
 
         int num = getHighestTripNum(getUserTrip(user.getUserId()));
@@ -43,6 +50,8 @@ public class TripController
          Calendar.getInstance().getTime(),
          c.getCoordX(),c.getCoordY(),
          ll.latitude, ll.longitude);*/
+
+        cc.moveCar(gmap, c, ll.latitude, ll.longitude);
     }
 
     public ArrayList<Trip> getUserTrip(Integer userId)
