@@ -103,10 +103,7 @@ public class CreateCar extends AppCompatActivity {
 
                 switch (cc.validateCars(license.getText().toString(), Double.parseDouble(costRunTxt.getText().toString()))) {
                     case 0:
-                        if (cc.checkToAdd()) {
                             addingCar();
-                        } else
-                          Toast.makeText(getBaseContext(), "Adding a car failed", Toast.LENGTH_LONG).show();
                         break;
                     case 1:
                         license.setError("Enter a valid license plate number longer than 6 characters");
