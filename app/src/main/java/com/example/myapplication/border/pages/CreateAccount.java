@@ -22,6 +22,7 @@ public class CreateAccount extends AppCompatActivity {
 
 
     public LoginManager lm;
+    Bundle a,b;
 
 
     @Override
@@ -69,8 +70,13 @@ public class CreateAccount extends AppCompatActivity {
 
 
         if((lm.createAccount(user,pass,first,last,email))) {
-            Log.d("id", "user created");
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Log.d("createAccount-signup", "user created");
+            Intent intent = new Intent(getApplicationContext(),LoginPage.class);
+
+            Intent i = getIntent();
+
+            Toast.makeText(getApplicationContext(), "User created!" , Toast.LENGTH_LONG).show();
+
             startActivity(intent);
             finish();
         }

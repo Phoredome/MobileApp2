@@ -49,7 +49,6 @@ public class LoginPage extends AppCompatActivity
 
                             Bundle b = new Bundle();
                             Bundle a = new Bundle();
-                            Bundle c = new Bundle();
 
                             b.putBoolean("status", user.getStatus());
                             a.putInt("userId", user.getUserId());
@@ -77,12 +76,18 @@ public class LoginPage extends AppCompatActivity
         });
 
         signUpBtn.setOnClickListener((new View.OnClickListener() {
+
+            LoginManager lm = new LoginManager(getApplicationContext());
+
+            String userName = usernameInput.getText().toString();
+
             @Override
             public void onClick(View view) {
-                Log.d("Signup button", "signup button");
+                Log.d("LoginPage-signupBtn", "signup button");
                 Intent i = new Intent(getApplicationContext(), CreateAccount.class);
                 startActivity(i);
                 finish();
+
             }
         }));
 
