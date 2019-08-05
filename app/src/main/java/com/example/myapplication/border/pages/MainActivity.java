@@ -366,10 +366,10 @@ public class MainActivity extends AppCompatActivity
                 if(address.indexOf(',') > 0) {
                     LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
                     Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                    tc.addTrip(gmap, getApplicationContext(), c, user, ll);
+                    tc.addTrip(gmap, MainActivity.this, c, user, ll);
                 }else{
                     Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                    tc.addTrip(gmap, getApplicationContext(), c, user, address);
+                    tc.addTrip(gmap, MainActivity.this, c, user, address);
                 }
             }
         };

@@ -33,7 +33,6 @@ public class StationController
 
     public int countCarsInStation(ArrayList<Station> stationList, ArrayList<Car> carList)
     {
-        //TODO
 
         int count = 0;
         int lowest = 0;
@@ -58,7 +57,6 @@ public class StationController
         }
         average = hold / i;
         // if cars are too close to each other, move the furthest one from base away
-        //TODO Actually do average
         Log.d("StationController", "Average: " + average + " Hold: " + hold + " I: " + i);
         return average;
     }

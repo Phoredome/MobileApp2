@@ -49,29 +49,6 @@ public class GetDistanceProbe extends AsyncTask<ArrayList<Car>, Void, ArrayList<
         ExecutorService pool = Executors.newCachedThreadPool();
         Log.d("inside do in background", "do in background");
 
-        /*for (Car d : carList) {
-            if(!d.equals(c)) {
-
-                futuristicCars.add(pool.submit(new CarController.DistanceCallable( x, y, d)));
-            }
-            //give me distance of car from location
-            //TODO
-        }
-
-
-        for (Future<Car> f:params[0])
-        {
-            try
-            {
-            carList.add(f.get());
-            }
-            catch (ExecutionException | InterruptedException REEE)
-            {
-                Log.d("GetDistanceProbe", "CAR:" + carList.size());
-                Log.d("GetDistanceProbe", REEE.getMessage());
-            }
-        }*/
-
         for (Car car : params[0])
         {
             callDistance(x,y,car);
