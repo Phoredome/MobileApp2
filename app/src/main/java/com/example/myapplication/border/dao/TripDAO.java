@@ -30,7 +30,6 @@ public class TripDAO {
         values.put("userId", userId);
         values.put("amount",amount);
         values.put("kmsRunForTrip", kmsRunForTrip);
-        //TODO CHANGE date and time to date object
         values.put("timeOfTrip", timeOfTrip);
         values.put("dateOfTrip", dateOfTrip);
         values.put("startingX", startingX);

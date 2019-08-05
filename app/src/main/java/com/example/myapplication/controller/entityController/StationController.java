@@ -15,6 +15,7 @@ public class StationController
     MapController mc;
     TripDAO td;
     StationDAO sd;
+    Station s;
 
     public StationController(Context context) {
         mc = new MapController();
@@ -33,7 +34,6 @@ public class StationController
 
     public int countCarsInStation(ArrayList<Station> stationList, ArrayList<Car> carList)
     {
-        //TODO
 
         int count = 0;
         int lowest = 0;
@@ -42,7 +42,7 @@ public class StationController
         int average = 0;
         int i = 0;
         for(i = 0; i < stationList.size(); i++) {
-            Station s = sd.getStationByID(i);
+            s = sd.getStationByID(i+1);
             if (s.isStationActive()) {
                 for (int j = 0; j < carList.size(); j++) {
                     Car c = carList.get(j);
@@ -58,7 +58,6 @@ public class StationController
         }
         average = hold / i;
         // if cars are too close to each other, move the furthest one from base away
-        //TODO Actually do average
         Log.d("StationController", "Average: " + average + " Hold: " + hold + " I: " + i);
         return average;
     }

@@ -9,12 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.util.Log;
-import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +25,6 @@ import android.widget.Toast;
 
 import com.example.myapplication.border.info.AddressResultReceiver;
 import com.example.myapplication.border.info.GetDistanceProbe;
-import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.border.info.MapWrapperLayout;
 import com.example.myapplication.controller.adapters.OnInfoWindowElemTouchListener;
 import com.example.myapplication.controller.entityController.CarController;
@@ -40,7 +36,6 @@ import com.example.myapplication.entities.Car;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.Station;
-import com.example.myapplication.entities.Trip;
 import com.example.myapplication.entities.User;
 import com.example.myapplication.manager.FetchAddressIntentService;
 import com.google.android.gms.common.ConnectionResult;
@@ -368,10 +363,15 @@ public class MainActivity extends AppCompatActivity
         OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
             @Override
             protected void onClickConfirmed(View v, Marker marker) {
-                LatLng ll = mc.getLocationFromAddress(getApplicationContext(), location.getText().toString());
-                Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                tc.addTrip(getApplicationContext(), c, user, ll);
-                cc.moveCar(gmap, c, ll.latitude, ll.longitude);
+                String address = location.getText().toString();
+                if(address.indexOf(',') > 0) {
+                    LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    tc.addTrip(gmap, MainActivity.this, c, user, ll);
+                }else{
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    tc.addTrip(gmap, MainActivity.this, c, user, address);
+                }
             }
         };
 

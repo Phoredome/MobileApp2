@@ -14,11 +14,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.R;
-import com.example.myapplication.border.info.InfoWindow;
 import com.example.myapplication.controller.entityController.CarController;
 import com.example.myapplication.controller.adapters.RecyclerViewAdapter;
 import com.example.myapplication.entities.Car;
-import com.example.myapplication.manager.DistanceCalculatorManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -33,7 +31,6 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
     private MapView mapView;
     private GoogleMap gmap;
     Bundle a,b;
-    InfoWindow iw;
     CarController cc;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -127,9 +124,7 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
         redistributeCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), DistanceCalculatorManager.class);
-                startActivity(i);
-                finish();
+                cc.redistribute();
             }
         });
 

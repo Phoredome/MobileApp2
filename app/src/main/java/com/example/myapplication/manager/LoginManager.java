@@ -23,7 +23,6 @@ public class LoginManager
             user = ud.getUser(uname);
             if (user != null && user.getPassword().equals(pword))
                 return true;
-            //TODO Figure out how to populate the navigation field according to userStatus
             else // User is null or password is wrong
                     return false;
         } catch(Exception e) {
@@ -73,7 +72,7 @@ public class LoginManager
             Log.d("account created", "account created");
              return true;
         } catch (Exception e) {
-            //TODO
+            Log.d("LoginManager", "please dont get here: " + e);
             return false;
         }
     }
