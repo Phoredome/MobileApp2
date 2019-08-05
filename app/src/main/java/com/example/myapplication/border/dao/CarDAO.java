@@ -136,8 +136,10 @@ public class CarDAO {
 
                 index = cursor.getColumnIndexOrThrow("coordY");
                 double coordY = cursor.getDouble(index);
+
                 index = cursor.getColumnIndexOrThrow("inStation");
                 Boolean inStation = Boolean.parseBoolean(cursor.getString(index));
+
                 Car car = new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY, inStation);
                 cars.add(car);
 

@@ -41,22 +41,26 @@ public class StationController
         int hold = 0;
         int average = 0;
         int i = 0;
+        int k = 0;
         for(i = 0; i < stationList.size(); i++) {
             s = sd.getStationByID(i+1);
             if (s.isStationActive()) {
+                k++;
                 for (int j = 0; j < carList.size(); j++) {
                     Car c = carList.get(j);
                     if (c.isInActiveService() && !c.isInUse() && c.isInStation())
                         if (s.getLocationX() == c.getCoordX() && s.getLocationY() == c.getCoordY()) {
+                            Log.d("StationController-CountCars", "" +count);
                             count++;
                         }
 
                 }
                 s.setCarsAtStation(count);
-                hold+=count;
+                hold+=count+1;
+                Log.d("StationController-CountCars", "" +hold);
             }
         }
-        average = hold / i;
+        average = hold / k;
         // if cars are too close to each other, move the furthest one from base away
         Log.d("StationController", "Average: " + average + " Hold: " + hold + " I: " + i);
         return average;
