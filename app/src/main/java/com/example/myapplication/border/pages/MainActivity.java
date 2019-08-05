@@ -176,8 +176,14 @@ public class MainActivity extends AppCompatActivity
 
         Spinner carSelect = findViewById(R.id.carSelect);
         ArrayList<String> carTypes = cc.getCarTypes();
-        Set<String> uniqueCarTypes = new HashSet<String>(carTypes);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, carTypes);
+        ArrayList<String> uniqueCarTypes = new ArrayList<>();
+
+        uniqueCarTypes.add("Small Car");
+        uniqueCarTypes.add("CRV Car");
+        uniqueCarTypes.add("Van");
+
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, uniqueCarTypes);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carSelect.setAdapter(arrayAdapter);
 
@@ -231,7 +237,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        cc.setAllCars();
+        //cc.setAllCars();
         //cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
         cc.getDistanceFromBase(MainActivity.this);
        //cc.getCarDistance(MainActivity.this);

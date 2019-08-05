@@ -43,11 +43,15 @@ public class CarDAO {
 
     public ArrayList<Car> getAllCarsByStation(Station s)
     {
-        ArrayList<Car> carsAtStation = null;
+        ArrayList<Car> carsAtStation = new ArrayList<>();
+
         for(Car c : getAllCars())
         {
-            if (c.getCoordX() == s.getLocationX() && c.getCoordY() == s.getLocationY())
-                carsAtStation.add(c);
+            Log.d("CarDAO-getAllCarsByStation", "" + c.getCarID() + c.isInStation() + c.getCoordX() + c.getCoordY());
+                if (c.isInStation() && c.getCoordX() == s.getLocationX() && c.getCoordY() == s.getLocationY()) {
+                    Log.d("get all Cars by Station", "inside if loop");
+                    carsAtStation.add(c);
+                }
         }
 
         return carsAtStation;
@@ -132,7 +136,11 @@ public class CarDAO {
 
                 index = cursor.getColumnIndexOrThrow("coordY");
                 double coordY = cursor.getDouble(index);
-                Car car = new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY);
+
+                index = cursor.getColumnIndexOrThrow("inStation");
+                Boolean inStation = Boolean.parseBoolean(cursor.getString(index));
+
+                Car car = new Car(carId, costOfRunning, seats, doors, serviceTime, kmsRun, kmsSinceLastService, vehicleType, licensePlate, inUse, inService, coordX, coordY, inStation);
                 cars.add(car);
 
 

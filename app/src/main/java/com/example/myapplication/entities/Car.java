@@ -23,7 +23,7 @@ public class Car {
     private boolean inActiveService;
     private boolean inStation;
 
-    public Car(int carID, double costOfRunning, int seats, int doors, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inActiveService, double coordX, double coordY) {
+    public Car(int carID, double costOfRunning, int seats, int doors, int serviceTime, int kmsRun, int kmsSinceLastService, String vehicleType, String licensePlate, boolean inUse, boolean inActiveService, double coordX, double coordY, boolean inStation) {
         this.carID = carID;
         this.costOfRunning = costOfRunning;
         this.seats = seats;
@@ -37,6 +37,7 @@ public class Car {
         this.inActiveService = inActiveService;
         this.coordX = coordX;
         this.coordY = coordY;
+        this.inStation = inStation;
     }
 
     public int getCarID() {
