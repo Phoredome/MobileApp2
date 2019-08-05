@@ -2,6 +2,7 @@ package com.example.myapplication.controller.entityController;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.myapplication.border.dao.CarDAO;
 import com.example.myapplication.border.pages.CreateCar;
@@ -11,6 +12,7 @@ import com.example.myapplication.entities.Station;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CarController{
@@ -260,30 +262,35 @@ public class CarController{
         // returns average in number of cars
         ArrayList<Car> usableCars = getUsableCars(stationList, avg);
 
-        for(int i = 0; i < usableCars.size(); i++)
+        if (usableCars !=null) {
+            for (int i = 0; i < usableCars.size(); i++)
+                for (Station s : stationList) {
+                    if (s.isStationActive()) {
+                        int carCount = s.getCarsAtStation();
+                        while (carCount < avg) {
+                            transferCar(usableCars.get(i), s);
+                            carCount++;
+                        }
+                    }
+                }
+            sc.countCarsInStation(stationList, cd.getAllCars());
             for (Station s : stationList) {
                 if (s.isStationActive()) {
                     int carCount = s.getCarsAtStation();
-                    while(carCount < avg){
-                        transferCar(usableCars.get(i),s);
-                        carCount++;
-                    }
-                }
-            }
-        sc.countCarsInStation(stationList, cd.getAllCars());
-        for (Station s : stationList) {
-            if (s.isStationActive()) {
-                int carCount = s.getCarsAtStation();
-                while (carCount < avg) {
-                    for (Car c: cd.getAllCars()) {
-                        if(!c.isInUse()&&c.isInActiveService()&&!c.isInStation()) {
-                            transferCar(c, s);
-                            carCount++;
-                        }
+                    while (carCount < avg) {
+                        for (Car c : cd.getAllCars()) {
+                            if (!c.isInUse() && c.isInActiveService() && !c.isInStation()) {
+                                transferCar(c, s);
+                                carCount++;
+                            }
 
+                        }
                     }
                 }
             }
+        }
+        else {
+            Toast.makeText(context, "No usable cars in station", Toast.LENGTH_SHORT).show();
         }
         //===========================================================
         //if value is greater than number of cars at station avg
@@ -292,19 +299,25 @@ public class CarController{
 
     public ArrayList<Car> getUsableCars(ArrayList<Station> stationList, int avg) {
         ArrayList<Station> crowded = null;
-        ArrayList<Car> movableCars = null;
+        ArrayList<Car> movableCars = new ArrayList<>();
         for (Station s : stationList) {
             if (s.isStationActive()) {
                 int carCount = s.getCarsAtStation();
                 int usableCars;
                 if (carCount > avg) {
-                    ArrayList<Car> stationCars = null;
-                    for(Car c : cd.getAllCarsByStation(s))
-                        stationCars.add(c);
+                    ArrayList<Car> stationCars = new ArrayList<>();
+                    ArrayList<Car> carsInStation = cd.getAllCarsByStation(s);
+                    if(carsInStation != null) {
+                        for (Car c : cd.getAllCarsByStation(s))
+                            stationCars.add(c);
 
-                    usableCars = carCount - avg;
-                    for(int i = 0; i < usableCars; i++)
-                        movableCars.add(stationCars.get(i));
+                        usableCars = carCount - avg;
+                        for (int i = 0; i < usableCars; i++)
+                            movableCars.add(stationCars.get(i));
+                    }
+                    else {
+                        Toast.makeText(context, "No cars in Station", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }

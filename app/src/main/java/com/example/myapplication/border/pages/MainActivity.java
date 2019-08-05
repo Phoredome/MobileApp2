@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        cc.setAllCars();
+        //cc.setAllCars();
         //cc.getCarDistance((GetDistanceProbe.DistanceListener) getApplicationContext());
         cc.getDistanceFromBase(MainActivity.this);
        //cc.getCarDistance(MainActivity.this);
