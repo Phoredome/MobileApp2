@@ -345,6 +345,7 @@ public class MainActivity extends AppCompatActivity
         };
         service.setOnTouchListener(infoWindow);
 
+        Log.d("SC Test", sc.getStationByID(0) +"");
         OnInfoWindowElemTouchListener infoWindow2 = new OnInfoWindowElemTouchListener(sendToLot) {
             @Override
             protected void onClickConfirmed(View v, Marker marker)

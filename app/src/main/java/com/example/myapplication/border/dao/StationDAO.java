@@ -45,6 +45,9 @@ public class StationDAO
 
                 index = cursor.getColumnIndexOrThrow("stationActive");
                 Boolean stationActive = Boolean.parseBoolean(cursor.getString(index));
+
+                Station station = new Station(stationId,carsAtStation, locationX, locationY, stationActive);
+                stations.add(station);
             }cursor.close();
         } catch (SQLException ex) {
             return null;
