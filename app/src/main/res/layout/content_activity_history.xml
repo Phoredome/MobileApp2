@@ -51,7 +51,7 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="15dp"
                     android:paddingTop="15dp"
-                    android:text="Car history..." />
+                    android:text="Select a car for a trip history..." />
             </LinearLayout>
 
         </LinearLayout>
