@@ -15,6 +15,7 @@ public class StationController
     MapController mc;
     TripDAO td;
     StationDAO sd;
+    Station s;
 
     public StationController(Context context) {
         mc = new MapController();
@@ -42,7 +43,7 @@ public class StationController
         int average = 0;
         int i = 0;
         for(i = 0; i < stationList.size(); i++) {
-            Station s = sd.getStationByID(i);
+            s = sd.getStationByID(i+1);
             if (s.isStationActive()) {
                 for (int j = 0; j < carList.size(); j++) {
                     Car c = carList.get(j);
