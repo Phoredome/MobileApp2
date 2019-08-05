@@ -203,6 +203,8 @@ public class MainActivity extends AppCompatActivity
                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(updatedList, getApplication(),gmap);
                 rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 rv.setAdapter(adapter);
+
+
             }
 
             @Override
@@ -300,9 +302,11 @@ public class MainActivity extends AppCompatActivity
         builder.include(new LatLng(49.368971, -123.278548));
         builder.include(new LatLng(49.008310, -122.139316));
         LatLngBounds bounds = builder.build();
+        gmap.setMinZoomPreference(14);
         gmap.setLatLngBoundsForCameraTarget(bounds);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(49.232000, -123.023000)));
         mapWrapperLayout.init(gmap, getPixelsFromDp(this, 39 + 20));
+        gmap.setMaxZoomPreference(17);
       //  gmap.setInfoWindowAdapter(new InfoWindow(MainActivity.this));
 
         rv = findViewById(R.id.recyclerView);
@@ -357,6 +361,8 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
+
+
         sendToLot.setOnTouchListener(infoWindow2);
 
         OnInfoWindowElemTouchListener infoWindow3 = new OnInfoWindowElemTouchListener(go) {
@@ -407,6 +413,7 @@ public class MainActivity extends AppCompatActivity
             rv.setAdapter(null);
             RecyclerViewAdapter adapter = new RecyclerViewAdapter(shortList, getApplication(), gmap);
             rv.setLayoutManager(new LinearLayoutManager(this));
+
             rv.setAdapter(adapter);
         }
     }
@@ -468,4 +475,6 @@ public class MainActivity extends AppCompatActivity
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int)(dp * scale + 0.5f);
     }
+
+
 }
