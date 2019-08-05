@@ -3,6 +3,7 @@ package com.example.myapplication.controller.entityController;
 import android.content.Context;
 
 import com.example.myapplication.border.dao.TripDAO;
+import com.example.myapplication.border.dao.UserDAO;
 import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
@@ -43,14 +44,14 @@ public class TripController
         c.setKmsRun(c.getKmsRun()+c.getDistance());
         c.getCostOfRunning();
 
-        //TODO FIX TripDAO
-         /*td.addTrip(c.getCarID(),
-         ud.getUser(user).getUserId(),
+
+        td.addTrip(c.getCarID(),
+         user.getUserId(),
          c.getCostOfRunning()*c.getDistance(),
          c.getDistance(),
          Calendar.getInstance().getTime(),
          c.getCoordX(),c.getCoordY(),
-         ll.latitude, ll.longitude);*/
+         ll.latitude, ll.longitude);
 
         cc.moveCar(gmap, c, ll.latitude, ll.longitude);
     }
