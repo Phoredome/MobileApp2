@@ -224,16 +224,24 @@ public class MainActivity extends AppCompatActivity
                EditText usernameInput = (EditText) findViewById(R.id.addressTxt);
                String address = usernameInput.getText().toString();
                Log.d("mainactivity onclick ", address);
-
-               LatLng latLng = mc.getLocationFromAddress(MainActivity.this,address);
-
-               Log.d("mainactivity", "on search btn click; " + latLng.latitude+ latLng.longitude);
-
-               if(latLng != null) {
-                    gmap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                LatLng ll;
+                if(address.indexOf(",") > 0) {
+                    String[] xy = address.split(",");
+                    ll = new LatLng(Double.parseDouble(xy[0].trim()), Double.parseDouble(xy[1].trim()));
+                    gmap.moveCamera(CameraUpdateFactory.newLatLng(ll));
+                }else{
+                    ll = mc.getLocationFromAddress(getApplicationContext(), address);
+                    gmap.moveCamera(CameraUpdateFactory.newLatLng(ll));
                 }
+           //    LatLng latLng = mc.getLocationFromAddress(MainActivity.this,address);
 
-               cc.getNearCarsFromLocation(MainActivity.this, latLng.latitude, latLng.longitude);
+               //Log.d("mainactivity", "on search btn click; " + latLng.latitude+ latLng.longitude);
+
+               /*if(latLng != null) {
+
+                }
+*/
+               cc.getNearCarsFromLocation(MainActivity.this, ll.latitude, ll.longitude);
             }
         });
 
@@ -370,13 +378,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             protected void onClickConfirmed(View v, Marker marker) {
                 String address = location.getText().toString();
-                if(address.indexOf(',') > 0) {
+                if(address.indexOf(",") > 0) {
+                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                    tc.addTrip(gmap, MainActivity.this, c, user, address);
+                }else{
                     LatLng ll = mc.getLocationFromAddress(getApplicationContext(), address);
                     Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
                     tc.addTrip(gmap, MainActivity.this, c, user, ll);
-                }else{
-                    Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
-                    tc.addTrip(gmap, MainActivity.this, c, user, address);
                 }
             }
         };

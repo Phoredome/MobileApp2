@@ -62,7 +62,7 @@ public class StationController
         }
         average = hold / k;
         // if cars are too close to each other, move the furthest one from base away
-        Log.d("StationController", "Average: " + average + " Hold: " + hold + " I: " + i);
+        Log.d("StationController", "Average: " + average + " Hold: " + hold + " K: " + k);
         return average;
     }
 
