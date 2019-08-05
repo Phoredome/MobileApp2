@@ -124,9 +124,9 @@ public class EditCar extends AppCompatActivity {
         if (car.getSeats() == 8)
             seatsSpin.setSelection(3);
         Spinner vehicleTypeSpin = findViewById(R.id.vehicleSpin_ed);
-        if(car.getVehicleType().equals("Small car"))
+        if(car.getVehicleType().equals("Small Car"))
             vehicleTypeSpin.setSelection(1);
-        if(car.getVehicleType().equals("CRV car"))
+        if(car.getVehicleType().equals("CRV Car"))
             vehicleTypeSpin.setSelection(2);
         if(car.getVehicleType().equals("Van"))
             vehicleTypeSpin.setSelection(3);
