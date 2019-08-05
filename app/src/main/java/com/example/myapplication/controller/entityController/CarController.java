@@ -56,9 +56,6 @@ public class CarController{
     public int getCarCount()
     {return cd.getCarCount();}
 
-    public int getMaxCarAtStationCount()
-    {return cd.getMaxCarAtStationCount();}
-
     public Boolean check(String license, String costOfRun)
     {
         Car car = null;
