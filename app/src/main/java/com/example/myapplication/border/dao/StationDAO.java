@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.myapplication.controller.entityController.DBController;
 import com.example.myapplication.entities.Station;
@@ -63,6 +64,7 @@ public class StationDAO
         Station station = null;
         for (Station s : stations) {
             if (stationId == s.getStationId()) {
+                Log.d("Station DAO", "Station ID: " + s.getStationId());
                 station = s;
             }
         }

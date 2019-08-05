@@ -10,10 +10,10 @@ public class Station
     private boolean stationActive;
 
 
-    public Station(int stationId, int carsAtStation, double locationx, double locationY, boolean stationActive) {
+    public Station(int stationId, int carsAtStation, double locationX, double locationY, boolean stationActive) {
         this.stationId = stationId;
         this.carsAtStation = carsAtStation;
-        this.locationX = locationx;
+        this.locationX = locationX;
         this.locationY = locationY;
         this.stationActive = stationActive;
     }
@@ -38,8 +38,8 @@ public class Station
         return locationX;
     }
 
-    public void setLocationX(double locationx) {
-        this.locationX = locationx;
+    public void setLocationX(double locationX) {
+        this.locationX = locationX;
     }
 
     public double getLocationY() {

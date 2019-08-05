@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity
     private User user;
     private RecyclerView rv;
     private AddressResultReceiver resultReceiver;
+    Station s;
 
     protected Location lastLocation;
 
@@ -346,9 +347,11 @@ public class MainActivity extends AppCompatActivity
 
         OnInfoWindowElemTouchListener infoWindow2 = new OnInfoWindowElemTouchListener(sendToLot) {
             @Override
-            protected void onClickConfirmed(View v, Marker marker) {
-                Station s = sc.getStationByID(0);
+            protected void onClickConfirmed(View v, Marker marker)
+            {
+                s = sc.getStationByID(2);
                 Car c = cc.getAllCars().get(Integer.parseInt(carId.getText().toString()));
+                Log.d("MainActivity-SendToLot",""+ s.getLocationX()+ s.getLocationY() );
                 cc.moveCar(gmap, c, s.getLocationX(), s.getLocationY());
             }
         };
