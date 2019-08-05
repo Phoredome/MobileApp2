@@ -81,13 +81,6 @@ public class CreateAccount extends AppCompatActivity {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
-   public void signUpSuccess() {
-        Button register = findViewById(R.id.regBtn);
-        register.setEnabled(true);
-        setResult(RESULT_OK, null);
-        finish();
-    }
-
     public void failedSignUp() {
         showToast(getBaseContext(), "Login failed. Please try again");
 
