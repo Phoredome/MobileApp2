@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.myapplication.border.dao.TripDAO;
 import com.example.myapplication.border.dao.UserDAO;
+import com.example.myapplication.border.info.GetDistanceProbe;
 import com.example.myapplication.entities.Car;
 import com.example.myapplication.entities.Trip;
 import com.example.myapplication.entities.User;
@@ -34,18 +35,18 @@ public class TripController
     public ArrayList<Trip> getAllTrips() {
         return td.getAllTrips();
     }
-    public void addTrip(GoogleMap gmap, Context context, Car c,User user, String ll)
+    public void addTrip(GoogleMap gmap, GetDistanceProbe.DistanceListener dlistener, Car c,User user, String ll)
     {
         String[] xy = ll.split(",");
         LatLng hold = new LatLng(Double.parseDouble(xy[0].trim()), Double.parseDouble(xy[1].trim()));
-        addTrip(gmap, context,c,user,hold);
+        addTrip(gmap, dlistener,c,user,hold);
     }
-    public void addTrip(GoogleMap gmap, Context context, Car c, User user, LatLng ll)
+    public void addTrip(GoogleMap gmap, GetDistanceProbe.DistanceListener dlistener, Car c, User user, LatLng ll)
     {
 
         int num = getHighestTripNum(getUserTrip(user.getUserId()));
 
-        cc.getTripDistance(c,ll);
+        cc.getTripDistance(dlistener, c, ll);
 
         c.setKmsRun(c.getKmsRun()+c.getDistance());
         c.getCostOfRunning();

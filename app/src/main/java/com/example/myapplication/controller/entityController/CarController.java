@@ -71,12 +71,6 @@ public class CarController{
         return false;
     }
 
-    //TODO Nani???
-    public Boolean checkToAdd() {
-        return true;
-    }
-
-
     public Boolean addCar(double costOfRunning,
                                  int seats,
                                  int doors,
@@ -194,19 +188,6 @@ public class CarController{
         return false;
     }
 
-    public void getCarDistance(GetDistanceProbe.DistanceListener dlistener)
-    {
-        ArrayList<Car> carList = cd.getAllCars();
-
-        for (Car c : carList)
-        {
-            double x = c.getCoordX();
-            double y = c.getCoordY();
-
-            getCarDistances(dlistener, c, x, y);
-        }
-    }
-
     public void getNearCarsFromLocation(GetDistanceProbe.DistanceListener dlistener, double x, double y )
     {
         Car c = null;
@@ -228,9 +209,9 @@ public class CarController{
 
     }
 
-    public void getTripDistance(Car c, LatLng ll)
+    public void getTripDistance(GetDistanceProbe.DistanceListener dlistener, Car c, LatLng ll)
     {
-        //TODO Change to callable --- startSearch( c.getCoordX(), c.getCoordY(), ll.latitude, ll.longitude);
+        getCarDistances(dlistener, c, ll.latitude, ll.longitude);
     }
 
     public void initializeCars(GoogleMap map)
