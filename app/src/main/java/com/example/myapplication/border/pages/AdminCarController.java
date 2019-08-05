@@ -125,14 +125,7 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
             }
         });
 
-        Button redistributeCar = findViewById(R.id.redistributeBtn);
 
-        redistributeCar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cc.redistribute();
-            }
-        });
 
 
 
@@ -212,6 +205,16 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onClick(View view) {
                 cc.setAllCars();
+                gmap.clear();
+                cc.initializeCars(gmap);
+            }
+        });
+        Button redistributeCar = findViewById(R.id.redistributeBtn);
+
+        redistributeCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cc.redistribute();
                 gmap.clear();
                 cc.initializeCars(gmap);
             }
