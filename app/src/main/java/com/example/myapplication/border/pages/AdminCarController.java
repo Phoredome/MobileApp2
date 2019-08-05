@@ -127,9 +127,7 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
         redistributeCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), DistanceCalculatorManager.class);
-                startActivity(i);
-                finish();
+                cc.redistribute();
             }
         });
 
