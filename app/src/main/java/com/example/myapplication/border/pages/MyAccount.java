@@ -37,6 +37,13 @@ public class MyAccount extends AppCompatActivity {
         i = getIntent();
         b = i.getExtras();
         a = i.getExtras();
+        String uName = a.getString("userN");
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView userNameTitle =  headerView.findViewById(R.id.nav_name);
+        userNameTitle.setText("Hi, " + uName);
+
+
         ud = new UserDAO(getApplicationContext());
 
         Boolean status = b.getBoolean("status");

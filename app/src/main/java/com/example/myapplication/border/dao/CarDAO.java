@@ -197,20 +197,19 @@ public class CarDAO {
         Log.d("Updated car", "Car Updated");
     }
 
-    public void updateCarRate(int carNum, double scRate, double crvRate, double vanRate)
+    public void updateCarRate(Car c, double scRate, double crvRate, double vanRate)
     {
         ContentValues values = new ContentValues();
 
-        Car c = getCarById(carNum);
-        if(c.getVehicleType() == "smallCar")
+        if(c.getVehicleType().equals("Small Car"))
             values.put("costOfRunning", scRate);
-        else if(c.getVehicleType() == "crv")
+        else if(c.getVehicleType().equals("CRV Car"))
             values.put("costOfRunning", crvRate);
-        else if(c.getVehicleType() == "van")
+        else if(c.getVehicleType().equals("Van"))
             values.put("costOfRunning", vanRate);
-
-        wdb.update("Car", values,  "carId="+carNum, null);
-        Log.d("Updated car", "Car Updated");
+        Log.d("Update car Ids", c.getCarID()+"");
+        wdb.update("Car", values,  "carId="+c.getCarID(), null);
+        Log.d("Updated car rate", "Car Updated");
     }
     public void updateCarInfo(int carNum, double costOfRunning, int seats, int doors, int serviceTime,
                               double kmsRun, double kmsSinceLastService, String vehicleType, String licensePlate,

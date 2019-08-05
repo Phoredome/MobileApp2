@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.entityController.CarController;
@@ -49,9 +50,14 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
 
         Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
+        String uName = a.getString("userN");
+
+
 
         final NavigationView navigationView = findViewById(R.id.nav_admin_map);
-
+        View headerView = navigationView.getHeaderView(0);
+        TextView userNameTitle =  headerView.findViewById(R.id.nav_name);
+        userNameTitle.setText("Hi, " + uName);
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);

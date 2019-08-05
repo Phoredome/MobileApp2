@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.entityController.CarController;
@@ -20,6 +22,7 @@ import com.example.myapplication.controller.adapters.RecyclerViewListAdapter;
 import com.example.myapplication.entities.Car;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AdminCarInfo extends AppCompatActivity {
@@ -38,11 +41,18 @@ public class AdminCarInfo extends AppCompatActivity {
         setContentView(R.layout.activity_admin_info);
 
         cc = new CarController(getApplicationContext());
+        final NavigationView navigationView = findViewById(R.id.nav_admin_info);
 
         Intent i = getIntent();
 
         b = i.getExtras();
         a = i.getExtras();
+
+        String uName = a.getString("userN");
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView userNameTitle =  headerView.findViewById(R.id.nav_name);
+        userNameTitle.setText("Hi, " + uName);
 
         Integer userId = a.getInt("userId");
         Boolean status = b.getBoolean("status");
@@ -52,10 +62,12 @@ public class AdminCarInfo extends AppCompatActivity {
         TextView numActive = findViewById(R.id.numActive);
         TextView numRunning = findViewById(R.id.numRunning);
 
+        DecimalFormat df = new DecimalFormat("#0.00");
+
         ArrayList<Car> cars = cc.getAllCars();
         for (int y=0; y< cars.size(); y++) {
             total += cars.get(y).getCostOfRunning();
-            totalMade.setText("Your total made today is " + total + ".");
+            totalMade.setText("Your total made today is $" + df.format(total) + ".");
         }
 
         for (int x=0; x< cars.size(); x++) {
@@ -74,7 +86,6 @@ public class AdminCarInfo extends AppCompatActivity {
 
 
 
-        final NavigationView navigationView = findViewById(R.id.nav_admin_info);
 
         if(status){
             navigationView.inflateMenu(R.menu.activity_admin_drawer);
@@ -148,5 +159,38 @@ public class AdminCarInfo extends AppCompatActivity {
 
 
 
+
+        Button updateRates = findViewById(R.id.updateRateBtn);
+        updateRates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText smallC = findViewById(R.id.rate1Txt);
+                EditText crv = findViewById(R.id.rate3Txt);
+                EditText vanC = findViewById(R.id.rate2Txt);
+
+
+                Double sCar = Double.parseDouble(smallC.getText().toString());
+                Double vCar = Double.parseDouble(vanC.getText().toString());
+                Double crvCar = Double.parseDouble(crv.getText().toString());
+
+
+                cc.setCarRates(sCar, crvCar, vCar);
+
+                smallC.setText(sCar.toString());
+                crv.setText(crvCar.toString());
+                vanC.setText(vCar.toString());
+
+                Toast.makeText(getApplicationContext(),"Car updated" , Toast.LENGTH_LONG).show();
+            }
+        });
+
+        EditText smallC = findViewById(R.id.rate1Txt);
+        EditText crv = findViewById(R.id.rate3Txt);
+        EditText vanC = findViewById(R.id.rate2Txt);
+
+        Log.d("AdminCarInfo-OnCreate", "loading hints");
+        smallC.setHint(cc.findCarRate("Small Car").toString());
+        crv.setHint(cc.findCarRate("CRV Car").toString());
+        vanC.setHint(cc.findCarRate("Van").toString());
     }
 }
