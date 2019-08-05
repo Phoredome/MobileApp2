@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center|center_horizontal"
+    android:background="#FFFFFF"
     android:forceDarkAllowed="true"
     android:foregroundGravity="center"
     android:gravity="center|center_horizontal"
@@ -23,9 +24,9 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="100dp"
+            android:layout_marginRight="110dp"
             android:text="USERNAME:"
-            android:textSize="12sp" />
+            android:textSize="8sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +41,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="klboo"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -48,10 +49,10 @@
             android:id="@+id/password_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="100dp"
+            android:layout_marginRight="110dp"
             android:layout_weight="1"
             android:text="PASSWORD:"
-            android:textSize="12sp" />
+            android:textSize="8sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                 android:inputType="textPassword"
                 android:password="true"
                 android:text="klboo"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:visibility="visible"
                 tools:visibility="visible" />
 
