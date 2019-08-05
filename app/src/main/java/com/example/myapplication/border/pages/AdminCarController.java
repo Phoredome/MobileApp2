@@ -201,9 +201,8 @@ public class AdminCarController extends AppCompatActivity implements OnMapReadyC
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-        gmap.setMinZoomPreference(12);
-        LatLng van = new LatLng(49.267279, -123.218318);
-        gmap.moveCamera(CameraUpdateFactory.newLatLng(van));
+        gmap.setMinZoomPreference(13);
+        gmap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(49.240000, -123.020100)));
         cc.initializeCars(gmap);
 
         Button distributeCars = findViewById(R.id.distributeCars);
