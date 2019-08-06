@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_drawer_admin"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_menu_account"
+            android:title="Account" />
+
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_history"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_logout"
+            android:title="Logout" />
+
+
+    </group>
+    <group android:id="@+id/admin_nav">
+        <item
+            android:id="@+id/nav_car_controller"
+            android:icon="@drawable/ic_menu_controller"
+            android:title="Car Controller" />
+        <item
+            android:id="@+id/nav_car_info"
+            android:icon="@drawable/ic_car_info"
+            android:title="Car info" />
+    </group>
+
+</menu>

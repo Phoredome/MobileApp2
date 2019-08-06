@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_register">Sign in</string>
+    <string name="title_activity_main">Main</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -11,4 +12,47 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_trip_history">tripHistory</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="title_activity_info_window">InfoWindow</string>
+
+    <string name="scRate">Small Car: $</string>
+    <string name="scCost">1.90</string>
+    <string name="vanRate">Van: $</string>
+    <string name="vanCost">2.50</string>
+    <string name="crvRate">CRV: $</string>
+    <string name="crvCost">3.75</string>
+
+    <string-array name="door_spin">
+        <item>Doors</item>
+        <item>2 doors</item>
+        <item>4 doors</item>
+    </string-array>
+
+    <string-array name="seat_spin">
+        <item>Seats</item>
+        <item>2 seats</item>
+        <item>5 seats</item>
+        <item>8 seats</item>
+    </string-array>
+
+    <string-array name="vehicle_type">
+        <item>Vehicle Type</item>
+        <item>Small car</item>
+        <item>CRV car</item>
+        <item>Van</item>
+
+    </string-array>
+
+
 </resources>

@@ -14,14 +14,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
+
         <activity
-            android:name=".Border.tripHistory"
+            android:name=".border.info.InfoWindow"
+            android:label="@string/title_activity_info_window"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".border.pages.CreateCar"
+            android:label="Create Car"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".border.pages.TripHistory"
             android:label="@string/title_activity_trip_history"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!--activity android:name=".Border.Register" /-->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- activity android:name=".Border.CreateAccount" / -->
+
         <activity
-            android:name=".Border.Register"
+            android:name=".border.pages.CreateAccount"
             android:label="@string/title_activity_register" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -36,7 +47,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".border.pages.LoginPage"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +55,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".border.pages.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".border.pages.AdminCarController"
+            android:label="AdminMap"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".border.pages.EditCar"
+            android:label="Edit Car"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".border.pages.AdminCarInfo"
+            android:label="AdminCarInfo"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".border.pages.MyAccount"
+            android:label="myAccount"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service
+            android:name=".manager.FetchAddressIntentService"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
