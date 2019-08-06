@@ -15,8 +15,12 @@ public class User {
     private String password;
     private boolean status;
 
+<<<<<<< HEAD:app/src/main/java/com/example/myapplication/entities/User.java
     public User()
     {
+=======
+    public User() {
+>>>>>>> master:app/src/main/java/com/example/myapplication/Entities/User.java
 
     }
 

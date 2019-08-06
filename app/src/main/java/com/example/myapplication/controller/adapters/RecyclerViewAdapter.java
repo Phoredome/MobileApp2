@@ -1,6 +1,7 @@
 package com.example.myapplication.controller.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +65,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.setClickListener(new ItemClickListener() {
                 @Override
                 public void onClick(View view, int position) {
-                    LatLng MLatLng = new LatLng(list.get(position).getCoordX(), list.get(position).getCoordY());
-                    CameraPosition newCameraPosition = new CameraPosition.Builder().target(MLatLng).build();
-                    gmap.moveCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition));
+                    Log.d("RecycleViewAdapter", ""+list.get(position).getCarID());
+                    for (Car c: list) { Log.d("Cars In Short List", ""+c.getCarID());}
+                    Log.d("RecyclerViewAdapter-holder", list.get(position).getCoordX()+ ","+list.get(position).getCoordY()+"");
+                    LatLng mLatLng = new LatLng(list.get(position).getCoordX(), list.get(position).getCoordY());
+                    CameraPosition newCameraPosition = new CameraPosition.Builder().target(mLatLng).build();
+                    gmap.moveCamera(CameraUpdateFactory.newLatLng(mLatLng));
+                    //gmap.moveCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition));
                 }
             });
 
